@@ -10,7 +10,6 @@
         //theme: 'yellow_right',
         defaultMsg: "{0}格式不正确",
         loadingMsg: "正在验证...",
-        
         // Custom rules
         rules: {
             digits: [/^\d+$/, "请输入数字"]
@@ -27,6 +26,7 @@
             ,chinese: [/^[\u0391-\uFFE5]+$/, "请输入中文"]
             ,username: [/^\w{3,12}$/, "请输入3-12位数字、字母、下划线"]
             ,password: [/^[0-9a-zA-Z]{6,16}$/, "密码由6-16位数字、字母组成"]
+            ,valiCode:[/^\d{6}$/,"验证码为6位数字"]
             ,accept: function (element, params){
                 if (!params) return true;
                 var ext = params[0];

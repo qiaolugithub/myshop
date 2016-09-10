@@ -43,7 +43,7 @@
 		                </h3>
 		              </div>
 		              <div class="panel-body">
-	              		<form role="form" id="form" class="form-horizontal" action="${basepath}/account/doLogin" method="post" theme="simple">
+	              		<form role="form" id="form" class="form-horizontal" action="${basepath}/account/doLogin" method="post" theme="simple" data-validator-option="{stopOnError:false, timely:false}">
 						  <div class="form-group">
 						    <label for="account" class="col-md-2 control-label">账号</label>
 						    <div class="col-md-6">

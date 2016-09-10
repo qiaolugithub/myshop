@@ -28,6 +28,11 @@
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    <servlet>
+        <servlet-name>ReadPropertites</servlet-name>
+        <servlet-class>net.jeeshop.core.util.AutoEvalToValServlet</servlet-class>
+        <load-on-startup>10</load-on-startup>
+    </servlet>
     <servlet-mapping>
         <servlet-name>springMvc</servlet-name>
         <url-pattern>/</url-pattern>

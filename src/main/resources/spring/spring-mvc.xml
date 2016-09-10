@@ -42,6 +42,22 @@
         <property name="location" value="classpath:freemarker.properties" />
     </bean>
 
+
+    <!--读取配置文件-->
+    <!--  &lt;!&ndash;<context:property-placeholder location="param.properties" />&ndash;&gt;
+      <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+          <property name="locations">
+              <array>
+                  <value>classpath:param.properties</value>
+              </array>
+          </property>
+      </bean>
+  -->
+    <!--短信读取-->
+    <bean id="propertiesReader" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="location" value="classpath:param.properties" />
+    </bean>
+
     <!-- 配置freeMarker模板路径 -->
     <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
         <property name="freemarkerSettings" ref="freemarkerConfiguration" />
