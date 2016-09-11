@@ -54,7 +54,7 @@
 				  <div class="form-group">
 				    <label for="account" class="col-lg-2 control-label">生日：</label>
 				    <div class="col-lg-3">
-				    	<input id="birthday" name="birthday" class="Wdate form-control" value="${e.birthday!""}"
+				    	<input id="birthday"  style="height:35px;" name="birthday" class="Wdate form-control" value="${e.birthday!""}"
 				    	type="text" onFocus="WdatePicker({isShowClear:false,readOnly:true})"/>
 				    </div>
 				  </div>
@@ -90,11 +90,11 @@
 				  <div class="form-group">
 				    <label for="account" class="col-lg-2 control-label">手机号：</label>
 				    <div class="col-lg-6">
-				    	<#if e.tel?? && e.tel!''>
-						 	<input name="trueName" type="text" class="form-control" id="phone" value="${e.tel!''}" />
-				    	<a href="javascript:void(0)" data-target="#bangDing"  data-toggle="modal" class="btn btn-link btn-sm">修改手机号</a>
+				    	<#if e.tel??>
+						 	<input name="trueName" type="text" class="form-control" id="phone" value="${e.tel}" />
+				    	<a href="javascript:void(0)" data-target="#bangDing"  data-toggle="modal" class="btn btn-link btn-sm bdclick">修改手机号</a>
 				    	<#else>
-				    	<a href="javascript:void(0)" data-target="#bangDing"  data-toggle="modal" class="btn btn-link btn-sm">绑定手机号</a>
+				    	<a href="javascript:void(0)" data-target="#bangDing"  data-toggle="modal" class="btn btn-link btn-sm bdclick">绑定手机号</a>
 				    	</#if>
 				    </div>
 				  </div>
@@ -127,6 +127,7 @@
                             <input name="editPhone" type="text" class="form-control" id="editPhone" value=""  placeholder="请输入手机号"/>
                         </div>
                     </div>
+                    <span id="infoM"  style="color:red"></span>
                     <div class="form-group">
                         <div class="col-lg-2"></div>
                         <div class="col-lg-4">
@@ -143,50 +144,132 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button id="editSubimt" type="button" class="btn btn-primary" type="submit">保存</button>
+                <button id="editSubimt" type="button" class="btn btn-primary" type="button">保存</button>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 <script type="text/javascript" src="${basepath}/resource/My97DatePicker/WdatePicker.js"></script>
 <script type="text/javascript">
-    $('form[name="telForm"]').validator({
-        fields: {
-            'editPhone': 'required;mobile;',
-            'codeValue': 'required;valiCode;',
-        }
+    /*模态出来前清空*/
+    $(".bdclick").click(function () {
+        $("#editPhone").val("");
+        $("#codeValue").val("");
+        $("#getCode").html("获取验证码");
+        $("#getCode").attr("disabled", false);
+        $("#telForm").validator("cleanUp");
     });
 
+    //验证码倒计时
+    function changTime(val){
+        $("#getCode").attr("disabled", "disabled");
+        setTimeout(function () {
+            if (val > 0) {
+                changTime(val);
+            }else{
+                $("#getCode").attr("disabled", false);
+                $("#getCode").html("获取验证码");
+            }
+        }, 1000);
+        $("#getCode").html("请在" + val + "秒后重新发送");
+        val--;
+    }
+
+    //获取验证码
     $("#getCode").click(function () {
-         $('form[name="telForm"]').validator({
+        $('form[name="telForm"]').validator({
             fields: {
                 'editPhone': 'required;mobile;'
             }
         });
-        if($("#telForm").isValid()){
-            $(this).attr("disabled", "disabled");
-            var _url = "getVliCode?phone="+$(this).val();
+        if ($("#telForm").isValid()) {
+            changTime(60);
+          var _url = "getVliCode?phone=" + $("#editPhone").val();
             $.ajax({
                 type: 'POST',
                 url: _url,
                 data: {},
                 dataType: "json",
-                success: function(data){
-                    //console.log("changeProvince success!data = "+data);
-                    $.each(data,function(index,value){
-                        //console.log("index="+index+",value="+value.code+","+value.name);
-                        $("#citySelect").append("<option value='"+value.code+"'>"+value.name+"</option>");
-                    });
+                success: function (data) {
+                    console.log(1111+data);
+                    if(data == "success") {
+                        $("#infoM").html("已发送");
+                    }else{
+                        $("#infoM").html(data);
+                    }
                 },
-                error:function(er){
-                    console.log("changeProvince error!er = "+er);
+                error: function (err) {
+                  //  $("#getCode").attr("disabled", false);
                 }
+            });
         }
-
     });
-$(function() {
+
+
+    $("#editSubimt").click(function () {
+        $('form[name="telForm"]').validator({
+            fields: {
+                'editPhone': 'required;mobile;',
+                'codeValue': 'required;valiCode;'
+            }
+        });
+
+        if ($("#telForm").isValid()) {
+            var _url = "checkVliCode?phone=" + $("#editPhone").val()+"&vliCode="+$("#codeValue").val();
+            $.ajax({
+                type: 'POST',
+                url: _url,
+                data: {},
+                dataType: "json",
+                success: function (data) {
+                    if(data == "success") {
+                        BootstrapDialog.show({
+                            title: '提示消息',
+                            message: '绑定成功！',
+                            buttons: [{
+                                label: 'Close',
+                                action: function(dialog) {
+                                    dialog.close(function(){
+                                        $("#bangDing").find(".close").click();
+                                    });
+                                }
+                            }]
+                        });
+                    }else{
+                        BootstrapDialog.show({
+                            title: '提示消息',
+                            message: data,
+                            buttons: [{
+                                label: 'Close',
+                                action: function(dialog) {
+                                    dialog.close(function(){
+                                        $("#bangDing").find(".close").click();
+                                    });
+                                }
+                            }]
+                        });
+                    }
+                },
+                error: function () {
+                    BootstrapDialog.show({
+                        title: '提示消息',
+                        message: '绑定失败，请稍后重试！',
+                        buttons: [{
+                            label: 'Close',
+                            action: function(dialog) {
+                                dialog.close(function(){
+                                    $("#bangDing").find(".close").click();
+                                });
+                            }
+                        }]
+                    });
+                }
+            });
+        }
+    });
+/*$(function() {
 	//$("#birthday").addClass("form-control");
-});
+});*/
 function changeProvince(){
 	var selectVal = $("#province").val();
 	if(!selectVal){

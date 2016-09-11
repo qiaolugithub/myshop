@@ -49,6 +49,8 @@
         <link rel="stylesheet" href="${basepath}/resource/bootstrap3.3.4/css/non-responsive.css"  type="text/css">
     </#if>
 
+    <#--bootstarp dialog-->
+    <link rel="stylesheet" href="${basepath}/resource/bootstarp-dialog/bootstrap-dialog.min.css" />
 <#--<script type="text/javascript" src="${basepath}/resource/js/jquery-1.4.2.min.js"></script>-->
     <script type="text/javascript" src="${basepath}/resource/js/jquery-1.9.1.min.js"></script>
     <#--<script type="text/javascript" src="${basepath}/resource/zTree3.5/js/jquery.ztree.all-3.5.min.js"></script>-->
@@ -76,6 +78,9 @@
     <link href="${basepath}/resource/js/slideTab2/css/lanrenzhijia.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="${basepath}/resource/js/slideTab2/js/lanrenzhijia.js"></script>
 
+
+    <#--bootstarp dialog-->
+    <script type="text/javascript" src="${basepath}/resource/bootstarp-dialog/bootstrap-dialog.min.js"></script>
     <#include "/resource/common_css.ftl"/>
 </head>
     <#if nobody>
