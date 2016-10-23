@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="front.discount" >
+
+    <!--已有的优惠券-->
+   <select id="front.discount.selectPageList" parameterType="net.jeeshop.services.front.discount.bean.Discount" resultType="net.jeeshop.services.front.discount.bean.Discount">
+       SELECT
+       d.id,
+       d.name,
+       d.beginTime,
+       d.endTime,
+       d.cutType,
+       d.cutNum,d.faceVale,
+       case when t.orderid is not null then 4  when (#{queryDate} &gt; d.endTime and t.status!=2) then 3
+       when (#{queryDate} &lt;= d.endTime and t.status!=2) then 1
+       when t.status=2 then 2
+       else 0 end as canuse,
+       "all" as pname,
+       t.id as disId,
+       t.orderId
+       FROM
+       t_discount_detail t
+       JOIN t_discount d ON t.disId = d.id
+       WHERE
+       1 = 1
+       and  t.accountId=#{account}
+       and d.proType=0 and d.proId =0
+
+       UNION
+       SELECT
+       d.id,
+       d.name,
+       d.beginTime,
+       d.endTime,
+       d.cutType,
+       d.cutNum,d.faceVale,
+       case when t.orderid is not null then 4  when (#{queryDate} &gt; d.endTime and t.status!=2) then 3
+       when (#{queryDate} &lt;= d.endTime and t.status!=2) then 1
+       when t.status=2 then 2
+       else 0 end as canuse,
+       p.name as pname ,
+       t.id as disId,
+       t.orderId
+       FROM
+       t_discount_detail t
+       JOIN t_discount d ON t.disId = d.id
+       left JOIN t_product p on d.proId = p.id
+       WHERE
+       1 = 1
+       and  t.accountId=#{account}
+       and d.proType=0
+       and d.proId !=0
+
+       UNION
+       SELECT
+       d.id,
+       d.name,
+       d.beginTime,
+       d.endTime,
+       d.cutType,
+       d.cutNum,d.faceVale,
+       case when t.orderid is not null then 4  when (#{queryDate} &gt; d.endTime and t.status!=2) then 3
+       when (#{queryDate} &lt;= d.endTime and t.status!=2) then 1
+       when t.status=2 then 2
+       else 0 end as canuse,
+       c.name as pname ,
+       t.id as disId,
+       t.orderId
+       FROM
+       t_discount_detail t
+       JOIN t_discount d ON t.disId = d.id
+       left JOIN t_catalog c on d.proId = c.id
+       WHERE
+       1 = 1
+       and  t.accountId=#{account}
+       and d.proType=1
+       and d.proId !=0
+       and c.type='p'
+       order by endTime desc
+          limit #{offset},#{pageSize}
+      </select>
+
+
+      <select id="front.discount.selectPageCount" parameterType="net.jeeshop.services.front.discount.bean.Discount" resultType="java.lang.Integer">
+          select count(1) from ( SELECT
+       d.id,
+       d.name,
+       d.beginTime,
+       d.endTime,
+       d.cutType,
+       d.cutNum,d.faceVale,
+       case when t.orderid is not null then 4  when (#{queryDate} &gt; d.endTime and t.status!=2) then 3
+       when (#{queryDate} &lt;= d.endTime and t.status!=2) then 1
+       when t.status=2 then 2
+       else 0 end as canuse,
+       "all" as pname,
+       t.id as disId,
+       t.orderId
+       FROM
+       t_discount_detail t
+       JOIN t_discount d ON t.disId = d.id
+       WHERE
+       1 = 1
+       and  t.accountId=#{account}
+       and d.proType=0 and d.proId =0
+
+       UNION
+       SELECT
+       d.id,
+       d.name,
+       d.beginTime,
+       d.endTime,
+       d.cutType,
+       d.cutNum,d.faceVale,
+       case when t.orderid is not null then 4  when (#{queryDate} &gt; d.endTime and t.status!=2) then 3
+       when (#{queryDate} &lt;= d.endTime and t.status!=2) then 1
+       when t.status=2 then 2
+       else 0 end as canuse,
+       p.name as pname ,
+       t.id as disId,
+       t.orderId
+       FROM
+       t_discount_detail t
+       JOIN t_discount d ON t.disId = d.id
+       left JOIN t_product p on d.proId = p.id
+       WHERE
+       1 = 1
+       and  t.accountId=#{account}
+       and d.proType=0
+       and d.proId !=0
+
+       UNION
+       SELECT
+       d.id,
+       d.name,
+       d.beginTime,
+       d.endTime,
+       d.cutType,
+       d.cutNum,d.faceVale,
+       case when t.orderid is not null then 4  when (#{queryDate} &gt; d.endTime and t.status!=2) then 3
+       when (#{queryDate} &lt;= d.endTime and t.status!=2) then 1
+       when t.status=2 then 2
+       else 0 end as canuse,
+       c.name as pname ,
+       t.id as disId,
+       t.orderId
+       FROM
+       t_discount_detail t
+       JOIN t_discount d ON t.disId = d.id
+       left JOIN t_catalog c on d.proId = c.id
+       WHERE
+       1 = 1
+       and  t.accountId=#{account}
+       and d.proType=1
+       and d.proId !=0
+       and c.type='p' ) a
+      </select>
+
+
+    <!--所有优惠券-->
+    <select id="front.discount.selectPageList2" parameterType="net.jeeshop.services.front.discount.bean.Discount" resultType="net.jeeshop.services.front.discount.bean.Discount">
+        select
+        d.id,
+        d.name,
+        d.begintime,
+        d.endtime,
+        d.cuttype,
+        d.cutnum,
+        d.convertType,
+        d.convertNum,
+        d.facevale,
+        case when t.orderid is not null then 4  when (#{queryDate} &gt; d.endtime and t.status!=2) then 3
+        when (#{queryDate} &lt;= d.endtime and t.status!=2) then 1
+        when t.status=2 then 2
+        else 0 end as canuse,
+        "all" as pname,
+        t.id as disid,
+        t.orderid,
+        case when t.accountId =#{account} then 1
+        else 0 end as isGet
+        from
+        t_discount d
+        left join t_discount_detail  t on t.disid = d.id
+        where
+        1 = 1
+        and d.protype=0 and d.proid =0
+
+        union
+        select
+        d.id,
+        d.name,
+        d.begintime,
+        d.endtime,
+        d.cuttype,
+        d.cutnum,
+        d.convertType,
+        d.convertNum,
+        d.facevale,
+        case when t.orderid is not null then 4  when (#{queryDate} &gt; d.endtime and t.status!=2) then 3
+        when (#{queryDate} &lt;= d.endtime and t.status!=2) then 1
+        when t.status=2 then 2
+        else 0 end as canuse,
+        p.name as pname ,
+        t.id as disid,
+        t.orderid,
+        case when t.accountId =#{account} then 1
+        else 0 end as isGet
+        from
+        t_discount d
+        left join t_discount_detail  t on t.disid = d.id
+        left join t_product p on d.proid = p.id
+        where
+        1 = 1
+        and d.protype=0
+        and d.proid !=0
+        union
+        select
+        d.id,
+        d.name,
+        d.begintime,
+        d.endtime,
+        d.cuttype,
+        d.cutnum,
+        d.convertType,
+        d.convertNum,
+        d.facevale,
+        case when t.orderid is not null then 4  when (#{queryDate} &gt; d.endtime and t.status!=2) then 3
+        when (#{queryDate} &lt;= d.endtime and t.status!=2) then 1
+        when t.status=2 then 2
+        else 0 end as canuse,
+        c.name as pname ,
+        t.id as disid,
+        t.orderid,
+        case when t.accountId =#{account} then 1
+        else 0 end as isGet
+        from
+        t_discount d
+        left join t_discount_detail  t on t.disid = d.id
+        left join t_catalog c on d.proid = c.id
+        where
+        1 = 1
+        and d.protype=1
+        and d.proid !=0
+        and c.type='p'
+        order by endtime desc
+        limit #{offset},#{pageSize}
+    </select>
+
+
+    <select id="front.discount.selectPageCount2" parameterType="net.jeeshop.services.front.discount.bean.Discount" resultType="java.lang.Integer">
+        select count(1) from (select
+        d.id,
+        d.name,
+        d.begintime,
+        d.endtime,
+        d.cuttype,
+        d.cutnum,
+        d.convertType,
+        d.convertNum,
+        d.facevale,
+        case when t.orderid is not null then 4  when (#{queryDate} &gt; d.endtime and t.status!=2) then 3
+        when (#{queryDate} &lt;= d.endtime and t.status!=2) then 1
+        when t.status=2 then 2
+        else 0 end as canuse,
+        "all" as pname,
+        t.id as disid,
+        t.orderid,
+        case when t.accountId =#{account} then 1
+        else 0 end as isGet
+        from
+        t_discount d
+        left join t_discount_detail  t on t.disid = d.id
+        where
+        1 = 1
+        and d.protype=0 and d.proid =0
+        union
+        select
+        d.id,
+        d.name,
+        d.begintime,
+        d.endtime,
+        d.cuttype,
+        d.cutnum,
+        d.convertType,
+        d.convertNum,
+        d.facevale,
+        case when t.orderid is not null then 4  when (#{queryDate} &gt; d.endtime and t.status!=2) then 3
+        when (#{queryDate} &lt;= d.endtime and t.status!=2) then 1
+        when t.status=2 then 2
+        else 0 end as canuse,
+        p.name as pname ,
+        t.id as disid,
+        t.orderid,
+        case when t.accountId =#{account} then 1
+        else 0 end as isGet
+        from
+        t_discount d
+        left join t_discount_detail  t on t.disid = d.id
+        left join t_product p on d.proid = p.id
+        where
+        1 = 1
+        and d.protype=0
+        and d.proid !=0
+
+        union
+        select
+        d.id,
+        d.name,
+        d.begintime,
+        d.endtime,
+        d.cuttype,
+        d.cutnum,
+        d.convertType,
+        d.convertNum,
+        d.facevale,
+        case when t.orderid is not null then 4  when (#{queryDate} &gt; d.endtime and t.status!=2) then 3
+        when (#{queryDate} &lt;= d.endtime and t.status!=2) then 1
+        when t.status=2 then 2
+        else 0 end as canuse,
+        c.name as pname ,
+        t.id as disid,
+        t.orderid,
+        case when t.accountId =#{account} then 1
+        else 0 end as isGet
+        from
+        t_discount d
+        left join t_discount_detail  t on t.disid = d.id
+        left join t_catalog c on d.proid = c.id
+        where
+        1 = 1
+        and d.protype=1
+        and d.proid !=0
+        and c.type='p' ) a
+    </select>
+    <!--
+      <sql id="Example_Where_Clause" >
+        <where >
+          <foreach collection="oredCriteria" item="criteria" separator="or" >
+            <if test="criteria.valid" >
+              <trim prefix="(" suffix=")" prefixOverrides="and" >
+                <foreach collection="criteria.criteria" item="criterion" >
+                  <choose >
+                    <when test="criterion.noValue" >
+                      and ${criterion.condition}
+                    </when>
+                    <when test="criterion.singleValue" >
+                      and ${criterion.condition} #{criterion.value}
+                    </when>
+                    <when test="criterion.betweenValue" >
+                      and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                    </when>
+                    <when test="criterion.listValue" >
+                      and ${criterion.condition}
+                      <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                        #{listItem}
+                      </foreach>
+                    </when>
+                  </choose>
+                </foreach>
+              </trim>
+            </if>
+          </foreach>
+        </where>
+      </sql>-->
+  <!--<sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>-->
+ <!-- <sql id="Base_Column_List" >
+    id, name, faceVale, beginTime, endTime, proType, proId, allCount, levCount, convertType, 
+    convertNum, cutType, cutNum, trank, limGet, remark, createTime, status
+  </sql>-->
+  <!--<select id="selectByExample" resultMap="BaseResultMap" parameterType="net.jeeshop.model.DiscountExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_discount
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>-->
+ <!-- <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_discount
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="front.discount.delete" parameterType="java.lang.Integer" >
+    delete from t_discount
+    where id = #{id,jdbcType=INTEGER}
+</delete>-->
+ <!-- <insert id="insert" parameterType="front.discount" >
+    insert into t_discount (id, name, faceVale, 
+      beginTime, endTime, proType, 
+      proId, allCount, levCount, 
+      convertType, convertNum, cutType, 
+      cutNum, trank, limGet, 
+      remark, createTime, status
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{facevale,jdbcType=DECIMAL}, 
+      #{begintime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, #{protype,jdbcType=INTEGER}, 
+      #{proid,jdbcType=INTEGER}, #{allcount,jdbcType=INTEGER}, #{levcount,jdbcType=INTEGER}, 
+      #{converttype,jdbcType=INTEGER}, #{convertnum,jdbcType=DECIMAL}, #{cuttype,jdbcType=INTEGER}, 
+      #{cutnum,jdbcType=DECIMAL}, #{trank,jdbcType=INTEGER}, #{limget,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}
+      )
+  </insert>-->
+  <insert id="front.discount.insert" parameterType="net.jeeshop.services.front.discount.bean.Discount" useGeneratedKeys="true" keyProperty="id">
+    insert into t_discount
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="facevale != null" >
+        faceVale,
+      </if>
+      <if test="begintime != null" >
+        beginTime,
+      </if>
+      <if test="endtime != null" >
+        endTime,
+      </if>
+      <if test="protype != null" >
+        proType,
+      </if>
+      <if test="proid != null" >
+        proId,
+      </if>
+      <if test="allcount != null" >
+        allCount,
+      </if>
+      <if test="levcount != null" >
+        levCount,
+      </if>
+      <if test="converttype != null" >
+        convertType,
+      </if>
+      <if test="convertnum != null" >
+        convertNum,
+      </if>
+      <if test="cuttype != null" >
+        cutType,
+      </if>
+      <if test="cutnum != null" >
+        cutNum,
+      </if>
+      <if test="trank != null" >
+        trank,
+      </if>
+      <if test="limget != null" >
+        limGet,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="name != null" >
+        #{name},
+      </if>
+      <if test="facevale != null" >
+        #{facevale},
+      </if>
+      <if test="begintime != null" >
+        #{begintime},
+      </if>
+      <if test="endtime != null" >
+        #{endtime},
+      </if>
+      <if test="protype != null" >
+        #{protype},
+      </if>
+      <if test="proid != null" >
+        #{proid},
+      </if>
+      <if test="allcount != null" >
+        #{allcount},
+      </if>
+      <if test="levcount != null" >
+        #{levcount},
+      </if>
+      <if test="converttype != null" >
+        #{converttype},
+      </if>
+      <if test="convertnum != null" >
+        #{convertnum},
+      </if>
+      <if test="cuttype != null" >
+        #{cuttype},
+      </if>
+      <if test="cutnum != null" >
+        #{cutnum},
+      </if>
+      <if test="trank != null" >
+        #{trank},
+      </if>
+      <if test="limget != null" >
+        #{limget},
+      </if>
+      <if test="remark != null" >
+        #{remark},
+      </if>
+      <if test="createtime != null" >
+        #{createtime},
+      </if>
+      <if test="status != null" >
+        #{status},
+      </if>
+    </trim>
+  </insert>
+<!--<select id="countByExample" parameterType="net.jeeshop.model.DiscountExample" resultType="java.lang.Integer" >
+    select count(*) from t_discount
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+ <update id="front.discount.updateByPrimaryKey" parameterType="net.jeeshop.model.Discount" >
+    update t_discount
+    set name = #{name,jdbcType=VARCHAR},
+      faceVale = #{facevale,jdbcType=DECIMAL},
+      beginTime = #{begintime,jdbcType=TIMESTAMP},
+      endTime = #{endtime,jdbcType=TIMESTAMP},
+      proType = #{protype,jdbcType=INTEGER},
+      proId = #{proid,jdbcType=INTEGER},
+      allCount = #{allcount,jdbcType=INTEGER},
+      levCount = #{levcount,jdbcType=INTEGER},
+      convertType = #{converttype,jdbcType=INTEGER},
+      convertNum = #{convertnum,jdbcType=DECIMAL},
+      cutType = #{cuttype,jdbcType=INTEGER},
+      cutNum = #{cutnum,jdbcType=DECIMAL},
+      trank = #{trank,jdbcType=INTEGER},
+      limGet = #{limget,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>-->
+</mapper>

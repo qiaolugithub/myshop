@@ -16,7 +16,7 @@
         <commentGenerator type="org.mybatis.generator.ext.comment.CommentGeneratorExt"/>
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://localhost:3306/jeeshop"
-                        userId="root" password="root"/>
+                        userId="root" password=""/>
 
         <javaModelGenerator targetPackage="net.jeeshop.model"
                             targetProject="src/main/gen">
@@ -30,7 +30,7 @@
                              targetProject="src/main/gen">
         </javaClientGenerator>
 
-        <table tableName="t_article_catalog" domainObjectName="ArticleCatalog"/>
+        <table tableName="t_discount" domainObjectName="Discount"/>
     </context>
 
 </generatorConfiguration>
