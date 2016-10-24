@@ -42,12 +42,7 @@
                         <#list discountList as item>
                             <tr>
                                 <td style="display: none;">${item.id!""}</td>
-                                <td style="text-align: center;">
-                                    <#if item.name?? && item.name=="all">
-                                     全部商品
-                                    <#else>
-                                      ${item.name!""}
-                                     </#if>
+                                <td style="text-align: center;">${item.name!""}
                                 </td>
                                 <td style="text-align: center;">
                                      <#if item.cutType?? && item.cutType=="0">
@@ -60,7 +55,11 @@
                                      </td>
                                 <td style="text-align: center;">${item.facevale!""}</td>
                                 <td style="text-align: center;">${item.begintime!""}到${item.endtime!""}</td>
-                                <td style="text-align: center;">${item.pname!""}</td>
+                                <td style="text-align: center;"><#if item.pname?? && item.pname=="all">
+                                    全部商品
+                                <#else>
+                                ${item.pname!""}
+                                </#if></td>
                                 <td style="text-align: center;">
                                              <#if item.canuse?? && item.canuse =="0" >
                                                  不可用
@@ -131,12 +130,7 @@
                         <#list discountList2 as item>
                             <tr>
                                 <td style="display: none;">${item.id!""}</td>
-                                <td style="text-align: center;">
-                                     <#if item.name?? && item.name=="all">
-                                        全部商品
-                                     <#else>
-                                        ${item.name!""}
-                                     </#if>
+                                <td style="text-align: center;">${item.name!""}
                                      </td>
                               <#--  <td style="text-align: center;">
                                     <#if item.cutType?? && item.cutType=="0">
@@ -149,7 +143,11 @@
                                 </td>
                                 <td style="text-align: center;">${item.facevale!""}</td>-->
                                 <td style="text-align: center;">${item.begintime!""}到${item.endtime!""}</td>
-                                <td style="text-align: center;">${item.pname!""}</td>
+                                <td style="text-align: center;"><#if item.pname?? && item.pname=="all">
+                                    全部商品
+                                <#else>
+                                ${item.pname!""}
+                                </#if></td>
                                 <td style="text-align: center;">
                                      <#if  item.converttype?? && item.converttype ==1 >
                                             ${item.convertnum!""}元

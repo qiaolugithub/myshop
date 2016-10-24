@@ -1,7 +1,6 @@
 package net.jeeshop.web.action.front.discount;
 
 import net.jeeshop.core.Services;
-import net.jeeshop.services.front.account.AccountService;
 import net.jeeshop.services.front.discount.DiscountService;
 import net.jeeshop.services.front.discount.bean.Discount;
 import net.jeeshop.web.action.BaseController;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import java.util.Date;
 
 /**
  * Created by Qiao on 2016/9/13.

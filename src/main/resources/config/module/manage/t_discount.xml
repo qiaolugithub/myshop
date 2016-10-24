@@ -2,78 +2,142 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="manage.discount" >
 
-    <!--
+
         <select id="manage.discount.selectPageList" parameterType="net.jeeshop.services.manage.discount.bean.Discount" resultType="net.jeeshop.services.manage.discount.bean.Discount">
-            select *
-            from t_discount t where 1=1
-            order by id desc
-            limit #{offset},#{pageSize}
+         SELECT
+            d.id,
+            d.name,
+            d.begintime,
+            d.endtime,
+            d.cuttype,
+            d.cutnum,
+            d.convertType,
+            d.convertNum,
+            d.facevale,
+             d.allCount,
+            d.levCount,
+            d.status,
+            "all" AS pname
+        FROM
+            t_discount d
+        WHERE
+            1 = 1
+        AND d.protype = 0
+        AND d.proid = 0
+        UNION
+            SELECT
+                d.id,
+                d.name,
+                d.begintime,
+                d.endtime,
+                d.cuttype,
+                d.cutnum,
+                d.convertType,
+                d.convertNum,
+                d.facevale,
+        d.allCount,
+                d.levCount,
+                d.status,
+                p.name AS pname
+            FROM
+                t_discount d
+            LEFT JOIN t_product p ON d.proid = p.id
+            WHERE
+                1 = 1
+            AND d.protype = 0
+            AND d.proid != 0
+            UNION
+                SELECT
+                    d.id,
+                    d.name,
+                    d.begintime,
+                    d.endtime,
+                    d.cuttype,
+                    d.cutnum,
+                    d.convertType,
+                    d.convertNum,
+                    d.facevale,
+        d.allCount,
+                d.levCount,
+                d.status,
+                     c.name AS pname
+                FROM
+                    t_discount d
+                LEFT JOIN t_catalog c ON d.proid = c.id
+                WHERE
+                    1 = 1
+                AND d.protype = 1
+                AND d.proid != 0
+                AND c.type = 'p'
+                ORDER BY
+                    endtime DESC
+                    limit #{offset},#{pageSize}
         </select>
 
 
         <select id="manage.discount.selectPageCount" parameterType="net.jeeshop.services.manage.discount.bean.Discount" resultType="java.lang.Integer">
-            select count(*) from (select 1 	 from t_discount t where 1=1
+            select count(1) from (select 1 	 from t_discount t where 1=1
             ) a
         </select>
-
-      <sql id="Example_Where_Clause" >
-        <where >
-          <foreach collection="oredCriteria" item="criteria" separator="or" >
-            <if test="criteria.valid" >
-              <trim prefix="(" suffix=")" prefixOverrides="and" >
-                <foreach collection="criteria.criteria" item="criterion" >
-                  <choose >
-                    <when test="criterion.noValue" >
-                      and ${criterion.condition}
-                    </when>
-                    <when test="criterion.singleValue" >
-                      and ${criterion.condition} #{criterion.value}
-                    </when>
-                    <when test="criterion.betweenValue" >
-                      and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                    </when>
-                    <when test="criterion.listValue" >
-                      and ${criterion.condition}
-                      <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                        #{listItem}
-                      </foreach>
-                    </when>
-                  </choose>
-                </foreach>
-              </trim>
-            </if>
-          </foreach>
-        </where>
-      </sql>
-      <sql id="Update_By_Example_Where_Clause" >
-        <where >
-          <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-            <if test="criteria.valid" >
-              <trim prefix="(" suffix=")" prefixOverrides="and" >
-                <foreach collection="criteria.criteria" item="criterion" >
-                  <choose >
-                    <when test="criterion.noValue" >
-                      and ${criterion.condition}
-                    </when>
-                    <when test="criterion.singleValue" >
-                      and ${criterion.condition} #{criterion.value}
-                    </when>
-                    <when test="criterion.betweenValue" >
-                      and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                    </when>
-                    <when test="criterion.listValue" >
-                      and ${criterion.condition}
-                      <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                        #{listItem}
-                      </foreach>
-                    </when>
-                  </choose>
-                </foreach>
-              </trim>
-            </if>
-          </foreach>
-        </where>
-      </sql>-->
+    <!--
+          <sql id="Example_Where_Clause" >
+            <where >
+              <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                  <trim prefix="(" suffix=")" prefixOverrides="and" >
+                    <foreach collection="criteria.criteria" item="criterion" >
+                      <choose >
+                        <when test="criterion.noValue" >
+                          and ${criterion.condition}
+                        </when>
+                        <when test="criterion.singleValue" >
+                          and ${criterion.condition} #{criterion.value}
+                        </when>
+                        <when test="criterion.betweenValue" >
+                          and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                        </when>
+                        <when test="criterion.listValue" >
+                          and ${criterion.condition}
+                          <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                            #{listItem}
+                          </foreach>
+                        </when>
+                      </choose>
+                    </foreach>
+                  </trim>
+                </if>
+              </foreach>
+            </where>
+          </sql>
+          <sql id="Update_By_Example_Where_Clause" >
+            <where >
+              <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                  <trim prefix="(" suffix=")" prefixOverrides="and" >
+                    <foreach collection="criteria.criteria" item="criterion" >
+                      <choose >
+                        <when test="criterion.noValue" >
+                          and ${criterion.condition}
+                        </when>
+                        <when test="criterion.singleValue" >
+                          and ${criterion.condition} #{criterion.value}
+                        </when>
+                        <when test="criterion.betweenValue" >
+                          and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                        </when>
+                        <when test="criterion.listValue" >
+                          and ${criterion.condition}
+                          <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                            #{listItem}
+                          </foreach>
+                        </when>
+                      </choose>
+                    </foreach>
+                  </trim>
+                </if>
+              </foreach>
+            </where>
+          </sql>-->
  <!-- <sql id="Base_Column_List" >
     id, name, faceVale, beginTime, endTime, proType, proId, allCount, levCount, convertType, 
     convertNum, cutType, cutNum, trank, limGet, remark, createTime, status

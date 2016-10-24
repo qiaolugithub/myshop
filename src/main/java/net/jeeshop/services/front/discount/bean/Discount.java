@@ -28,9 +28,9 @@ public class Discount extends net.jeeshop.services.common.Discount implements
 			}
             discountList.clear();
             discountList = null;
-            account = null;
-            isGet = null;
         }
+        account = null;
+        isGet = null;
     }
 
     public List<Discount> getDiscountList() {
