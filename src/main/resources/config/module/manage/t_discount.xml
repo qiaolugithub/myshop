@@ -160,26 +160,32 @@
     select 
     <include refid="Base_Column_List" />
     from t_discount
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_discount
-    where id = #{id,jdbcType=INTEGER}
+    where id = #{id}
   </delete>-->
-  <insert id="insert" parameterType="net.jeeshop.model.Discount" useGeneratedKeys="true" keyProperty="id">
+  <insert id="manage.discount.insert" parameterType="net.jeeshop.services.manage.discount.bean.Discount" useGeneratedKeys="true" keyProperty="id">
     insert into t_discount (id, name, faceVale, 
       beginTime, endTime, proType, 
       proId, allCount, levCount, 
       convertType, convertNum, cutType, 
-      cutNum, trank, limGet, 
-      remark, createTime, status
+      cutNum, trank, limGet,
+      <if test="remark !=null and remark !=''">
+      remark,
+      </if>
+      createTime, status
       )
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{facevale,jdbcType=DECIMAL}, 
-      #{begintime,jdbcType=TIMESTAMP}, #{endtime,jdbcType=TIMESTAMP}, #{protype,jdbcType=INTEGER}, 
-      #{proid,jdbcType=INTEGER}, #{allcount,jdbcType=INTEGER}, #{levcount,jdbcType=INTEGER}, 
-      #{converttype,jdbcType=INTEGER}, #{convertnum,jdbcType=DECIMAL}, #{cuttype,jdbcType=INTEGER}, 
-      #{cutnum,jdbcType=DECIMAL}, #{trank,jdbcType=INTEGER}, #{limget,jdbcType=INTEGER}, 
-      #{remark,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}
+    values (id, #{name}, #{facevale},
+      #{begintime}, #{endtime}, #{protype}, 
+      #{proid}, #{allcount}, #{levcount}, 
+      #{converttype}, #{convertnum}, #{cuttype}, 
+      #{cutnum}, #{trank}, #{limget},
+      <if test="remark !=null and remark !=''">
+          #{remark},
+      </if>
+      #{createtime}, #{status}
       )
   </insert><!--
   <insert id="insertSelective" parameterType="net.jeeshop.model.Discount" >
@@ -242,58 +248,58 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
-        #{id,jdbcType=INTEGER},
+        #{id},
       </if>
       <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
+        #{name},
       </if>
       <if test="facevale != null" >
-        #{facevale,jdbcType=DECIMAL},
+        #{facevale},
       </if>
       <if test="begintime != null" >
-        #{begintime,jdbcType=TIMESTAMP},
+        #{begintime},
       </if>
       <if test="endtime != null" >
-        #{endtime,jdbcType=TIMESTAMP},
+        #{endtime},
       </if>
       <if test="protype != null" >
-        #{protype,jdbcType=INTEGER},
+        #{protype},
       </if>
       <if test="proid != null" >
-        #{proid,jdbcType=INTEGER},
+        #{proid},
       </if>
       <if test="allcount != null" >
-        #{allcount,jdbcType=INTEGER},
+        #{allcount},
       </if>
       <if test="levcount != null" >
-        #{levcount,jdbcType=INTEGER},
+        #{levcount},
       </if>
       <if test="converttype != null" >
-        #{converttype,jdbcType=INTEGER},
+        #{converttype},
       </if>
       <if test="convertnum != null" >
-        #{convertnum,jdbcType=DECIMAL},
+        #{convertnum},
       </if>
       <if test="cuttype != null" >
-        #{cuttype,jdbcType=INTEGER},
+        #{cuttype},
       </if>
       <if test="cutnum != null" >
-        #{cutnum,jdbcType=DECIMAL},
+        #{cutnum},
       </if>
       <if test="trank != null" >
-        #{trank,jdbcType=INTEGER},
+        #{trank},
       </if>
       <if test="limget != null" >
-        #{limget,jdbcType=INTEGER},
+        #{limget},
       </if>
       <if test="remark != null" >
-        #{remark,jdbcType=VARCHAR},
+        #{remark},
       </if>
       <if test="createtime != null" >
-        #{createtime,jdbcType=TIMESTAMP},
+        #{createtime},
       </if>
       <if test="status != null" >
-        #{status,jdbcType=INTEGER},
+        #{status},
       </if>
     </trim>
   </insert>
@@ -302,26 +308,44 @@
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
-  </select>
-  <update id="updateByPrimaryKey" parameterType="net.jeeshop.model.Discount" >
+  </select>-->
+  <update id="manage.discount.update" parameterType="net.jeeshop.services.manage.discount.bean.Discount" >
     update t_discount
-    set name = #{name,jdbcType=VARCHAR},
-      faceVale = #{facevale,jdbcType=DECIMAL},
-      beginTime = #{begintime,jdbcType=TIMESTAMP},
-      endTime = #{endtime,jdbcType=TIMESTAMP},
-      proType = #{protype,jdbcType=INTEGER},
-      proId = #{proid,jdbcType=INTEGER},
-      allCount = #{allcount,jdbcType=INTEGER},
-      levCount = #{levcount,jdbcType=INTEGER},
-      convertType = #{converttype,jdbcType=INTEGER},
-      convertNum = #{convertnum,jdbcType=DECIMAL},
-      cutType = #{cuttype,jdbcType=INTEGER},
-      cutNum = #{cutnum,jdbcType=DECIMAL},
-      trank = #{trank,jdbcType=INTEGER},
-      limGet = #{limget,jdbcType=INTEGER},
-      remark = #{remark,jdbcType=VARCHAR},
-      createTime = #{createtime,jdbcType=TIMESTAMP},
-      status = #{status,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>-->
+    set
+      <if test="name != null" >
+      name = #{name},
+      </if>
+      <if test="facevale != null" >
+          faceVale = #{facevale},
+      </if>
+      <if test="begintime != null" >beginTime = #{begintime},</if>
+      <if test="endtime != null" >endTime = #{endtime},</if>
+      <if test="protype != null" > proType = #{protype},</if>
+      <if test="proid != null" > proId = #{proid},</if>
+      <if test="allcount != null" >allCount = #{allcount},</if>
+      <if test="levcount != null" >levCount = #{levcount},</if>
+      <if test="converttype != null" >convertType = #{converttype},</if>
+      <if test="convertnum != null" >convertNum = #{convertnum},</if>
+      <if test="cuttype != null" > cutType = #{cuttype},</if>
+      <if test="cutnum != null" >cutNum = #{cutnum},</if>
+      <if test="trank != null" >   trank = #{trank},</if>
+      <if test="limget != null" >
+          limGet = #{limget},
+      </if>
+      <if test="remark != null" >
+          #{remark},
+      </if>
+      <if test="createtime != null" >
+      createTime = #{createtime},
+      </if>
+      <if test="status != null" >
+      status = #{status}
+      </if>
+    where id = #{id}
+  </update>
+
+    <select id="manage.discount.selectOne"   resultType="net.jeeshop.services.manage.discount.bean.Discount" parameterType="java.lang.Integer" >
+    select *  from t_discount
+    where id = #{id}
+    </select>
 </mapper>

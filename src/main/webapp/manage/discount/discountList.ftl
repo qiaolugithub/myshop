@@ -8,6 +8,11 @@
                 <a href="selectList" class="btn btn-primary">
                     <i class="icon-search icon-white"></i> 查询
                 </a>
+
+                <a href="toAdd" class="btn btn-success">
+                    <i class="icon-plus-sign icon-white"></i> 添加
+                </a>
+
             <#--<%-- 					<s:submit method="toAdd" value="添加" cssClass="btn btn-success" /> --%>-->
             <#--<%-- 					<s:submit method="deletes" onclick="return deleteSelect();" value="删除" cssClass="btn btn-danger" /> --%>-->
 
@@ -25,7 +30,7 @@
                 <th style="text-align: center;">面值</th>
                 <th style="text-align: center;">有效期</th>
                 <th style="text-align: center;">限购商品</th>
-                <th style="text-align: center;">领取数量</th>
+                <th style="text-align: center;">领取数量（剩余/总数）</th>
                 <th style="text-align: center;">兑换金额</th>
                 <th style="text-align: center;">状态</th>
                 <th style="text-align: center;">操作</th>
@@ -53,7 +58,7 @@
                     <#else>
                     ${item.pname!""}
                     </#if></td>
-                    <td style="text-align: center;">${item.allcount!""}/${item.levcount!""}</td>
+                    <td style="text-align: center;">${item.levcount!""}/${item.allcount!""}</td>
                     <td style="text-align: center;">
                         <#if  item.converttype?? && item.converttype ==1 >
                         ${item.convertnum!""}元
@@ -77,7 +82,7 @@
                         </#if>
                     </td>
                     <td nowrap="nowrap" style="text-align: center;">
-                       编辑
+                        <a href="toEdit?id=${item.id}">编辑</a>
                     </td>
                 </tr>
         </#list>

@@ -38,12 +38,12 @@
                                            label="密码"/>
                                 </div>
                             </div>
-                            <div class="row help-block">
+                           <#-- <div class="row help-block">
                                 <div class="col-md-offset-1 col-md-11">
                                     <span class="fa fa-info-circle"></span>默认用户名密码:admin/123456
                                     </span><a class="btn btn-link" href="http://git.oschina.net/dinguangx/jshop" target="_blank"><span class="fa fa-git-square">源码</a>
                                 </div>
-                            </div>
+                            </div>-->
                         <#--<div class="checkbox">-->
                         <#--<label>-->
                         <#--<input name="remember" type="checkbox" value="Remember Me">Remember Me-->
