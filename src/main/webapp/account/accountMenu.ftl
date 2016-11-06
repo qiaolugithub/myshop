@@ -9,9 +9,9 @@
 	<a href="${basepath}/account/orders" class="list-group-item ${(currentMenu=="orders")?string('active', '')}">
 		<span class="glyphicon glyphicon-th"></span>&nbsp;我的订单
 	</a>
-	<a href="${basepath}/account/balance" class="list-group-item ${(currentMenu=="balance")?string('active', '')}">
+	<#--<a href="${basepath}/account/balance" class="list-group-item ${(currentMenu=="balance")?string('active', '')}">
 		<span class="glyphicon glyphicon-usd"></span>&nbsp;我的余额
-	</a>
+	</a>-->
 	<a href="${basepath}/account/lifecoin" class="list-group-item ${(currentMenu=="lifecoin")?string('active', '')}">
 		<span class="glyphicon glyphicon-credit-card"></span>&nbsp;我的生活币
 	</a>

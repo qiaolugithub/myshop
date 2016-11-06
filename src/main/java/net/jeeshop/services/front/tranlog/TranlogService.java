@@ -1,0 +1,1 @@
+package net.jeeshop.services.front.tranlog;import net.jeeshop.core.Services;import net.jeeshop.services.front.systemSetting.bean.SystemSetting;import net.jeeshop.services.front.tranlog.bean.Tranlog;public interface TranlogService extends Services<Tranlog> {}

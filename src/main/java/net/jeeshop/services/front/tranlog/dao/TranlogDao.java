@@ -1,0 +1,1 @@
+package net.jeeshop.services.front.tranlog.dao;import net.jeeshop.core.DaoManager;import net.jeeshop.services.front.tranlog.bean.Tranlog;public interface TranlogDao  extends DaoManager<Tranlog> {}

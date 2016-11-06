@@ -84,7 +84,7 @@ body{
                                   <li><a href="${basepath}/account/topwd"><span class="glyphicon glyphicon-screenshot"></span>&nbsp;修改密码</a></li>
                                   <li class="divider"></li>
                                   <li><a href="${basepath}/account/orders"><span class="glyphicon glyphicon-th"></span>&nbsp;我的订单</a></li>
-                                  <li><a href="${basepath}/account/balance"><span class="glyphicon glyphicon-usd"></span>&nbsp;我的余额</a></li>
+                                 <#-- <li><a href="${basepath}/account/balance"><span class="glyphicon glyphicon-usd"></span>&nbsp;我的余额</a></li>-->
                                   <li><a href="${basepath}/account/lifecoin"><span class="glyphicon glyphicon-credit-card"></span>&nbsp;我的生活币</a></li>
                                   <li class="divider"></li>
                                   <li><a href="${basepath}/account/discount"><span class="glyphicon glyphicon-tags"></span>&nbsp;我的优惠券</a></li>

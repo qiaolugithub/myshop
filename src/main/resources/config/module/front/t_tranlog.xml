@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="front.tranlog" >
+ <!-- <resultMap id="BaseResultMap" type="net.jeeshop.model.Tranlog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="deposit_num" property="depositNum" jdbcType="DECIMAL" />
+    <result column="pay_num" property="payNum" jdbcType="DECIMAL" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="tonum" property="tonum" jdbcType="VARCHAR" />
+  </resultMap>-->
+  <!--<sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, create_time, deposit_num, pay_num, type, tonum
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="net.jeeshop.model.TranlogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_tranlog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_tranlog
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_tranlog
+    where id = #{id,jdbcType=INTEGER}
+  </delete>-->
+  <insert id="insert" parameterType="net.jeeshop.services.common.Tranlog" >
+    insert into t_tranlog (id, create_time, deposit_num, 
+      pay_num, type, tonum
+      )
+    values (#{id,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{depositNum,jdbcType=DECIMAL}, 
+      #{payNum,jdbcType=DECIMAL}, #{type,jdbcType=INTEGER}, #{tonum,jdbcType=VARCHAR}
+      )
+  </insert>
+ <!-- <insert id="insertSelective" parameterType="net.jeeshop.model.Tranlog" >
+    insert into t_tranlog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="depositNum != null" >
+        deposit_num,
+      </if>
+      <if test="payNum != null" >
+        pay_num,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="tonum != null" >
+        tonum,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="depositNum != null" >
+        #{depositNum,jdbcType=DECIMAL},
+      </if>
+      <if test="payNum != null" >
+        #{payNum,jdbcType=DECIMAL},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="tonum != null" >
+        #{tonum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="net.jeeshop.model.TranlogExample" resultType="java.lang.Integer" >
+    select count(*) from t_tranlog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKey" parameterType="net.jeeshop.model.Tranlog" >
+    update t_tranlog
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      deposit_num = #{depositNum,jdbcType=DECIMAL},
+      pay_num = #{payNum,jdbcType=DECIMAL},
+      type = #{type,jdbcType=INTEGER},
+      tonum = #{tonum,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>-->
+    <select id="front.tranlog.selectPageList" parameterType="net.jeeshop.services.front.tranlog.bean.Tranlog" resultType="net.jeeshop.services.front.tranlog.bean.Tranlog">
+        select *
+        from t_tranlog t where 1=1
+        order by id desc
+        limit #{offset},#{pageSize}
+    </select>
+
+    <select id="front.tranlog.selectPageCount" parameterType="net.jeeshop.services.front.tranlog.bean.Tranlog" resultType="java.lang.Integer">
+        select count(*) from t_tranlog t where 1=1
+    </select>
+
+    <select id="front.tranlog.selectOne" parameterType="net.jeeshop.services.front.tranlog.bean.Tranlog" resultType="net.jeeshop.services.front.tranlog.bean.Tranlog">
+        select * from t_tranlog t where 1=1 limit 0,1
+    </select>
+    <delete id="front.tranlog.deleteById" parameterType="net.jeeshop.services.front.tranlog.bean.Tranlog">
+        delete from t_tranlog where 1=1 and id=#{id}
+    </delete>
+</mapper>
