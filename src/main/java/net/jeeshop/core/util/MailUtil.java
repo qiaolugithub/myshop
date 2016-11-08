@@ -36,12 +36,12 @@ import org.slf4j.LoggerFactory;
 public class MailUtil {
 	private static final Logger logger = LoggerFactory.getLogger(MailUtil.class);
 	public static void main(String[] args) {//huangf@spider.com.cn
-		MailUtil mail = new MailUtil("543089122@qq.com",
-				"xxx@163.com","xxx", "smtp.163.com", "标题");
-		mail.attachfile("e:\\1.jpg");
-		mail.attachfile("e:\\bsa.js");
+		/*MailUtil mail = new MailUtil("821905805@qq.com",
+				"qiao66lu@sina.com","love1992qiao", "smtp.sina.cn", "标题");*/
+        MailUtil mail = new MailUtil("821905805@qq.com");
+        //	mail.attachfile("e:\\shiyao.ppk");
 //		mail.attachfile("e:\\aa.txt");
-//		mail.startSend(getForgetHtml(null));
+ 	mail.startSend("1","2");
 	}
 
 	// 定义发件人、收件人、主题等
