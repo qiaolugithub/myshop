@@ -18,7 +18,7 @@ public class Discount extends QueryModel implements Serializable {
 
     private Integer protype;
 
-    private Integer proid;
+    private String proid;
 
     private Integer allcount;
 
@@ -91,11 +91,11 @@ public class Discount extends QueryModel implements Serializable {
         this.protype = protype;
     }
 
-    public Integer getProid() {
+    public String getProid() {
         return proid;
     }
 
-    public void setProid(Integer proid) {
+    public void setProid(String proid) {
         this.proid = proid;
     }
 

@@ -1,5 +1,7 @@
 package net.jeeshop.core.servlet;
 
+import net.jeeshop.core.FrontContainer;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -40,7 +42,7 @@ public class ValidateImage extends HttpServlet {
 		response.setHeader("Pragma", "no-cache");
 		response.setHeader("Cache-Control", "no-cache");
 		response.setDateHeader("Expires", 0);
-		response.setContentType("image/jpeg");
+ 		response.setContentType("image/jpeg");
 		BufferedImage bufferedImage = new BufferedImage(imageWidth,
 				imageHeight, BufferedImage.TYPE_INT_BGR);
 		Graphics2D g = bufferedImage.createGraphics();
@@ -86,8 +88,8 @@ public class ValidateImage extends HttpServlet {
 			ValidateCode.append(code);
 			g.drawString(code, imageWidth / codeNumber * i + 4, 16);
 		}
-		System.out.println("vcode="+ValidateCode.toString());
-		request.getSession().setAttribute("validateCode",
+		System.out.println("vcode="+ValidateCode.toString()+"   aaaa  "+request.getSession().getId());
+        request.getSession().setAttribute(FrontContainer.validateCode,
 				ValidateCode.toString());
 		ServletOutputStream sos = response.getOutputStream();
 		ImageIO.write(bufferedImage, "jpeg", sos);

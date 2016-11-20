@@ -60,7 +60,7 @@ public class DiscountAction extends BaseController<Discount> {
             discount.setProtype(0);
         }
         if (discount.getProid() == null) {
-            discount.setProid(0);
+            discount.setProid("0");
         }
         if (discount.getLevcount() == null) {
             discount.setLevcount(discount.getAllcount());

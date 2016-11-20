@@ -41,6 +41,7 @@ public class MailUtil {
         MailUtil mail = new MailUtil("821905805@qq.com");
         //	mail.attachfile("e:\\shiyao.ppk");
 //		mail.attachfile("e:\\aa.txt");
+
  	mail.startSend("1","2");
 	}
 

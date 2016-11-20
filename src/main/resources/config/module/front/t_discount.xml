@@ -3,7 +3,45 @@
 <mapper namespace="front.discount" >
 
     <!--已有的优惠券-->
-   <select id="front.discount.selectPageList" parameterType="net.jeeshop.services.front.discount.bean.Discount" resultType="net.jeeshop.services.front.discount.bean.Discount">
+    <select id="front.discount.selectPageList" parameterType="net.jeeshop.services.front.discount.bean.Discount" resultType="net.jeeshop.services.front.discount.bean.Discount">
+        SELECT
+        d.id,
+        d.name,
+        d.beginTime,
+        d.endTime,
+        d.cutType,
+        d.cutNum,d.faceVale,
+        case when t.orderid is not null then 4  when (#{queryDate} &gt; d.endTime and t.status!=2) then 3
+        when (#{queryDate} &lt;= d.endTime and t.status!=2) then 1
+        when t.status=2 then 2
+        else 0 end as canuse,
+        d.proType,
+        d.proId ,
+        t.id as disId,
+        t.orderId
+        FROM
+        t_discount_detail t
+        JOIN t_discount d ON t.disId = d.id
+        WHERE
+        1 = 1
+          and d.status=1
+        and  t.accountId=#{account}
+        order by endTime desc
+        limit #{offset},#{pageSize}
+    </select>
+
+    <select id="front.discount.selectPageCount" parameterType="net.jeeshop.services.front.discount.bean.Discount" resultType="java.lang.Integer">
+           SELECT
+       count(1)
+        FROM
+        t_discount_detail t
+        JOIN t_discount d ON t.disId = d.id
+        WHERE
+        1 = 1
+        and d.status=1
+        and  t.accountId=#{account}
+    </select>
+  <!-- <select id="front.discount.selectPageList" parameterType="net.jeeshop.services.front.discount.bean.Discount" resultType="net.jeeshop.services.front.discount.bean.Discount">
        SELECT
        d.id,
        d.name,
@@ -154,7 +192,7 @@
        and d.proType=1
        and d.proId !=0
        and c.type='p' ) a
-      </select>
+      </select>-->
 
 
     <!--所有优惠券-->
@@ -577,4 +615,57 @@
       status = #{status,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>-->
+
+
+    <select id="front.discount.selectById" resultType="net.jeeshop.services.front.discount.bean.Discount" parameterType="java.lang.Integer" >
+        select *  from t_discount  where id = #{id}
+    </select>
+
+
+    <!--所有优惠券-->
+    <select id="front.discount.selectPageList3" parameterType="net.jeeshop.services.front.discount.bean.Discount" resultType="net.jeeshop.services.front.discount.bean.Discount">
+      select
+       DISTINCT d.id,
+        d.name,
+        d.begintime,
+        d.endtime,
+        d.cuttype,
+        d.cutnum,
+        d.converttype,
+        d.convertnum,
+        d.facevale,
+        d.protype,
+        d.proid,
+        case when t.accountid =#{account}  then 1
+        else 0 end as isget
+        from
+        t_discount d
+        left join t_discount_detail  t on t.disid = d.id
+        where
+         d.status=1
+        limit #{offset},#{pageSize}
+    </select>
+
+
+    <select id="front.discount.selectPageCount3" parameterType="net.jeeshop.services.front.discount.bean.Discount" resultType="java.lang.Integer">
+        select count(1) from ( select
+       DISTINCT d.id,
+        d.name,
+        d.begintime,
+        d.endtime,
+        d.cuttype,
+        d.cutnum,
+        d.converttype,
+        d.convertnum,
+        d.facevale,
+        d.protype,
+        d.proid,
+        case when t.accountid =#{account}  then 1
+        else 0 end as isget
+        from
+        t_discount d
+        left join t_discount_detail  t on t.disid = d.id
+        where
+         d.status=1) a
+    </select>
 </mapper>

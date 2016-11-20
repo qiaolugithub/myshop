@@ -8,5 +8,5 @@ import net.jeeshop.services.front.discount.bean.Discount;
  * Created by Qiao on 2016/9/13.
  */
 public interface DiscountService extends Services<net.jeeshop.services.front.discount.bean.Discount> {
-    PagerModel selectPageList2(Discount e);
+    PagerModel selectPageList3(Discount e);
 }

@@ -4,7 +4,7 @@ import net.jeeshop.core.ServersManager;
 import net.jeeshop.core.dao.page.PagerModel;
 import net.jeeshop.services.front.discount.DiscountService;
 import net.jeeshop.services.front.discount.bean.Discount;
-import net.jeeshop.services.front.discount.dao.DicountDao;
+import net.jeeshop.services.front.discount.dao.DiscountDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -15,16 +15,16 @@ import javax.annotation.Resource;
  * Created by Qiao on 2016/9/13.
  */
 @Service("discountServiceFront")
-public class DiscountServiceImpl extends ServersManager<Discount, DicountDao> implements
+public class DiscountServiceImpl extends ServersManager<Discount, DiscountDao> implements
         DiscountService {
     private static final Logger logger = LoggerFactory.getLogger(DiscountServiceImpl.class);
-    @Resource(name = "dicountDaoFront")
+    @Resource(name = "discountDaoFront")
     @Override
-    public void setDao(DicountDao dicountDao) {
+    public void setDao(DiscountDao dicountDao) {
         this.dao = dicountDao;
     }
 
-    public PagerModel selectPageList2(Discount e) {
-        return dao.selectPageList2(e);
+    public PagerModel selectPageList3(Discount e) {
+        return dao.selectPageList3(e);
     }
 }

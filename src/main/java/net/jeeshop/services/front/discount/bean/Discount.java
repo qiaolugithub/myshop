@@ -14,6 +14,7 @@ public class Discount extends net.jeeshop.services.common.Discount implements
     private String canuse;//优惠券能否使用 1可用 2已用 3已过期 4已使用
     private String pname;//可用商品：所有，指定商品，指定分类
     private Integer isGet;//是否领取过
+    private Integer overTime;//是否超时  0 未超时 1超时
 
 
 
@@ -79,5 +80,14 @@ public class Discount extends net.jeeshop.services.common.Discount implements
 
     public void setIsGet(Integer isGet) {
         this.isGet = isGet;
+    }
+
+
+    public Integer getOverTime() {
+        return overTime;
+    }
+
+    public void setOverTime(Integer overTime) {
+        this.overTime = overTime;
     }
 }

@@ -40,7 +40,7 @@
             <td style="text-align: left;">是否限制至少消费金额
                 <select id="cuttype" name="cuttype"  class="input-small">
                     <option value="0"  <#if e.cuttype?? && e.cuttype==0>selected="selected" </#if>>不限制</option>
-                    <option value="1"  <#if e.cuttype?? && e.cuttype==0>selected="selected" </#if>>限制</option>
+                    <option value="1"  <#if e.cuttype?? && e.cuttype==1>selected="selected" </#if>>限制</option>
                 </select>
                 <input type="text" value="${e.cutnum!""}" name="cutnum" id="cutnum" data-rule="订单金额限制:required;integer;length[0~100000];"/>
             </td>
@@ -68,7 +68,7 @@
                 <select id="limget" name="limget"  class="input-small" data-rule="每人限领:required;">
                         <option value="0" <#if e.status?? && e.status==0>selected="selected" </#if>>不限制</option>
                     <option value="1" <#if e.status?? && e.status==1>selected="selected" </#if>>限领1张</option>
-                    <option value="2" <#if e.status?? && e.status==2>selected="selected" </#if>>限领1张</option>
+                    <option value="2" <#if e.status?? && e.status==2>selected="selected" </#if>>限领2张</option>
                     <option value="3" <#if e.status?? && e.status==3>selected="selected" </#if>>限领3张</option>
                     <option value="5" <#if e.status?? && e.status==5>selected="selected" </#if>>限领5张</option>
                     <option value="10" <#if e.status?? && e.status==10>selected="selected" </#if>>限领10张</option>
@@ -94,22 +94,28 @@
         <tr>
             <td style="text-align: right;">可用商品</td>
             <td style="text-align: left;">
-                <input type="radio" name="protype" id="proType" value="0" checked>
+                <p> <input type="radio" name="protype" id="protype_0" value="0" data-rule="checked"  <#if e.protype?? && e.protype==0>checked</#if>/>全部商品全部分类</p>
+                <p> <input type="radio" name="protype" id="protype_1" value="1" data-rule="checked"  <#if e.protype?? && e.protype==1>checked</#if>/>指定分类(如果选择父分类则包含下属子分类)
+                <input type="text" name="proid" id="proid_1" value="${e.proid!""}"  placeholder="商品分类按照逗号分隔">商品分类按照逗号分隔0默认所有
+                </p>
+                <p> <input type="radio" name="protype" id="protype_2" value="2" data-rule="checked"  <#if e.protype?? && e.protype==2>checked</#if>/ >指定商品
+                <input type="text" name="proid" id="proid_2" value="${e.proid!""}" placeholder="商品按照逗号分隔">商品按照逗号分隔0默认所有
+                </p>
             </td>
         </tr>
         <tr>
             <td style="text-align: right;width: 200px;">兑换金额</td>
             <td style="text-align: left;">
 
-               <p><input type="radio" value="0" id="converttype" name="converttype"  class="input-small"  data-rule="checked"  <#if e.converttype?? && e.converttype==0>checked</#if>/>免费兑换</p>
-                <p><input type="radio" value="1" id="converttype" name="converttype"  class="input-small"  data-rule="checked" <#if e.converttype?? && e.converttype==1>checked</#if>/>人民币兑换
-                    <input type="text" value="${e.convertnum!""}" name="convertnum" id="convertnum" />元
+               <p><input type="radio" value="0" id="converttype_0" name="converttype"  class="input-small"  data-rule="checked"  <#if e.converttype?? && e.converttype==0>checked</#if>/>免费兑换</p>
+                <p><input type="radio" value="1" id="converttype_1" name="converttype"  class="input-small"  data-rule="checked" <#if e.converttype?? && e.converttype==1>checked</#if>/>人民币兑换
+                    <input type="text" value="${e.convertnum!""}" id="convertnum_1" name="convertnum" id="convertnum" />元
                 </p>
-                <p><input type="radio" value="2" id="converttype" name="converttype"  class="input-small"   data-rule="checked" <#if e.converttype?? && e.converttype==2>checked</#if>/>燊活币兑换
-                    <input type="text" value="${e.convertnum!""}" name="convertnum" id="convertnum" />币
+                <p><input type="radio" value="2" id="converttype_2" name="converttype"  class="input-small"   data-rule="checked" <#if e.converttype?? && e.converttype==2>checked</#if>/>燊活币兑换
+                    <input type="text" value="${e.convertnum!""}" id="convertnum_2" name="convertnum" id="convertnum" />币
                 </p>
-                <p><input type="radio" value="3" id="converttype" name="converttype"  class="input-small"  data-rule="checked"  <#if e.converttype?? && e.converttype==3>checked</#if>/>积分兑换
-                    <input type="text" value="${e.convertnum!""}" name="convertnum" id="convertnum" />分
+                <p><input type="radio" value="3" id="converttype_3" name="converttype"  class="input-small"  data-rule="checked"  <#if e.converttype?? && e.converttype==3>checked</#if>/>积分兑换
+                    <input type="text" value="${e.convertnum!""}" id="convertnum_3" name="convertnum" id="convertnum" />分
                 </p>
             </td>
         </tr>
@@ -141,7 +147,41 @@
 <script type="text/javascript">
 $(function(){
     $("#cutnum").val("0");
+    $("#proid_1").val("0");
+    $("#proid_2").val("0");
+    $("#convertnum_1").val("0");
+    $("#convertnum_2").val("0");
+    $("#convertnum_3").val("0");
 });
+/*
+$('#form').validator({
+    rules: {
+        isprotype_1: function(element) {
+            // 返回true，则验证必填
+            return $("#protype_1").is(":checked");
+        }
+    },
+    fields: {
+        proid: 'required(isprotype_1); proid'
+    }
+});*/
+/*
+
+$("#form").on("validation", function(e, current){
+  // 表单全部字段验证通过则返回 true
+  // 只要有一个字段验证不通过就返回 false
+  // 还没验证完，即验证结果未知的情况下返回 undefined
+  console.log(this.isValid);
+      // 当前正在验证的字段是否通过
+       console.log(current.isValid);
+
+    if( $("#protype_1").is(":checked")&& $("#proid_1").val()=="") {
+        alert("请输入商品id");
+        return false;
+    }
+})
+*/
+
 
 </script>
 </@page.pageBase>

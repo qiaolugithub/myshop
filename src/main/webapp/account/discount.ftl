@@ -35,7 +35,7 @@
                             <th style="text-align: center;">使用条件</th>
                             <th style="text-align: center;">面值</th>
                             <th style="text-align: center;">有效期</th>
-                            <th style="text-align: center;">限购商品</th>
+                            <th style="text-align: center;">限购分类或商品</th>
                             <th style="text-align: center;">状态</th>
                             <th style="text-align: center;">操作</th>
                         </tr>
@@ -45,21 +45,28 @@
                                 <td style="text-align: center;">${item.name!""}
                                 </td>
                                 <td style="text-align: center;">
-                                     <#if item.cutType?? && item.cutType=="0">
+                                     <#if item.cuttype?? && item.cuttype==0>
                                            不限制
                                          <#else>
-                                             <#if item.cutnum??>
-                                                满${item.cutnum!""}元减
-                                             </#if>
+                                         <#if item.cutnum??>
+                                            满${item.cutnum!""}元减
+                                         </#if>
                                      </#if>
                                      </td>
                                 <td style="text-align: center;">${item.facevale!""}</td>
                                 <td style="text-align: center;">${item.begintime!""}到${item.endtime!""}</td>
-                                <td style="text-align: center;"><#if item.pname?? && item.pname=="all">
-                                    全部商品
-                                <#else>
+                                <td style="text-align: center;">
                                 ${item.pname!""}
-                                </#if></td>
+                                        <#-- <#if item.protype?? && item.protype=="0" && item.proid?? && item.proid=="0">
+                                             全部商品
+                                        <#elseif  item.protype?? && item.protype=="1"  && item.proid?? && item.proid!="0">
+                                            指定分类
+                                         <#elseif  item.protype?? && item.protype=="2"  && item.proid?? && item.proid!="0">
+                                             指定商品
+                                         <#else>
+                                             状态异常
+                                     </#if>-->
+                                </td>
                                 <td style="text-align: center;">
                                              <#if item.canuse?? && item.canuse =="0" >
                                                  不可用
@@ -78,8 +85,10 @@
                                 <td nowrap="nowrap" style="text-align: center;">
                                     <#if item.orderid?? >
                                        查看订单
-                                    <#else>
-                                        立即使用
+                                    <#elseif  item.canuse?? && item.canuse =="1" >
+                                       <a href="${basepath}/index"> 立即使用</a>
+                                        <#else>
+                                           不可使用
                                     </#if>
                                 </td>
                             </tr>
@@ -122,7 +131,7 @@
                          <#--   <th style="text-align: center;">使用条件</th>
                             <th style="text-align: center;">面值</th>-->
                             <th style="text-align: center;">有效期</th>
-                            <th style="text-align: center;">限购商品</th>
+                            <th style="text-align: center;">限购分类或商品</th>
                             <th style="text-align: center;">兑换金额</th>
                           <#--  <th style="text-align: center;">状态</th>-->
                             <th style="text-align: center;">操作</th>
@@ -143,11 +152,17 @@
                                 </td>
                                 <td style="text-align: center;">${item.facevale!""}</td>-->
                                 <td style="text-align: center;">${item.begintime!""}到${item.endtime!""}</td>
-                                <td style="text-align: center;"><#if item.pname?? && item.pname=="all">
-                                    全部商品
-                                <#else>
-                                ${item.pname!""}
-                                </#if></td>
+                                <td style="text-align: center;">  ${item.pname!""}
+                                  <#--  <#if item.protype?? && item.protype=="0" && item.proid?? && item.proid=="0">
+                                        全部商品
+                                    <#elseif  item.protype?? && item.protype=="1"  && item.proid?? && item.proid!="0">
+                                        指定分类
+                                    <#elseif  item.protype?? && item.protype=="2"  && item.proid?? && item.proid!="0">
+                                        指定商品
+                                    <#else>
+                                        状态异常
+                                    </#if>-->
+                                </td>
                                 <td style="text-align: center;">
                                      <#if  item.converttype?? && item.converttype ==1 >
                                             ${item.convertnum!""}元
@@ -156,7 +171,7 @@
                                      <#elseif  item.converttype?? && item.converttype ==3 >
                                         ${item.convertnum!""}积分
                                      <#elseif item.converttype?? && item.converttype ==0 >
-                                         0元
+                                         免费领取
                                      <#else>
                                          异常数据
                                      </#if>
@@ -177,12 +192,14 @@
                                     </#if>
                                 </td>-->
                                 <td nowrap="nowrap" style="text-align: center;">
-                                     <#if item.converttype?? && item.converttype ==0 && item.isGet ==0>
-                                        领用
+                                     <#if item.overTime==1>
+                                         已过期
+                                     <#elseif item.converttype?? && item.converttype ==0 && item.isGet ==0>
+                                        <a class="getDiscount" val="${item.id!""}">领用</a>
                                     <#elseif item.converttype?? && item.converttype !=0 && item.isGet ==0>
                                         兑换
                                      <#elseif item.isGet?? && item.isGet ==1 >
-                                         已领取
+                                         已领取(<a class="getDiscount" val="${item.id!""}">再次领用</a>)
                                      <#else>
                                          异常数据
                                      </#if>
@@ -222,94 +239,61 @@
 </div>
 
 <script type="text/javascript">
-    $(function() {
-        $("input[name=setDefaultRadio]").click(function(){
-            var $this = $(this);
-            var current = $this.attr("current");
-            if(current == "1") {
-                return false;
-            }
-            var _url = "setAddressDefault";
-            //alert(_url);
-            $.ajax(_url,{
-                type: 'POST',
-                data: {id:$this.val()},
-                success: function(data){
-                    $(":radio[name=setDefaultRadio][current=1]").attr("current", "0");
-                    $this.attr("current", "1");
-                    alert("修改默认地址成功！");
-                },
-                dataType: "json",
-                error:function(XMLHttpRequest, textStatus, errorThrown){
-                    alert("操作失败，请联系管理员或更换浏览器再试!");
+    var path = $("#path").val();
+    $(".getDiscount").click(function () {
+        $.ajax({
+            type: 'POST',
+            url:path+ "/discount/getDiscount?id="+$(this).attr("val"),
+            dataType: "text",
+            success: function(data){
+                if(data=="error"){
+                  BootstrapDialog.confirm({
+                        title: '异常',
+                        message: "数据异常",
+                        type: BootstrapDialog.TYPE_DANGER,
+                        closable: true,
+                        btnCancelLabel: '取消',
+                        btnOKLabel: '确认',
+                        btnOKClass: 'btn-danger',
+                        callback: function (result) {
+                            if (result) {
+                            }
+                        }
+                    });
+                }else if(data=="count"){
+                     BootstrapDialog.confirm({
+                        title: '您已经领取过了',
+                        message: "您已经领取过了",
+                        type: BootstrapDialog.TYPE_DANGER,
+                        closable: true,
+                        btnCancelLabel: '取消',
+                        btnOKLabel: '确认',
+                        btnOKClass: 'btn-danger',
+                        callback: function (result) {
+                            if (result) {
+                            }
+                        }
+                    });
+                } else if(data=="success"){
+                     BootstrapDialog.confirm({
+                        title: '免费抢卷',
+                        message: " 领取成功！感谢您的参与，祝您购物愉快~本活动为概率性事件，不能保证所有客户成功领取优惠",
+                        type: BootstrapDialog.TYPE_DANGER,
+                        closable: true,
+                        btnCancelLabel: '取消',
+                        btnOKLabel: '确认',
+                        btnOKClass: 'btn-danger',
+                        callback: function (result) {
+                            if (result) {
+                                location.reload();
+                            }
+                        }
+                    });
                 }
-            });
+            },
+            error:function(er){
+            }
         });
     });
-    function search(){
-        var _key = $.trim($("#key").val());
-        if(_key==''){
-            return false;
-        }
-        $("#searchForm").submit();
-    }
-    function deletes(){
-        return confirm("确定删除选择的记录?");
-    }
-    function changeProvince(){
-        var selectVal = $("#province").val();
-        if(!selectVal){
-            console.log("return;");
-            return;
-        }
-        var _url = "selectCitysByProvinceCode?provinceCode="+selectVal;
-        console.log("_url="+_url);
-        $("#citySelect").empty().show().append("<option value=''>--选择城市--</option>");
-        $("#areaSelect").empty().show().append("<option value=''>--选择区县--</option>");
-        $.ajax({
-            type: 'POST',
-            url: _url,
-            data: {},
-            dataType: "json",
-            success: function(data){
-                //console.log("changeProvince success!data = "+data);
-                $.each(data,function(index,value){
-                    //console.log("index="+index+",value="+value.code+","+value.name);
-                    $("#citySelect").append("<option value='"+value.code+"'>"+value.name+"</option>");
-                });
-            },
-            error:function(er){
-                console.log("changeProvince error!er = "+er);
-            }
-        });
-    }
-
-    function changeCity(){
-        var selectProvinceVal = $("#province").val();
-        var selectCityVal = $("#citySelect").val();
-        if(!selectProvinceVal || !selectCityVal){
-            console.log("return;");
-            return;
-        }
-        var _url = "selectAreaListByCityCode?provinceCode="+selectProvinceVal+"&cityCode="+selectCityVal;
-        console.log("_url="+_url);
-        $("#areaSelect").empty().show().append("<option value=''>--选择区县--</option>");
-        $.ajax({
-            type: 'POST',
-            url: _url,
-            data: {},
-            dataType: "json",
-            success: function(data){
-                //console.log("changeProvince success!data = "+data);
-                $.each(data,function(index,value){
-                    //console.log("index="+index+",value="+value.code+","+value.name);
-                    $("#areaSelect").append("<option value='"+value.code+"'>"+value.name+"</option>");
-                });
-            },
-            error:function(er){
-                console.log("changeCity error!er = "+er);
-            }
-        });
-    }
 </script>
 </@html.htmlBase>

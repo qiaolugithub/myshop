@@ -1,1 +1,1 @@
-package net.jeeshop.services.front.catalog.dao;import net.jeeshop.core.DaoManager;import net.jeeshop.services.front.catalog.bean.Catalog;public interface CatalogDao extends DaoManager<Catalog> {}
+package net.jeeshop.services.front.catalog.dao;import net.jeeshop.core.DaoManager;import net.jeeshop.services.front.catalog.bean.Catalog;import java.util.List;public interface CatalogDao extends DaoManager<Catalog> {    public List<String> selectNameListByIds(List list);}

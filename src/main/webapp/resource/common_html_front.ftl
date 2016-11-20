@@ -91,6 +91,7 @@
         <#nested />
     <#else >
     <body>
+        <input id="path" type="hidden" value="${basepath}"/>
         <#if systemSetting().isopen=="false">
         ${systemSetting().closeMsg!"系统关闭，请联系管理员"}
             <#return />
