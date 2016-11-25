@@ -35,14 +35,10 @@ import org.slf4j.LoggerFactory;
  */
 public class MailUtil {
 	private static final Logger logger = LoggerFactory.getLogger(MailUtil.class);
-	public static void main(String[] args) {//huangf@spider.com.cn
-		/*MailUtil mail = new MailUtil("821905805@qq.com",
-				"qiao66lu@sina.com","love1992qiao", "smtp.sina.cn", "标题");*/
-        MailUtil mail = new MailUtil("821905805@qq.com");
-        //	mail.attachfile("e:\\shiyao.ppk");
-//		mail.attachfile("e:\\aa.txt");
-
- 	mail.startSend("1","2");
+	public static void main(String[] args) {
+        MailUtil mail = new MailUtil("821905805@qq.com",
+                "postmaster@joyshoping.com","Js54489689", "smtp.mxhichina.com", "标题","25");
+ 	    mail.startSend("1","2");
 	}
 
 	// 定义发件人、收件人、主题等
@@ -51,17 +47,19 @@ public class MailUtil {
 	String password = null;
 	String host = null;
 	String filename = null;
+    String port = null;
 //	String subject = null;
 	// 用于保存发送附件的文件名的集合
 	Vector file = new Vector();
 
 	// 做一个可以传发件人等参数的构造
-	public MailUtil(String to, String from,String password, String smtpServer, String subject) {
+	public MailUtil(String to, String from,String password, String smtpServer, String subject,String port) {
 		// 初始化发件人、收件人、主题等
 		this.to = to;
 		this.from = from;
 		this.password = password;
 		this.host = smtpServer;
+        this.port = port;
 //		this.subject = subject;
 	}
 	
@@ -70,6 +68,7 @@ public class MailUtil {
 		this.from = SystemManager.getInstance().getProperty("from_email_account");
 		this.password = SystemManager.getInstance().getProperty("from_email_password");
 		this.host = SystemManager.getInstance().getProperty("from_eamil_smtpServer");
+        this.port = SystemManager.getInstance().getProperty("from_eamil_port");
 //		this.subject = subject;
 	}
 
@@ -94,7 +93,9 @@ public class MailUtil {
 			// 创建信件服务器
 			props.put("mail.smtp.auth","true");   
 			props.put("mail.smtp.host", host);
-			props.put("mail.smtp.password", "0");
+            props.put("mail.smtp.port", port);
+            props.put("mail.smtp.password", "0");
+
 			// 得到默认的对话对象
 //		 	Session session = Session.getDefaultInstance(props, null);
 			Session session = Session.getInstance(props, new PopupAuthenticator(this.from, this.password));

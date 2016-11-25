@@ -143,7 +143,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" id="cancelBtn" class="btn btn-default" data-dismiss="modal">取消</button>
                 <button id="editSubimt" type="button" class="btn btn-primary" type="button">保存</button>
             </div>
         </div><!-- /.modal-content -->
@@ -220,17 +220,17 @@
                 type: 'POST',
                 url: _url,
                 data: {},
-                dataType: "json",
+                dataType: "text",
                 success: function (data) {
-                    if(data == "success") {
+                    if(data=="success") {
                         BootstrapDialog.show({
                             title: '提示消息',
                             message: '绑定成功！',
                             buttons: [{
-                                label: 'Close',
+                                label: '关闭',
                                 action: function(dialog) {
                                     dialog.close(function(){
-                                        $("#bangDing").find(".close").click();
+                                        $("#cancelBtn").click();
                                     });
                                 }
                             }]
@@ -240,10 +240,10 @@
                             title: '提示消息',
                             message: data,
                             buttons: [{
-                                label: 'Close',
+                                label: '关闭',
                                 action: function(dialog) {
                                     dialog.close(function(){
-                                        $("#bangDing").find(".close").click();
+                                        $("#cancelBtn").click();
                                     });
                                 }
                             }]
@@ -255,10 +255,10 @@
                         title: '提示消息',
                         message: '绑定失败，请稍后重试！',
                         buttons: [{
-                            label: 'Close',
+                            label: '关闭',
                             action: function(dialog) {
                                 dialog.close(function(){
-                                    $("#bangDing").find(".close").click();
+                                    $("#cancelBtn").click();
                                 });
                             }
                         }]

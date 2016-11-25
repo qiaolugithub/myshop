@@ -111,7 +111,7 @@
 				    </div>
 				  </div>
 				  
-				<#--  <div class="form-group">
+				  <div class="form-group">
 				    <label for="vcode" class="col-md-2 control-label">验证码</label>
 				    <div class="col-md-2">
 					    <input type="text" name="vcode" type="text" class="form-control" id="vcode" placeholder="验证码"
@@ -122,7 +122,7 @@
 								onclick="javaScript:reloadImg2();" class="vcodeCss"></img>
 						<a href="javascript:void(0);" onclick="javascript:reloadImg2();" class="btn btn-link btn-sm">看不清?换一张</a>
 				    </div>
-				  </div>-->
+				  </div>
 
                     <div class="form-group">
 						<div class="col-md-2 control-label">

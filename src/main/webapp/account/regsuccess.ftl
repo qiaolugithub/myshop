@@ -39,7 +39,7 @@
 								 	<dl>
 									  <dt>如果您长时间未收到邮件，您可以：</dt>
 									  <dd>1、登陆注册时填写的邮箱，检查是否被当成垃圾邮件处理了。</dd>
-									  <dd>2、您可以点击<span class="glyphicon glyphicon-share-alt"></span><a href="${systemSetting().www}/account/sendEmailAgain.html?uid=${uid!""}">再次发送</a></dd>
+									  <dd>2、您可以点击<span class="glyphicon glyphicon-share-alt"></span><a href="${systemSetting().www}/account/sendEmailAgain?uid=${uid!""}">再次发送</a></dd>
 									  <dd>如果已上都不能解决您的问题，请联系${systemSetting().systemCode!""}管理员寻求帮助：
 									 	${systemSetting().email!""}</dd>
 									</dl>
