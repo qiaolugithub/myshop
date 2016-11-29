@@ -103,7 +103,7 @@
                         <div class="col-md-10">
                             <input type="button" name="filemanager" value="浏览图片" class="btn btn-success"/>
                             <input type="text"  value="${e.picture!""}" name="picture" type="text" id="picture"  ccc="imagesInput" style="width: 600px;"
-                                   data-rule="小图;required;maxPicture;"/>
+                                   data-rule="小图;required;maxPicture;" readonly="readonly"/>
 							<#if e.picture??>
                                 <a target="_blank" href="${systemSetting().imageRootPath}${e.picture!""}">
                                     <img style="max-width: 50px;max-height: 50px;" alt="" src="${systemSetting().imageRootPath}${e.picture!""}">
@@ -487,6 +487,10 @@ KindEditor.ready(function(K) {
 				clickFn : function(url, title) {
 					//K('#picture').val(url);
 					//alert(url);
+                    //如果包含images 就去掉
+                    if(url.indexOf("/images")>=0) {
+                        url = url.replace("/images","");
+                    }
 					imagesInputObj.val(url);
 					editor.hideDialog();
 					clearRootImagePath(imagesInputObj);//$("#picture"));

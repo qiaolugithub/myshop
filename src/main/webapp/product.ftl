@@ -343,7 +343,7 @@ function defaultProductImg(){
 										<div class="col-xs-12">
 											
 											<br>购买数量：
-											<span onclick="subFunc()" style="cursor: pointer;"><img src="${basepath}/resource/images/minimize.png" style="vertical-align: middle;"/></span>
+											<span onclick="subFunc(this,false)" style="cursor: pointer;"><img src="${basepath}/resource/images/minimize.png" style="vertical-align: middle;"/></span>
 											<input value="1" size="4" maxlength="4" name="inputBuyNum" id="inputBuyNum" style="text-align: center;"/>
 											<!-- <a id="addProductToCartErrorTips" href="#" data-toggle="tooltip" data-placement="bottom" data-original-title="购买的商品超出库存数！"></a> -->
 											<span onclick="addFunc(this,false)" style="cursor: pointer;"><img src="${basepath}/resource/images/maximize.png" style="vertical-align: middle;"/></span>
