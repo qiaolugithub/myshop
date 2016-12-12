@@ -17,6 +17,7 @@
     <import resource="classpath*:spring/applicationContext-cache.xml"/>
     <import resource="classpath*:spring/manage/applicationContext-manage.xml"/>
     <import resource="classpath*:spring/front/applicationContext-front.xml"/>
+    <import resource="classpath*:spring/applicationContext-redisMq.xml"/>
 	<!-- spring-services -->
 	<!--<import resource="classpath*:spring/manage/spring-services.xml"/>-->
 	<!--<import resource="classpath*:spring/front/spring-services.xml"/>-->

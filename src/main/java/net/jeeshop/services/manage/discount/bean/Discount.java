@@ -10,6 +10,7 @@ public class Discount extends net.jeeshop.services.common.Discount implements
     private List<Discount> discountList;//
     private String queryDate;//做查询条件用的时间
     private String pname;//可用商品：所有，指定商品，指定分类
+    private Integer overTime;//是否超时  0 未超时 1超时
 
     public void clear() {
         super.clear();
@@ -22,6 +23,15 @@ public class Discount extends net.jeeshop.services.common.Discount implements
         }
         queryDate=null;
         pname = null;
+        overTime = null;
+    }
+
+    public Integer getOverTime() {
+        return overTime;
+    }
+
+    public void setOverTime(Integer overTime) {
+        this.overTime = overTime;
     }
 
     public List<Discount> getDiscountList() {

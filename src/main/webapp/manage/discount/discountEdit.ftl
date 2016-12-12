@@ -1,5 +1,5 @@
 <#import "/manage/tpl/pageBase.ftl" as page>
-<@page.pageBase currentMenu="优惠券">
+<@page.pageBase currentMenu="优惠券管理">
 <style>
 	.dfsfdsfsf label{
 		display: inline;
@@ -42,7 +42,7 @@
                     <option value="0"  <#if e.cuttype?? && e.cuttype==0>selected="selected" </#if>>不限制</option>
                     <option value="1"  <#if e.cuttype?? && e.cuttype==1>selected="selected" </#if>>限制</option>
                 </select>
-                <input type="text" value="${e.cutnum!""}" name="cutnum" id="cutnum" data-rule="订单金额限制:required;integer;length[0~100000];"/>
+                <input type="text" value="${e.cutnum !""}" name="cutnum" id="cutnum" data-rule="订单金额限制:required;integer;length[0~100000];"/>
             </td>
         </tr>
         <tr>
@@ -96,11 +96,13 @@
             <td style="text-align: left;">
                 <p> <input type="radio" name="protype" id="protype_0" value="0" data-rule="checked"  <#if e.protype?? && e.protype==0>checked</#if>/>全部商品全部分类</p>
                 <p> <input type="radio" name="protype" id="protype_1" value="1" data-rule="checked"  <#if e.protype?? && e.protype==1>checked</#if>/>指定分类(如果选择父分类则包含下属子分类)
-                <input type="text" name="proid" id="proid_1" value="${e.proid!""}"  placeholder="商品分类按照逗号分隔">商品分类按照逗号分隔0默认所有
+             <#--   <input type="text" name="proid" id="proid_1" value="${e.proid!""}"  placeholder="商品分类按照逗号分隔">商品分类按照逗号分隔0默认所有-->
                 </p>
                 <p> <input type="radio" name="protype" id="protype_2" value="2" data-rule="checked"  <#if e.protype?? && e.protype==2>checked</#if>/ >指定商品
-                <input type="text" name="proid" id="proid_2" value="${e.proid!""}" placeholder="商品按照逗号分隔">商品按照逗号分隔0默认所有
+
                 </p>
+
+                <input type="text" name="proid" id="proid_2" value="${e.proid!""}" placeholder="商品或者商品分类按照逗号分隔">商品或者商品分类按照逗号分隔0默认所有
             </td>
         </tr>
         <tr>
@@ -109,14 +111,15 @@
 
                <p><input type="radio" value="0" id="converttype_0" name="converttype"  class="input-small"  data-rule="checked"  <#if e.converttype?? && e.converttype==0>checked</#if>/>免费兑换</p>
                 <p><input type="radio" value="1" id="converttype_1" name="converttype"  class="input-small"  data-rule="checked" <#if e.converttype?? && e.converttype==1>checked</#if>/>人民币兑换
-                    <input type="text" value="${e.convertnum!""}" id="convertnum_1" name="convertnum" id="convertnum" />元
+                <#--    <input type="text" value="${e.convertnum!""}" id="convertnum_1" name="convertnum" id="convertnum" />元-->
                 </p>
                 <p><input type="radio" value="2" id="converttype_2" name="converttype"  class="input-small"   data-rule="checked" <#if e.converttype?? && e.converttype==2>checked</#if>/>燊活币兑换
-                    <input type="text" value="${e.convertnum!""}" id="convertnum_2" name="convertnum" id="convertnum" />币
+                   <#-- <input type="text" value="${e.convertnum!""}" id="convertnum_2" name="convertnum" id="convertnum" />币-->
                 </p>
                 <p><input type="radio" value="3" id="converttype_3" name="converttype"  class="input-small"  data-rule="checked"  <#if e.converttype?? && e.converttype==3>checked</#if>/>积分兑换
-                    <input type="text" value="${e.convertnum!""}" id="convertnum_3" name="convertnum" id="convertnum" />分
+                 <#--   <input type="text" value="${e.convertnum!""}" id="convertnum_3" name="convertnum" id="convertnum" />分-->
                 </p>
+                <input type="text" value="${e.convertnum!""}" id="convertnum_1" name="convertnum" id="convertnum" placeholder="输入需要替换的金额"/>元/币/分
             </td>
         </tr>
 		<tr>
@@ -146,12 +149,11 @@
 
 <script type="text/javascript">
 $(function(){
-    $("#cutnum").val("0");
-    $("#proid_1").val("0");
+    /*$("#proid_1").val("0");
     $("#proid_2").val("0");
     $("#convertnum_1").val("0");
     $("#convertnum_2").val("0");
-    $("#convertnum_3").val("0");
+    $("#convertnum_3").val("0");*/
 });
 /*
 $('#form').validator({

@@ -1,6 +1,6 @@
 <#import "/manage/tpl/pageBase.ftl" as page>
 <@page.pageBase currentMenu="优惠券管理">
-<form action="${basepath}/manage/discount" method="post" theme="simple">
+<form action="${basepath}/manage/discount"  namespace="/manage"  method="post" theme="simple">
     <table class="table table-bordered">
         <tr>
             <td colspan="8">
@@ -29,6 +29,7 @@
               <#--  <th style="text-align: center;">使用条件</th>-->
                 <th style="text-align: center;">面值</th>
                 <th style="text-align: center;">有效期</th>
+                <th style="text-align: center;">是否过期</th>
                 <th style="text-align: center;">限购商品</th>
                 <th style="text-align: center;">领取数量（剩余/总数）</th>
                 <th style="text-align: center;">兑换金额</th>
@@ -53,11 +54,14 @@
                  -->
                     <td style="text-align: center;">${item.facevale!""}</td>
                     <td style="text-align: center;">${item.begintime!""}到${item.endtime!""}</td>
-                    <td style="text-align: center;"><#if item.pname?? && item.pname=="all">
-                        全部商品
+                    <td nowrap="nowrap" style="text-align: center;">
+                    <#if item.overTime==1>
+                        已过期
                     <#else>
-                    ${item.pname!""}
-                    </#if></td>
+                        未过期
+                    </#if>
+                    </td>
+                    <td style="text-align: center;">${item.pname!""}</td>
                     <td style="text-align: center;">${item.levcount!""}/${item.allcount!""}</td>
                     <td style="text-align: center;">
                         <#if  item.converttype?? && item.converttype ==1 >

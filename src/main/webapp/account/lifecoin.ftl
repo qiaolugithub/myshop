@@ -14,7 +14,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <ol class="breadcrumb">
-                            <li class="active">我的生活币</li>
+                            <li class="active">我的燊活币</li>
                         </ol>
                     </div>
                     <div class="alert alert-success" role="alert">可用生活币:<span style="color: red;font-weight: bold">
@@ -28,16 +28,17 @@
                 </div>
                 <h3>生活币充值:</h3>
                 <h4>请将虚拟币转至如下地址：</h4>
-
+<#--
                 <#list lifeAddress as item>
                        <span class="text-center"><h4 style="color:blue">${item}</h4></span>
-                </#list>
+                </#list>-->
 
+                <span class="text-center"><h4 style="color:blue">${lifeAddress}</h4></span>
                 <h4 style="color:red">重要提示：本站已经支持往同一地址多次充值，我们将在收到3次确认以后为您充值成功。</h4>
 
                 <hr>
 
-                <#if pager.list??>
+           <#--     <#if pager.list??>
                     <table class="table table-bordered table-hover" style="margin-bottom: 10px;">
                         <tr style="background-color: #dff0d8">
                             <th style="text-align: center;">时间</th>
@@ -72,7 +73,7 @@
                     <div class="bs-callout bs-callout-danger author" style="text-align: left;font-size: 14px;margin: 2px 0px;">
                         还没有任何配送信息！赶紧添加吧。
                     </div>
-                     -->
+                     &ndash;&gt;
 
                     <div class="col-xs-12">
                         <hr>
@@ -91,7 +92,7 @@
 
                     </div>
 
-                </#if>
+                </#if>-->
 
             </div>
 	</div>

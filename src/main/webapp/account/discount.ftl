@@ -197,7 +197,7 @@
                                      <#elseif item.converttype?? && item.converttype ==0 && item.isGet ==0>
                                         <a class="getDiscount" val="${item.id!""}">领用</a>
                                     <#elseif item.converttype?? && item.converttype !=0 && item.isGet ==0>
-                                        兑换
+                                        <a href="${basepath}/discount/toChange?id=${item.id!""}" >兑换</a>
                                      <#elseif item.isGet?? && item.isGet ==1 >
                                          已领取(<a class="getDiscount" val="${item.id!""}">再次领用</a>)
                                      <#else>
@@ -290,6 +290,17 @@
                         }
                     });
                 }
+            },
+            error:function(er){
+            }
+        });
+    });
+
+    $("#toChange").click(function () {
+        $.ajax({
+            type: 'POST',
+            url:path+ "/discount/toChange?id="+$(this).attr("val"),
+            success: function(data){
             },
             error:function(er){
             }

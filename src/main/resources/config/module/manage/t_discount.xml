@@ -17,7 +17,7 @@
              d.allCount,
             d.levCount,
             d.status,
-            "all" AS pname
+            d.proType,d.proId
         FROM
             t_discount d
         WHERE
@@ -38,14 +38,14 @@
         d.allCount,
                 d.levCount,
                 d.status,
-                p.name AS pname
+                d.proType,d.proId
             FROM
                 t_discount d
             LEFT JOIN t_product p ON d.proid = p.id
             WHERE
                 1 = 1
-            AND d.protype = 0
-            AND d.proid != 0
+            AND d.protype = 2
+       /*     AND d.proid != 0*/
             UNION
                 SELECT
                     d.id,
@@ -60,17 +60,18 @@
         d.allCount,
                 d.levCount,
                 d.status,
-                     c.name AS pname
+                    d.proType,d.proId
                 FROM
                     t_discount d
                 LEFT JOIN t_catalog c ON d.proid = c.id
                 WHERE
                     1 = 1
                 AND d.protype = 1
-                AND d.proid != 0
                 AND c.type = 'p'
+            /*    AND d.proid != 0
+                AND c.type = 'p'*/
                 ORDER BY
-                    endtime DESC
+                   id desc
                     limit #{offset},#{pageSize}
         </select>
 

@@ -13,7 +13,7 @@
 		<span class="glyphicon glyphicon-usd"></span>&nbsp;我的余额
 	</a>-->
 	<a href="${basepath}/account/lifecoin" class="list-group-item ${(currentMenu=="lifecoin")?string('active', '')}">
-		<span class="glyphicon glyphicon-credit-card"></span>&nbsp;我的生活币
+		<span class="glyphicon glyphicon-credit-card"></span>&nbsp;我的燊活币
 	</a>
 	<a href="${basepath}/account/discount" class="list-group-item ${(currentMenu=="discount")?string('active', '')}">
 		<span class="glyphicon glyphicon-tags"></span>&nbsp;我的优惠券
