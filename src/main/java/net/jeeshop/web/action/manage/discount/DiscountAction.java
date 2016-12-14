@@ -31,10 +31,7 @@ public class DiscountAction extends BaseController<Discount> {
     private static final long serialVersionUID = 1L;
     @Autowired
     private DiscountService discountService;
-    @Override
-    protected void selectListAfter(PagerModel pager) {
-        pager.setPagerUrl(page_toList);
-    }
+
 
     public void setDiscountService(DiscountService discountService) {
         this.discountService = discountService;
@@ -111,10 +108,10 @@ public class DiscountAction extends BaseController<Discount> {
 
     @Override
     public String insert(HttpServletRequest request, @ModelAttribute("e") Discount discount, RedirectAttributes flushAttrs) throws Exception {
-        if (discount.getProtype() == null) {
+        if (discount.getProtype() == null ) {
             discount.setProtype(0);
         }
-        if (discount.getProid() == null) {
+        if (discount.getProid() == null || discount.getProid()=="") {
             discount.setProid("0");
         }
         if (discount.getLevcount() == null) {

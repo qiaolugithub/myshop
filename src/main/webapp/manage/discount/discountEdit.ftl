@@ -1,6 +1,6 @@
 <#import "/manage/tpl/pageBase.ftl" as page>
 <@page.pageBase currentMenu="优惠券管理">
-<style>
+<style xmlns:c="http://www.w3.org/1999/html">
 	.dfsfdsfsf label{
 		display: inline;
 	}
@@ -26,7 +26,7 @@
         <tr>
             <td style="text-align: right;width: 200px;">发放总量</td>
             <td style="text-align: left;">
-                <input type="text" value="${e.allcount!""}" name="allcount" id="allcount" data-rule="发放数量:required;integer;length[1~1000];"/>
+                <input type="text" value="${e.allcount!""}" name="allcount" id="allcount" data-rule="发放数量:required;integer;length[1~1000];" <#-- <#if e.allcount??>readonly</#if>--> />
             </td>
         </tr>
         <tr>
@@ -42,7 +42,7 @@
                     <option value="0"  <#if e.cuttype?? && e.cuttype==0>selected="selected" </#if>>不限制</option>
                     <option value="1"  <#if e.cuttype?? && e.cuttype==1>selected="selected" </#if>>限制</option>
                 </select>
-                <input type="text" value="${e.cutnum !""}" name="cutnum" id="cutnum" data-rule="订单金额限制:required;integer;length[0~100000];"/>
+                <input type="text" value="${e.cutnum !""}" name="cutnum" id="cutnum" data-rule="订单金额限制:required;integer;length[0~100000];" />
             </td>
         </tr>
         <tr>

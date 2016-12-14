@@ -77,7 +77,34 @@
 
 
         <select id="manage.discount.selectPageCount" parameterType="net.jeeshop.services.manage.discount.bean.Discount" resultType="java.lang.Integer">
-            select count(1) from (select 1 	 from t_discount t where 1=1
+            select count(1) from (
+                SELECT
+                  d.id
+                FROM
+                  t_discount d
+                WHERE
+                    1 = 1
+                  AND d.protype = 0
+                   AND d.proid = 0
+                UNION
+                  SELECT
+                    d.id
+                     FROM
+                       t_discount d
+                LEFT JOIN t_product p ON d.proid = p.id
+                    WHERE
+                       1 = 1
+                    AND d.protype = 2
+                UNION
+                   SELECT
+                     d.id
+                     FROM
+                    t_discount d
+                    LEFT JOIN t_catalog c ON d.proid = c.id
+                    WHERE
+                       1 = 1
+                    AND d.protype = 1
+                   AND c.type = 'p'
             ) a
         </select>
     <!--
