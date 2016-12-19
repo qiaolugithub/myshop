@@ -22,24 +22,30 @@ public class LifeCoinDaoImpl implements LifeCoinDao {
     }
 
     public PagerModel selectPageList(LifeCoin e) {
-        return dao.selectPageList("front.lifeCoin.selectPageList",
-                "front.lifeCoin.selectPageCount", e);
+        return dao.selectPageList("manage.lifeCoin.selectAllUserLifeCoinList",
+                "manage.lifeCoin.selectAllUserLifeCoinCount", e);
     }
 
+/*
+    public PagerModel selectPageListAllUserLifeCoin(LifeCoin e) {
+        return dao.selectPageList("manage.lifeCoin.selectAllUserLifeCoinList",
+                "manage.lifeCoin.selectAllUserLifeCoinCount", e);
+    }*/
+
     public List selectList(LifeCoin e) {
-        return dao.selectList("front.lifeCoin.selectList", e);
+        return dao.selectList("manage.lifeCoin.selectList", e);
     }
 
     public LifeCoin selectOne(LifeCoin e) {
-        return (LifeCoin) dao.selectOne("front.lifeCoin.selectOne", e);
+        return (LifeCoin) dao.selectOne("manage.lifeCoin.selectOne", e);
     }
 
     public int delete(LifeCoin e) {
-        return dao.delete("front.lifeCoin.delete", e);
+        return dao.delete("manage.lifeCoin.delete", e);
     }
 
     public int update(LifeCoin e) {
-        return dao.update("front.lifeCoin.update", e);
+        return dao.update("manage.lifeCoin.update", e);
     }
 
     public int deletes(String[] ids) {
@@ -52,15 +58,19 @@ public class LifeCoinDaoImpl implements LifeCoinDao {
     }
 
     public int insert(LifeCoin e) {
-        return dao.insert("front.lifeCoin.insert", e);
+        return dao.insert("manage.lifeCoin.insert", e);
     }
 
     public int deleteById(int id) {
-        return dao.delete("front.lifeCoin.deleteById", id);
+        return dao.delete("manage.lifeCoin.deleteById", id);
     }
 
     public LifeCoin selectById(String id) {
-        return (LifeCoin) dao.selectOne("account.selectById", id);
+        return (LifeCoin) dao.selectOne("manage.lifeCoin.selectById", id);
+    }
+
+    public LifeCoin getSumAndCount(){
+        return (LifeCoin) dao.selectOne("manage.lifeCoin.getSumAndCount");
     }
 }
 

@@ -17,7 +17,7 @@
                             <li class="active">我的燊活币</li>
                         </ol>
                     </div>
-                    <div class="alert alert-success" role="alert">可用生活币:<span style="color: red;font-weight: bold">
+                    <div class="alert alert-success" role="alert">可用燊活币:<span style="color: red;font-weight: bold">
                         <#if coinNum??>${coinNum}
                         <#else>0
                         </#if>
@@ -26,7 +26,7 @@
                         SHP </span>
                     </div>
                 </div>
-                <h3>生活币充值:</h3>
+                <h3>燊活币充值:</h3>
                 <h4>请将虚拟币转至如下地址：</h4>
 <#--
                 <#list lifeAddress as item>
@@ -38,30 +38,34 @@
 
                 <hr>
 
-           <#--     <#if pager.list??>
+                <#if pager.list??>
                     <table class="table table-bordered table-hover" style="margin-bottom: 10px;">
                         <tr style="background-color: #dff0d8">
                             <th style="text-align: center;">时间</th>
-                            <th style="text-align: center;">存入</th>
-                            <th style="text-align: center;">支出</th>
-                            <th style="text-align: center;">详细</th>
+                            <th style="text-align: center;">交易的地址</th>
+                            <th style="text-align: center;">交易类型</th>
+                            <th style="text-align: center;">金额</th>
+                         <#--   <th style="text-align: center;">网络费用</th>-->
+                            <th style="text-align: center;">确认状态</th>
                         </tr>
                         <#list pager.list as item>
-                            <tr>
-                                <td style="text-align: center;">${item.createTime!""}</td>
-                                <td style="text-align: left;">${item.depositNum!""}${item.depositNum}</td>
-                                <td style="text-align: left;">${item.payNum!""}${item.payNum}</td>
+                                <tr>
+                                <td style="text-align: center;">${item.time?string("yyyy.MM.dd HH:mm:ss")!''}</td>
+                                <td style="text-align: center;">${item.address}</td>
                                 <td style="text-align: center;">
-                                 <#if item.type?? && item.type==1>
-                                    钱包地址：${item.tonum!""}
-                                 <#elseif item.type?? && item.type==2>
-                                    订单号：<a href="">${item.tonum!""}</a>
-                                 <#elseif item.type?? && item.type==3>
-                                     优惠券：<a href="${item.tonum!""}">查看</a>
+                                 <#if  item.category=="send">
+                                   发送
+                                 <#elseif item.category=="receive">
+                                 接收
+                                 <#elseif item.category=="generate">
+                                  挖矿
                                  <#else>
                                     异常数据
                                 </#if>
                                 </td>
+                                <td style="text-align: center;">${item.amount}</td>
+                               <#-- <td style="text-align: center;">${item.fee}</td>-->
+                                <td style="text-align: center;">${item.confirmations}/3</td>
                             </tr>
                         </#list>
                     </table>
@@ -69,11 +73,7 @@
                         <#include "/pager.ftl"/>
                     </div>
                 <#else>
-                    <!--
-                    <div class="bs-callout bs-callout-danger author" style="text-align: left;font-size: 14px;margin: 2px 0px;">
-                        还没有任何配送信息！赶紧添加吧。
-                    </div>
-                     &ndash;&gt;
+
 
                     <div class="col-xs-12">
                         <hr>
@@ -92,7 +92,7 @@
 
                     </div>
 
-                </#if>-->
+                </#if>
 
             </div>
 	</div>
