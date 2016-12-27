@@ -17,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -96,6 +97,8 @@ public class LifeCoinAction extends BaseController<LifeCoin> {
         }
         Account account = accountService.selectById(accountid);
 
+        model.addAttribute("accountid", accountid);
+
         model.addAttribute("account", account);
 
         LifeCoin searchBean = new LifeCoin();
@@ -142,5 +145,14 @@ public class LifeCoinAction extends BaseController<LifeCoin> {
         return "/manage/lifecoin/user_lifecoinList";
     }
 
+
+    @RequestMapping("saveUserLifeCoin")
+    public String saveUserLifeCoin(LifeCoin lifeCoin,String accountid) {
+        if (lifeCoin.getId() == null) {
+            throw new NullPointerException("id不存在！");
+        }
+        lifeCoinService.update(lifeCoin);
+        return "redirect:/manage/lifecoin/toShow?id="+lifeCoin.getId()+"&accountid="+accountid;
+    }
 
 }

@@ -4,17 +4,17 @@
     <table class="table table-bordered">
         <tr>
             <td style="text-align: right;">账号</td>
-            <td style="text-align: left;" ><input type="text"  value="${e.account!""}" name="account"  class="input-small"
-                                                  id="name" /></td>
+            <td style="text-align: left;" ><input type="text"  value="${e.account!""}" name="account"  class="input-medium search-query"
+                                                  id="account" /></td>
             <td style="text-align: right;">电话</td>
-            <td style="text-align: left;" ><input type="text"  value="${e.tel!""}" name="tel"  class="input-small"
-                                                  id="name" /></td>
+            <td style="text-align: left;" ><input type="text"  value="${e.tel!""}" name="tel"  class="input-medium search-query"
+                                                  id="tel" /></td>
             <!-- 						<td style="text-align: right;">录入人</td> -->
             <td>
             <#--<%-- 					<s:submit method="selectList" value="查询" cssClass="btn btn-primary"/> --%>-->
-                <a href="selectList" class="btn btn-primary">
-                    <i class="icon-search icon-white" ></i> 查询
-                </a>
+                <button method="selectList" class="btn btn-primary" onclick="selectList(this)">
+                    <i class="icon-search icon-white"></i> 查询
+                </button>
             </td>
             </tr>
         <tr>
