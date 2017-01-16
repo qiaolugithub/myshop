@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.indexPage;import net.jeeshop.core.Services;import net.jeeshop.services.manage.indexPage.bean.IndexPage;public interface IndexPageService extends Services<IndexPage> {}

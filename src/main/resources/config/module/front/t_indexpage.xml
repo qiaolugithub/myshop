@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- create by autoCode,v1.0.0 -->
+<mapper namespace="front.IndexPage" >
+ <!-- <resultMap id="BaseResultMap" type="net.jeeshop.model.IndexPage" >
+    <result column="banner1_pic" property="banner1Pic" jdbcType="VARCHAR" />
+    <result column="banner1_link" property="banner1Link" jdbcType="VARCHAR" />
+    <result column="banner2_pic" property="banner2Pic" jdbcType="VARCHAR" />
+    <result column="banner2_link" property="banner2Link" jdbcType="VARCHAR" />
+    <result column="banner3_pic" property="banner3Pic" jdbcType="VARCHAR" />
+    <result column="banner3_link" property="banner3Link" jdbcType="VARCHAR" />
+    <result column="top_word1" property="topWord1" jdbcType="VARCHAR" />
+    <result column="top_word1_link" property="topWord1Link" jdbcType="VARCHAR" />
+    <result column="top_word2" property="topWord2" jdbcType="VARCHAR" />
+    <result column="top_word2_link" property="topWord2Link" jdbcType="VARCHAR" />
+    <result column="small_banner1_pic" property="smallBanner1Pic" jdbcType="VARCHAR" />
+    <result column="small_banner1_link" property="smallBanner1Link" jdbcType="VARCHAR" />
+    <result column="small_banner2_pic" property="smallBanner2Pic" jdbcType="VARCHAR" />
+    <result column="small_banner2_link" property="smallBanner2Link" jdbcType="VARCHAR" />
+    <result column="small_banner3_pic" property="smallBanner3Pic" jdbcType="VARCHAR" />
+    <result column="small_banner3_link" property="smallBanner3Link" jdbcType="VARCHAR" />
+    <result column="small_banner4_pic" property="smallBanner4Pic" jdbcType="VARCHAR" />
+    <result column="small_banner4_link" property="smallBanner4Link" jdbcType="VARCHAR" />
+    <result column="middle_banner1_pic" property="middleBanner1Pic" jdbcType="VARCHAR" />
+    <result column="middle_banenr1_link" property="middleBanenr1Link" jdbcType="VARCHAR" />
+    <result column="middle_banner2_pic" property="middleBanner2Pic" jdbcType="VARCHAR" />
+    <result column="middle_banner2_link" property="middleBanner2Link" jdbcType="VARCHAR" />
+    <result column="commodity_area_pic1" property="commodityAreaPic1" jdbcType="VARCHAR" />
+    <result column="commodity_area_link1" property="commodityAreaLink1" jdbcType="VARCHAR" />
+    <result column="commodity_area_str1" property="commodityAreaStr1" jdbcType="VARCHAR" />
+    <result column="commodity_area_pic2" property="commodityAreaPic2" jdbcType="VARCHAR" />
+    <result column="commodity_area_link2" property="commodityAreaLink2" jdbcType="VARCHAR" />
+    <result column="commodity_area_str2" property="commodityAreaStr2" jdbcType="VARCHAR" />
+    <result column="commodity_area_pic3" property="commodityAreaPic3" jdbcType="VARCHAR" />
+    <result column="commodity_area_link3" property="commodityAreaLink3" jdbcType="VARCHAR" />
+    <result column="commodity_area_str3" property="commodityAreaStr3" jdbcType="VARCHAR" />
+    <result column="commodity_area_pic4" property="commodityAreaPic4" jdbcType="VARCHAR" />
+    <result column="commodity_area_link4" property="commodityAreaLink4" jdbcType="VARCHAR" />
+    <result column="commodity_area_str4" property="commodityAreaStr4" jdbcType="VARCHAR" />
+    <result column="commodity_button3_name_1" property="commodityButton3Name1" jdbcType="VARCHAR" />
+    <result column="commodity_button3_link_1" property="commodityButton3Link1" jdbcType="VARCHAR" />
+    <result column="commodity_button3_name_2" property="commodityButton3Name2" jdbcType="VARCHAR" />
+    <result column="commodity_button3_link_2" property="commodityButton3Link2" jdbcType="VARCHAR" />
+    <result column="commodity_button3_name_3" property="commodityButton3Name3" jdbcType="VARCHAR" />
+    <result column="commodity_button3_link_3" property="commodityButton3Link3" jdbcType="VARCHAR" />
+    <result column="heng_banner_pic1" property="hengBannerPic1" jdbcType="VARCHAR" />
+    <result column="heng_banner_link1" property="hengBannerLink1" jdbcType="VARCHAR" />
+    <result column="heng_banner_pic2" property="hengBannerPic2" jdbcType="VARCHAR" />
+    <result column="heng_banner_link2" property="hengBannerLink2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    banner1_pic, banner1_link, banner2_pic, banner2_link, banner3_pic, banner3_link, 
+    top_word1, top_word1_link, top_word2, top_word2_link, small_banner1_pic, small_banner1_link, 
+    small_banner2_pic, small_banner2_link, small_banner3_pic, small_banner3_link, small_banner4_pic, 
+    small_banner4_link, middle_banner1_pic, middle_banenr1_link, middle_banner2_pic, 
+    middle_banner2_link, commodity_area_pic1, commodity_area_link1, commodity_area_str1, 
+    commodity_area_pic2, commodity_area_link2, commodity_area_str2, commodity_area_pic3, 
+    commodity_area_link3, commodity_area_str3, commodity_area_pic4, commodity_area_link4, 
+    commodity_area_str4, commodity_button3_name_1, commodity_button3_link_1, commodity_button3_name_2, 
+    commodity_button3_link_2, commodity_button3_name_3, commodity_button3_link_3, heng_banner_pic1, 
+    heng_banner_link1, heng_banner_pic2, heng_banner_link2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="net.jeeshop.model.IndexPageExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_indexpage
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <insert id="insert" parameterType="net.jeeshop.model.IndexPage" >
+    insert into t_indexpage (banner1_pic, banner1_link, banner2_pic, 
+      banner2_link, banner3_pic, banner3_link, 
+      top_word1, top_word1_link, top_word2, 
+      top_word2_link, small_banner1_pic, small_banner1_link, 
+      small_banner2_pic, small_banner2_link, small_banner3_pic, 
+      small_banner3_link, small_banner4_pic, small_banner4_link, 
+      middle_banner1_pic, middle_banenr1_link, middle_banner2_pic, 
+      middle_banner2_link, commodity_area_pic1, commodity_area_link1, 
+      commodity_area_str1, commodity_area_pic2, commodity_area_link2, 
+      commodity_area_str2, commodity_area_pic3, commodity_area_link3, 
+      commodity_area_str3, commodity_area_pic4, commodity_area_link4, 
+      commodity_area_str4, commodity_button3_name_1, 
+      commodity_button3_link_1, commodity_button3_name_2, 
+      commodity_button3_link_2, commodity_button3_name_3, 
+      commodity_button3_link_3, heng_banner_pic1, 
+      heng_banner_link1, heng_banner_pic2, heng_banner_link2
+      )
+    values (#{banner1Pic,jdbcType=VARCHAR}, #{banner1Link,jdbcType=VARCHAR}, #{banner2Pic,jdbcType=VARCHAR}, 
+      #{banner2Link,jdbcType=VARCHAR}, #{banner3Pic,jdbcType=VARCHAR}, #{banner3Link,jdbcType=VARCHAR}, 
+      #{topWord1,jdbcType=VARCHAR}, #{topWord1Link,jdbcType=VARCHAR}, #{topWord2,jdbcType=VARCHAR}, 
+      #{topWord2Link,jdbcType=VARCHAR}, #{smallBanner1Pic,jdbcType=VARCHAR}, #{smallBanner1Link,jdbcType=VARCHAR}, 
+      #{smallBanner2Pic,jdbcType=VARCHAR}, #{smallBanner2Link,jdbcType=VARCHAR}, #{smallBanner3Pic,jdbcType=VARCHAR}, 
+      #{smallBanner3Link,jdbcType=VARCHAR}, #{smallBanner4Pic,jdbcType=VARCHAR}, #{smallBanner4Link,jdbcType=VARCHAR}, 
+      #{middleBanner1Pic,jdbcType=VARCHAR}, #{middleBanenr1Link,jdbcType=VARCHAR}, #{middleBanner2Pic,jdbcType=VARCHAR}, 
+      #{middleBanner2Link,jdbcType=VARCHAR}, #{commodityAreaPic1,jdbcType=VARCHAR}, #{commodityAreaLink1,jdbcType=VARCHAR}, 
+      #{commodityAreaStr1,jdbcType=VARCHAR}, #{commodityAreaPic2,jdbcType=VARCHAR}, #{commodityAreaLink2,jdbcType=VARCHAR}, 
+      #{commodityAreaStr2,jdbcType=VARCHAR}, #{commodityAreaPic3,jdbcType=VARCHAR}, #{commodityAreaLink3,jdbcType=VARCHAR}, 
+      #{commodityAreaStr3,jdbcType=VARCHAR}, #{commodityAreaPic4,jdbcType=VARCHAR}, #{commodityAreaLink4,jdbcType=VARCHAR}, 
+      #{commodityAreaStr4,jdbcType=VARCHAR}, #{commodityButton3Name1,jdbcType=VARCHAR}, 
+      #{commodityButton3Link1,jdbcType=VARCHAR}, #{commodityButton3Name2,jdbcType=VARCHAR}, 
+      #{commodityButton3Link2,jdbcType=VARCHAR}, #{commodityButton3Name3,jdbcType=VARCHAR}, 
+      #{commodityButton3Link3,jdbcType=VARCHAR}, #{hengBannerPic1,jdbcType=VARCHAR}, 
+      #{hengBannerLink1,jdbcType=VARCHAR}, #{hengBannerPic2,jdbcType=VARCHAR}, #{hengBannerLink2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="net.jeeshop.model.IndexPage" >
+    insert into t_indexpage
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="banner1Pic != null" >
+        banner1_pic,
+      </if>
+      <if test="banner1Link != null" >
+        banner1_link,
+      </if>
+      <if test="banner2Pic != null" >
+        banner2_pic,
+      </if>
+      <if test="banner2Link != null" >
+        banner2_link,
+      </if>
+      <if test="banner3Pic != null" >
+        banner3_pic,
+      </if>
+      <if test="banner3Link != null" >
+        banner3_link,
+      </if>
+      <if test="topWord1 != null" >
+        top_word1,
+      </if>
+      <if test="topWord1Link != null" >
+        top_word1_link,
+      </if>
+      <if test="topWord2 != null" >
+        top_word2,
+      </if>
+      <if test="topWord2Link != null" >
+        top_word2_link,
+      </if>
+      <if test="smallBanner1Pic != null" >
+        small_banner1_pic,
+      </if>
+      <if test="smallBanner1Link != null" >
+        small_banner1_link,
+      </if>
+      <if test="smallBanner2Pic != null" >
+        small_banner2_pic,
+      </if>
+      <if test="smallBanner2Link != null" >
+        small_banner2_link,
+      </if>
+      <if test="smallBanner3Pic != null" >
+        small_banner3_pic,
+      </if>
+      <if test="smallBanner3Link != null" >
+        small_banner3_link,
+      </if>
+      <if test="smallBanner4Pic != null" >
+        small_banner4_pic,
+      </if>
+      <if test="smallBanner4Link != null" >
+        small_banner4_link,
+      </if>
+      <if test="middleBanner1Pic != null" >
+        middle_banner1_pic,
+      </if>
+      <if test="middleBanenr1Link != null" >
+        middle_banenr1_link,
+      </if>
+      <if test="middleBanner2Pic != null" >
+        middle_banner2_pic,
+      </if>
+      <if test="middleBanner2Link != null" >
+        middle_banner2_link,
+      </if>
+      <if test="commodityAreaPic1 != null" >
+        commodity_area_pic1,
+      </if>
+      <if test="commodityAreaLink1 != null" >
+        commodity_area_link1,
+      </if>
+      <if test="commodityAreaStr1 != null" >
+        commodity_area_str1,
+      </if>
+      <if test="commodityAreaPic2 != null" >
+        commodity_area_pic2,
+      </if>
+      <if test="commodityAreaLink2 != null" >
+        commodity_area_link2,
+      </if>
+      <if test="commodityAreaStr2 != null" >
+        commodity_area_str2,
+      </if>
+      <if test="commodityAreaPic3 != null" >
+        commodity_area_pic3,
+      </if>
+      <if test="commodityAreaLink3 != null" >
+        commodity_area_link3,
+      </if>
+      <if test="commodityAreaStr3 != null" >
+        commodity_area_str3,
+      </if>
+      <if test="commodityAreaPic4 != null" >
+        commodity_area_pic4,
+      </if>
+      <if test="commodityAreaLink4 != null" >
+        commodity_area_link4,
+      </if>
+      <if test="commodityAreaStr4 != null" >
+        commodity_area_str4,
+      </if>
+      <if test="commodityButton3Name1 != null" >
+        commodity_button3_name_1,
+      </if>
+      <if test="commodityButton3Link1 != null" >
+        commodity_button3_link_1,
+      </if>
+      <if test="commodityButton3Name2 != null" >
+        commodity_button3_name_2,
+      </if>
+      <if test="commodityButton3Link2 != null" >
+        commodity_button3_link_2,
+      </if>
+      <if test="commodityButton3Name3 != null" >
+        commodity_button3_name_3,
+      </if>
+      <if test="commodityButton3Link3 != null" >
+        commodity_button3_link_3,
+      </if>
+      <if test="hengBannerPic1 != null" >
+        heng_banner_pic1,
+      </if>
+      <if test="hengBannerLink1 != null" >
+        heng_banner_link1,
+      </if>
+      <if test="hengBannerPic2 != null" >
+        heng_banner_pic2,
+      </if>
+      <if test="hengBannerLink2 != null" >
+        heng_banner_link2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="banner1Pic != null" >
+        #{banner1Pic,jdbcType=VARCHAR},
+      </if>
+      <if test="banner1Link != null" >
+        #{banner1Link,jdbcType=VARCHAR},
+      </if>
+      <if test="banner2Pic != null" >
+        #{banner2Pic,jdbcType=VARCHAR},
+      </if>
+      <if test="banner2Link != null" >
+        #{banner2Link,jdbcType=VARCHAR},
+      </if>
+      <if test="banner3Pic != null" >
+        #{banner3Pic,jdbcType=VARCHAR},
+      </if>
+      <if test="banner3Link != null" >
+        #{banner3Link,jdbcType=VARCHAR},
+      </if>
+      <if test="topWord1 != null" >
+        #{topWord1,jdbcType=VARCHAR},
+      </if>
+      <if test="topWord1Link != null" >
+        #{topWord1Link,jdbcType=VARCHAR},
+      </if>
+      <if test="topWord2 != null" >
+        #{topWord2,jdbcType=VARCHAR},
+      </if>
+      <if test="topWord2Link != null" >
+        #{topWord2Link,jdbcType=VARCHAR},
+      </if>
+      <if test="smallBanner1Pic != null" >
+        #{smallBanner1Pic,jdbcType=VARCHAR},
+      </if>
+      <if test="smallBanner1Link != null" >
+        #{smallBanner1Link,jdbcType=VARCHAR},
+      </if>
+      <if test="smallBanner2Pic != null" >
+        #{smallBanner2Pic,jdbcType=VARCHAR},
+      </if>
+      <if test="smallBanner2Link != null" >
+        #{smallBanner2Link,jdbcType=VARCHAR},
+      </if>
+      <if test="smallBanner3Pic != null" >
+        #{smallBanner3Pic,jdbcType=VARCHAR},
+      </if>
+      <if test="smallBanner3Link != null" >
+        #{smallBanner3Link,jdbcType=VARCHAR},
+      </if>
+      <if test="smallBanner4Pic != null" >
+        #{smallBanner4Pic,jdbcType=VARCHAR},
+      </if>
+      <if test="smallBanner4Link != null" >
+        #{smallBanner4Link,jdbcType=VARCHAR},
+      </if>
+      <if test="middleBanner1Pic != null" >
+        #{middleBanner1Pic,jdbcType=VARCHAR},
+      </if>
+      <if test="middleBanenr1Link != null" >
+        #{middleBanenr1Link,jdbcType=VARCHAR},
+      </if>
+      <if test="middleBanner2Pic != null" >
+        #{middleBanner2Pic,jdbcType=VARCHAR},
+      </if>
+      <if test="middleBanner2Link != null" >
+        #{middleBanner2Link,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityAreaPic1 != null" >
+        #{commodityAreaPic1,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityAreaLink1 != null" >
+        #{commodityAreaLink1,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityAreaStr1 != null" >
+        #{commodityAreaStr1,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityAreaPic2 != null" >
+        #{commodityAreaPic2,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityAreaLink2 != null" >
+        #{commodityAreaLink2,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityAreaStr2 != null" >
+        #{commodityAreaStr2,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityAreaPic3 != null" >
+        #{commodityAreaPic3,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityAreaLink3 != null" >
+        #{commodityAreaLink3,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityAreaStr3 != null" >
+        #{commodityAreaStr3,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityAreaPic4 != null" >
+        #{commodityAreaPic4,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityAreaLink4 != null" >
+        #{commodityAreaLink4,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityAreaStr4 != null" >
+        #{commodityAreaStr4,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityButton3Name1 != null" >
+        #{commodityButton3Name1,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityButton3Link1 != null" >
+        #{commodityButton3Link1,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityButton3Name2 != null" >
+        #{commodityButton3Name2,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityButton3Link2 != null" >
+        #{commodityButton3Link2,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityButton3Name3 != null" >
+        #{commodityButton3Name3,jdbcType=VARCHAR},
+      </if>
+      <if test="commodityButton3Link3 != null" >
+        #{commodityButton3Link3,jdbcType=VARCHAR},
+      </if>
+      <if test="hengBannerPic1 != null" >
+        #{hengBannerPic1,jdbcType=VARCHAR},
+      </if>
+      <if test="hengBannerLink1 != null" >
+        #{hengBannerLink1,jdbcType=VARCHAR},
+      </if>
+      <if test="hengBannerPic2 != null" >
+        #{hengBannerPic2,jdbcType=VARCHAR},
+      </if>
+      <if test="hengBannerLink2 != null" >
+        #{hengBannerLink2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="net.jeeshop.model.IndexPageExample" resultType="java.lang.Integer" >
+    select count(*) from t_indexpage
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>-->
+
+    <select id="front.IndexPage.selectList" parameterType="net.jeeshop.services.front.indexPage.bean.IndexPage" resultType="net.jeeshop.services.front.indexPage.bean.IndexPage" >
+               SELECT
+            banner1_pic banner1Pic,
+            banner1_link banner1Link,
+            banner2_pic banner2Pic,
+            banner2_link banner2Link,
+            banner3_pic banner3Pic,
+            banner3_link banner3Link,
+            top_word1 topWord1,
+            top_word1_link topWord1Link,
+            top_word2 topWord2,
+            top_word2_link topWord2Link,
+            small_banner1_pic smallBanner1Pic,
+            small_banner1_link smallBanner1Link,
+            small_banner2_pic smallBanner2Pic,
+            small_banner2_link smallBanner2Link,
+            small_banner3_pic smallBanner3Pic,
+            small_banner3_link smallBanner3Link,
+            small_banner4_pic smallBanner4Pic,
+            small_banner4_link smallBanner4Link,
+            middle_banner1_pic middleBanner1Pic,
+            middle_banner1_link middleBanner1Link,
+            middle_banner2_pic middleBanner2Pic,
+            middle_banner2_link middleBanner2Link,
+            commodity_area_pic1 commodityAreaPic1,
+            commodity_area_link1 commodityAreaLink1,
+            commodity_area_str1 commodityAreaStr1,
+            commodity_area_pic2 commodityAreaPic2,
+            commodity_area_link2 commodityAreaLink2,
+            commodity_area_str2 commodityAreaStr2,
+            commodity_area_pic3 commodityAreaPic3,
+            commodity_area_link3 commodityAreaLink3,
+            commodity_area_str3 commodityAreaStr3,
+            commodity_area_pic4 commodityAreaPic4,
+            commodity_area_link4 commodityAreaLink4,
+            commodity_area_str4 commodityAreaStr4,
+            commodity_button3_name_1 commodityButton3Name1,
+            commodity_button3_link_1 commodityButton3Link1,
+            commodity_button3_name_2 commodityButton3Name2,
+            commodity_button3_link_2 commodityButton3Link2,
+            commodity_button3_name_3 commodityButton3Name3,
+            commodity_button3_link_3 commodityButton3Link3,
+            heng_banner_pic1 hengBannerPic1,
+            heng_banner_link1 hengBannerLink1,
+            heng_banner_pic2 hengBannerPic2,
+            heng_banner_link2 hengBannerLink2
+        FROM
+            t_indexpage
+    </select>
+</mapper>

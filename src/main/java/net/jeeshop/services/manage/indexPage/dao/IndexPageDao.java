@@ -1,0 +1,1 @@
+package net.jeeshop.services.manage.indexPage.dao;import net.jeeshop.core.DaoManager;import net.jeeshop.services.manage.indexPage.bean.IndexPage;public interface IndexPageDao extends DaoManager<IndexPage> {}

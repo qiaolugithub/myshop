@@ -1,0 +1,162 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{ margin: 0 auto; font-size: 12px; font-family: "Hiragino Sans GB", "Microsoft YaHei", "SimHei", "STHeiti", "NSimSun", "SimSun", "Arial"; color: #333; background: #fff}
+h1, h2, h3, h4, p,div,span{margin:0; padding:0}
+dl, dt, dd, ul, ol, li,input,h1,p,img,textarea{margin:0; padding:0; list-style:none; border:0 none}
+input, textarea, select{-webkit-tap-highlight-color:transparent; -webkit-touch-callout:none}
+select{appearance:none; -moz-appearance:none; -webkit-appearance:none;}
+textarea{resize:none}
+table{border-collapse:collapse;border-spacing:0;}
+input[type="submit"], input[type="reset"], input[type="button"], input[type="submit"],input[type="button"], textarea, select{-webkit-appearance:none; -webkit-gradien:none; -webkit-linear-gradient:none; -moz-linear-gradient:none; -ms-linear-gradient:none; -o-linear-gradient:none; linear-gradient:none;border:0 none;}
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button{-webkit-appearance:none !important; margin:0}
+input[type="number"]{-moz-appearance:textfield}
+::-webkit-input-placeholder{color:#878787}
+::-moz-placeholder{color:#878787}
+:-ms-input-placeholder{color:#878787}
+a{color: #323232}
+*{
+
+    -webkit-tap-highlight-color: transparent;
+    /*    -webkit-appearance: none;*/
+}
+/*去掉点击a时背景变灰*/
+a{
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
+/*去掉点击时背景变灰*/
+input,textarea,select{-webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+}
+/*去掉记住密码后背景变黄*/
+input:-webkit-autofill{
+    -webkit-box-shadow: 0 0 0px 1000px #1e9cfe inset;
+    color: #fff!important;
+    background-color: #1e9cfe!important;
+}
+/*去掉input的样式*/
+input,button,select,textarea{outline:none}
+textarea{resize:none}
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+    /*input{-webkit-appearance:none;}*/
+input[type="submit"],input[type="button"],select,textarea{
+    -webkit-appearance:none;
+    -webkit-gradien:none;
+    -webkit-linear-gradient:none;
+    -moz-linear-gradient:none;
+    -ms-linear-gradient:none;
+    -o-linear-gradient:none;
+    linear-gradient:none;
+}
+/*公共样式 begin*/
+a{-webkit-tap-highlight-color:transparent; -webkit-touch-callout:none; -webkit-user-select:none; text-decoration: none; cursor: pointer;}
+a:focus, input, button, select, textarea{outline:0 none}
+.clearfix{*zoom:1}
+.clearfix:before, .clearfix:after{display:table; line-height:0; content:" "}
+.clearfix:after{clear:both}
+.fl,.lf{float:left}
+.fr,.rf{float:right}
+.pr{position:relative}
+.pa{position:absolute}
+.hand{cursor:pointer;}
+.img_w100{width: 100%;}
+.com_icon{background-image: url(../images/icon.png); background-repeat: no-repeat;}
+.nav_wrap{width: 1130px;margin: 0 auto; height: 122px;overflow: hidden;}
+.nav_wrap .nav_logo{width: 230px; height: 105px; margin-top: 10px}
+.nav_wrap .nav_content{margin-left: 35px;overflow: hidden;}
+.nav_wrap .nav_content .top_nav_wrap{margin:38px 0 0 50px;width: 602px;  }
+.nav_wrap .top_nav_wrap .search_detail{width: 304px;height: 20px;border: solid 1px #cccc99; position:relative;}
+.nav_wrap .search_detail input{width:250px; height: 20px; line-height: 20px;overflow: hidden; }
+.nav_wrap .search_detail span{width: 54px;height: 20px; background-position: -400px -400px; position: absolute;right: 0; top: 0}
+.nav_wrap .search_wrap p{height: 12px; line-height: 12px; overflow: hidden; margin-top: 5px}
+.nav_wrap .search_wrap p span{color: #99cc33}
+.nav_wrap .full_cut{width: 240px; height:49px}
+.nav_wrap .bottom_nav_wrap{width: 680px; margin-top: 10px}
+.nav_wrap .bottom_nav_wrap li{width: 68px;height: 18px; line-height: 18px;overflow: hidden; float: left; color: #000}
+.nav_wrap .collection{width: 108px; height: 85px;overflow: hidden; margin: 25px 0 0 25px;}
+.banner_wrap{width: 100%;height:520px; }
+.banner_wrap .banner_img{width: 100%;max-width: 1920px; margin: 0 auto; height: 420px;}
+.banner_wrap .second_nav_wrap{width: 1130px; margin: 0 auto; position: relative;}
+.banner_wrap .second_nav_conent{width: 132px; height: 521px; background:#333;position: absolute;top: -420px; left: 0}
+.banner_wrap .sort_total{background:#99cc33;height: 30px; line-height: 30px; padding: 0 7px; color: #fff }
+.banner_wrap .sort_total span{ width: 15px; height: 15px; background-position: -500px 0;margin-top: 9px}
+.banner_wrap .second_nav_wrap ul li{height: 44px; line-height: 44px; padding: 0 13px;}
+.banner_wrap .second_nav_wrap a{ color: #fff}
+.banner_wrap .second_nav_wrap .nav_tip_icon{width: 20px; height: 20px;overflow: hidden; margin-top: 13px}
+.banner_wrap .second_nav_wrap .arrow_bai{width: 8px; height: 18px;margin-top: 13px; background-position: -400px -300px}
+.banner_wrap .second_nav_wrap p{ padding-left: 5px;}
+.tip_1{background-position: 0 0}
+.tip_2{background-position: 0 -100px}
+.tip_3{background-position: 0 -200px}
+.tip_4{background-position: 0 -300px}
+.tip_5{background-position: 0 -400px}
+.tip_6{background-position: -100px 0px}
+.tip_7{background-position: -100px -100px}
+.tip_8{background-position: -100px -200px}
+.tip_9{background-position: -100px -300px}
+.tip_10{background-position:-100px -400px}
+.tip_11{background-position:-200px 0}
+.banner_wrap .nav_product_wrap{margin-left: 137px; width: 993px;height: 100px;border-bottom: solid 1px #cccc99; overflow: hidden;}
+.banner_wrap .add_width{width:1000px;}
+.banner_wrap .product_content{width: 248px;border-right:1px solid #cccc99; }
+.product_content p{color:#99cc33; font-size: 24px; padding: 3px 0; margin-left: 5px;width: 110px; border-bottom: dashed 1px #cccc99}
+.product_content p span{color: #333}
+.banner_wrap .product_content .small_pro_tit{font-size: 16px; border: none;}
+.banner_wrap .product_content dl dd{width: 122px; height: 99px; overflow: hidden;}
+.product_content .beautiful_wei p{color: #ff0066;}
+.product_content .good_foot p{color: #ff9900;}
+.product_content .shar_vip p{color: #cc0033;}
+.big_advangster{width: 1130px;margin: 0 auto; margin-top: 28px;}
+.today_pro_wrap{width: 1130px; margin: 0 auto; margin-top: 38px;}
+.today_pro_wrap h3{font-size: 30px; font-weight: normal;color: #99cc33; height: 30px; line-height: 30px; overflow: hidden; padding-bottom: 6px; border-bottom: solid 2px #99cc33; position: relative;}
+.today_pro_wrap h3 span{font-size: 21px; color: #666; padding-left: 8px;}
+.product_wrap{ height: 440px;}
+.product_wrap .lf_prodct{ position: relative; width: 230px; height: 440px; display: block; margin-top: 12px;}
+.product_wrap .advange_txt{ position: absolute; left: 14px;top: 14px;width: 202px; text-align: center;}
+.product_wrap .advange_txt dt{width:50px; height: 60px; margin-left: 76px;}
+.product_wrap .advange_txt p{ padding: 8px 0;border-bottom: solid 1px #fff; font-size: 24px; color: #fff}
+.product_wrap .advange_txt .second_txt{border: none; font-size: 16px;}
+.product_wrap .pro_price_wrap{ position: absolute;  bottom: 24px; width: 185px; height: 40px; line-height: 40px; background: #99cc33; opacity: .8; color: #fff; left: 23px; font-size: 26px; text-align: center;}
+.product_wrap .pro_price_wrap span{font-weight: 600; font-size: 24px;}
+.product_wrap .pro_price_wrap label{font-size: 14px}
+.product_wrap .rf_product{ width: 896px; margin-top: 4px;}
+.product_wrap .rf_product li{ float: left; width: 214px; height: 214px; border: solid 1px #999; position: relative; margin-left: 8px; margin-top: 8px;}
+.product_wrap .rf_product .pro_pircture{width: 214px;height:164px; overflow: hidden; }
+.product_wrap .rf_product p{padding: 0 5px; height: 20px; line-height: 20px; overflow: hidden;}
+.product_wrap .rf_product .price_big{ color: #ff6600; font-size: 22px;font-weight: 600; padding-top: 4px}
+.product_wrap .rf_product .price_big span{font-size: 16px; font-weight: 100}
+.car_buy{ position: absolute;right: 10px; bottom: 4px; width: 30px; height: 30px; border-radius: 50%; background-color: #99cc33; background-position:-496px -95px;}
+.big_advangeter{width: 1130px; height: 120px; overflow: hidden;margin: 0 auto; margin-top: 32px;}
+.product_wrap .lf_big_prodct{width:458px;}
+.product_wrap .big_pro_img{width: 670px; margin-top: 0}
+.product_wrap .big_pro_img ul{width: 675px;}
+.today_pro_wrap .border_b_1{border-bottom: solid 1px #99cc33;}
+.add_bor_1{border:solid 1px #99cc33; margin-top: 24px; height: 454px; }
+.product_wrap .big_pro_img li{ margin-left: 7.5px}
+.product_wrap .big_product_img{width:458px; height: 398px; position: relative;}
+.hot_icon{ position: absolute;left: -15px; top: -28px;width:175px; height: 200px; background: url(../images/single.png) no-repeat;}
+.product_wrap .product_nav li{width: 149px;height: 48px; line-height: 48px;background: #99cc33; font-size: 28px; text-align: center; float: left; margin-right: 3px;}
+.product_wrap .product_nav li a{color: #fff;}
+.today_pro_wrap .pro_tit_nav{ position: absolute;right: 0; top: 0; font-size: 13px; width: 700px; text-align: right; color: #333}
+.today_pro_wrap .pro_tit_nav a{padding: 0 5px}
+
+.slide_banner{width: 32px; height: 528px; border: solid 1px #999; position: fixed;top: 30%; left: 3%; overflow: hidden;}
+.slide_banner ul li{width: 32px; height: 42.5px;border-bottom: solid 1px #999; overflow: hidden; text-align: center; position: relative;}
+.slide_banner ul li a,.slide_banner ul li span{ width: 20px; height: 20px;display: block; margin: 0 auto; margin-top: 11px}
+.slide_banner ul li .slide_1{background-position:-200px -100px}
+.slide_banner ul li .slide_2{background-position:-200px -200px}
+.slide_banner ul li .slide_3{background-position:-200px -300px}
+.slide_banner ul li .slide_4{background-position:-200px -400px}
+.slide_banner ul li .slide_5{background-position:-300px 0px }
+.slide_banner ul li .slide_6{background-position:-300px -100px }
+.slide_banner ul li .slide_7{background-position:-297px -200px }
+.slide_banner ul li .slide_8{background-position:-297px -300px }
+.slide_banner ul li .slide_9{background-position:-300px -400px }
+.slide_banner ul li .slide_10{background-position:-400px 0px }
+.slide_banner ul li .slide_11{background-position:-400px -100px }
+.slide_banner .bor_b_none{border-bottom: none; cursor: pointer;}
+.bor_b_none span{background-position: -400px -200px; position: absolute;left: 7px;bottom: -12px;}
