@@ -30,7 +30,7 @@
                              targetProject="src/main/gen">
         </javaClientGenerator>
 
-        <table tableName="t_discount_detail" domainObjectName="DiscountDetail"/>
+        <table tableName="t_indexpage" domainObjectName="IndexPage"/>
     </context>
 
 </generatorConfiguration>

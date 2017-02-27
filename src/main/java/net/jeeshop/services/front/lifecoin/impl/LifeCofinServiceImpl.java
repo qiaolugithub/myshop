@@ -1,5 +1,6 @@
 package net.jeeshop.services.front.lifecoin.impl;
 
+import com.azazar.bitcoin.jsonrpcclient.Bitcoin;
 import com.azazar.bitcoin.jsonrpcclient.BitcoinException;
 import com.azazar.bitcoin.jsonrpcclient.BitcoinJSONRPCClient;
 import net.jeeshop.core.ServersManager;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -161,5 +163,41 @@ public class LifeCofinServiceImpl extends ServersManager<LifeCoin, LifeCoinDao> 
             lifeCoinLogService.insert(newlog);
             return lifeCoinPay;
         }
+    }
+
+    @Override
+    public boolean checkLock(String accId) {
+        LifeCoin searchBean = new LifeCoin();
+        searchBean.setAccountid(Integer.parseInt(accId));
+
+        searchBean = dao.selectOne(searchBean);
+        if (searchBean.getIslock() == null) {
+            return false;
+        }
+        return searchBean.getIslock()==1?true:false;
+    }
+
+    @Override
+    public boolean checkLastDeal(String accId) {
+        try {
+            /*先取出大小*/
+            //int size = client.listTransactions("userid_" + accId).size();
+            /*前一次交易*/
+            List<Bitcoin.Transaction> list = client.listTransactions("userid_" + accId, 1,0);
+            if (list == null || list.size() == 0) {
+                return true;
+            }
+            Bitcoin.Transaction transaction = list.get(0);
+            /*前一次交易不为空或者确认超过3次就可以*/
+            if (transaction == null || transaction.confirmations() >= 3) {
+                return true;
+            }
+            return false;
+        } catch (BitcoinException e) {
+            logger.error("获取上次交易异常："+e.getMessage());
+            e.printStackTrace();
+        }
+
+        return false;
     }
 }

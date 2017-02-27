@@ -1,24 +1,15 @@
-<!DOCTYPE html>
-<html>
+<#import "/resource/common_html_front.ftl" as html/>
+<@html.htmlBase>
 <head>
 <meta property="qc:admins" content="50702666757625530706654" />
 <meta property="wb:webmaster" content="28e244326adb6a77" />
 
     <link rel="stylesheet" href="${basepath}/resource/css/base-new.css"  type="text/css">
 </head>
-<script type="javascript">
-    //搜索商品
-    function search(){
-        var _key = $.trim($("#key").val());
-        if(_key==''){
-            return false;
-        }
-        $("#searchForm").submit();
-    }
-</script>
+
 <body>
 <div class="nav_wrap clearfix">
-    <div class="lf nav_logo"><a ><img class="img_w100" src="${systemSetting().log}"></a></div>
+    <div class="lf nav_logo"  ><a ><img class="img_w100" src="${systemSetting().log}"></a></div>
     <div class="lf nav_content">
         <div class="top_nav_wrap clearfix">
             <div class="lf search_wrap">
@@ -26,7 +17,7 @@
                        action="${basepath}/search.html">
                     <div class="search_detail">
                         <input type="text" name="key" id="key" placeholder="请输入商品关键字" size="40" value="${key!""}" maxlength="20"/>
-                        <span class="com_icon" onclick="search();"></span>
+                        <span class="com_icon" id="searchBtn"></span>
                     </div>
                 <#--todo-->
                 <#-- <a class="btn btn-success btn-sm" href="${basepath}/cart/cart.html">
@@ -47,7 +38,6 @@
             <div class="rf full_cut">
             <#--<#if currentAccount()??>
               <span id="myshopMenuPPP" style="display: inline-block;z-index: 9999;position: relative;;">
-                        <!-- 会员中心的菜单 &ndash;&gt;
                         <span style="margin-top: 0px;">
                         <a data-toggle="dropdown" style="display: block;margin-top: 0px;">
                             <span class="glyphicon glyphicon-user"></span>&nbsp;用户中心
@@ -59,7 +49,7 @@
                             <li><a href="${basepath}/account/topwd"><span class="glyphicon glyphicon-screenshot"></span>&nbsp;修改密码</a></li>
                             <li class="divider"></li>
                             <li><a href="${basepath}/account/orders"><span class="glyphicon glyphicon-th"></span>&nbsp;我的订单</a></li>
-                        &lt;#&ndash; <li><a href="${basepath}/account/balance"><span class="glyphicon glyphicon-usd"></span>&nbsp;我的余额</a></li>&ndash;&gt;
+                        <#-- <li><a href="${basepath}/account/balance"><span class="glyphicon glyphicon-usd"></span>&nbsp;我的余额</a></li>&ndash;&gt;
                             <li><a href="${basepath}/account/lifecoin"><span class="glyphicon glyphicon-credit-card"></span>&nbsp;我的燊活币</a></li>
                             <li class="divider"></li>
                             <li><a href="${basepath}/account/discount"><span class="glyphicon glyphicon-tags"></span>&nbsp;我的优惠券</a></li>
@@ -77,11 +67,9 @@
                     </span>
           <#else >
                         <a href="${basepath}/account/login">登陆</a>|<a href="${basepath}/account/register">注册</a>
-          </#if>-->
-            <#-- <a href="${basepath}/account/login">登陆</a>|<a href="${basepath}/account/register">注册</a>-->
-            <#--  <div style="vertical-align: middle;margin-top: 10px;font-size: 18px;z-index: 0;">
-                  <span class="glyphicon glyphicon-earphone"></span>&nbsp;&lt;#&ndash;客服热线:&ndash;&gt;${systemSetting().tel}
-              </div>-->
+          </#if>
+           <a href="${basepath}/account/login">登陆</a>|<a href="${basepath}/account/register">注册</a>-->
+
                 <a href="${basepath}/account/login">登陆</a>|<a href="${basepath}/account/register">注册</a>
                 <a><img src="resource/images/guan_06.png"></a></div>
         </div>
@@ -399,5 +387,18 @@
         </li>
     </ul>
 </div>
+<script>
+    $("#searchBtn").click(function () {
+        search()
+    });
+    //搜索商品
+    function search(){
+        var _key = $.trim($("#key").val());
+        if(_key==''){
+            return false;
+        }
+        $("#searchForm").submit();
+    }
+</script>
 </body>
-</html>
+</@html.htmlBase>

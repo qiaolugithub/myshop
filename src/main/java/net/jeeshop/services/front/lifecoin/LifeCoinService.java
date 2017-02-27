@@ -16,4 +16,18 @@ public interface LifeCoinService extends Services<LifeCoin> {
 
 
     LifeCoinPay doLifeCoinPay(LifeCoinLog lifeCoinLog);
+
+    /**
+     * 检查是否锁定  返回true 是锁了
+     * @param accId
+     * @return
+     */
+    public boolean checkLock(String accId);
+
+    /**
+     * 判断上次交易是否大于三次确认
+     * @param accId
+     * @return
+     */
+    public boolean checkLastDeal(String accId);
 }

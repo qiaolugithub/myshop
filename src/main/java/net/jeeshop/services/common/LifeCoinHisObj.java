@@ -13,11 +13,11 @@ public class LifeCoinHisObj {
     public String account;
     public String address;
     public String category;
-    public double amount;
-    public double fee;
-    public int confirmations;
+    public Double amount;
+    public Double fee;
+    public Integer confirmations;
     public String blockHash;
-    public int blockIndex;
+    public Integer blockIndex;
     public Date blockTime;
     public String txId;
     public Date time;
@@ -49,27 +49,27 @@ public class LifeCoinHisObj {
         this.category = category;
     }
 
-    public double getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 
-    public double getFee() {
+    public Double getFee() {
         return fee;
     }
 
-    public void setFee(double fee) {
+    public void setFee(Double fee) {
         this.fee = fee;
     }
 
-    public int getConfirmations() {
+    public Integer getConfirmations() {
         return confirmations;
     }
 
-    public void setConfirmations(int confirmations) {
+    public void setConfirmations(Integer confirmations) {
         this.confirmations = confirmations;
     }
 
@@ -81,11 +81,11 @@ public class LifeCoinHisObj {
         this.blockHash = blockHash;
     }
 
-    public int getBlockIndex() {
+    public Integer getBlockIndex() {
         return blockIndex;
     }
 
-    public void setBlockIndex(int blockIndex) {
+    public void setBlockIndex(Integer blockIndex) {
         this.blockIndex = blockIndex;
     }
 

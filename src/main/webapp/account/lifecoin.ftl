@@ -17,13 +17,20 @@
                             <li class="active">我的燊活币</li>
                         </ol>
                     </div>
-                    <div class="alert alert-success" role="alert">可用燊活币:<span style="color: red;font-weight: bold">
-                        <#if coinNum??>${coinNum}
-                        <#else>0
-                        </#if>
-                        </span>
-                        <span style="color: #000000;font-weight: bold">
-                        SHP </span>
+                    <div class="alert alert-success" role="alert">
+                        可用燊活币:<span style="color: red;font-weight: bold">
+                            <#if coinNum??>${coinNum}
+                            <#else>0
+                            </#if>
+                            </span>
+                            <span  style="color: #000000;font-weight: bold">
+                            SHP </span>
+
+                            <#if isLock?? && isLock==1>  <span style="color: #000000;font-weight: bold">
+                            账户已被锁，请联系客服或者管理员 </span></#if>
+        <#if coinNum?? && (coinNum>0)>
+                            <a class="btn btn-default btn-sm" href="${basepath}/front/lifecoin/turnOut">转出</a>
+        </#if>
                     </div>
                 </div>
                 <h3>燊活币充值:</h3>
