@@ -92,7 +92,7 @@
 				//判断该笔订单是否在商户网站中已经做过处理
 					//如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
 					//如果有做过处理，不执行商户的业务程序
-				//orderService.alipayNotify(trade_status,refund_status,out_trade_no,trade_no);
+				orderService.alipayNotify(trade_status,refund_status,out_trade_no,trade_no);
 				//out.println("success");	//请不要修改或删除
 			} else if(trade_status.equals("WAIT_BUYER_CONFIRM_GOODS")){
 			//该判断表示卖家已经发了货，但买家还没有做确认收货的操作

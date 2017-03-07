@@ -2,7 +2,7 @@
 <!-- 分页标签 -->
 <#if pager.list?? && pager.pagerSize gt 1>
 	<ul class="pagination pagination-sm" style="margin: 0px;">
-
+    <#if pager.pagerUrl??>
 		<@pg.pager url="${pager.pagerUrl}" items=pager.total
 		export="currentPageNumber=pageNumber"
 		maxPageItems=pager.pageSize maxIndexPages=10 isOffset=true>
@@ -31,5 +31,6 @@
                 <li><a href="${pageUrl}">尾页</a></li>
 			</@pg.last>
 		</@pg.pager>
+    </#if>
 	</ul>
 </#if>

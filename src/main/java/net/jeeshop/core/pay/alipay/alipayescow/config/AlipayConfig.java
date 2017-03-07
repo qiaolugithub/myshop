@@ -24,16 +24,15 @@ package net.jeeshop.core.pay.alipay.alipayescow.config;
 public class AlipayConfig {
 	
 	//↓↓↓↓↓↓↓↓↓↓请在这里配置您的基本信息↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
-	// 合作身份者ID，以2088开头由16位纯数字组成的字符串
-	public static String partner = null;
-	// 商户的私钥
-	public static String key = null;
-
+    // 合作身份者ID，以2088开头由16位纯数字组成的字符串
+    public static String partner = "2088521298157790";
+    // 商户的私钥
+    public static String key = "f399nlur3ua6fjfqzyz0tjwi4rfwqgck";
 	//↑↑↑↑↑↑↑↑↑↑请在这里配置您的基本信息↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 	
 
 	// 调试用，创建TXT日志文件夹路径
-	public static String log_path = "D:\\";
+	public static String log_path = "/";
 
 	// 字符编码格式 目前支持 gbk 或 utf-8
 	public static String input_charset = "utf-8";
