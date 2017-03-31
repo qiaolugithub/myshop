@@ -87,7 +87,7 @@ public class AlipayCore {
     public static void logResult(String sWord) {
         FileWriter writer = null;
         try {
-            writer = new FileWriter(AlipayConfig.log_path + "alipay_log_" + System.currentTimeMillis()+".txt");
+            writer = new FileWriter(AlipayConfig.log_path + "/alipay_log.txt");
             writer.write(sWord);
         } catch (Exception e) {
             e.printStackTrace();

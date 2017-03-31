@@ -32,6 +32,8 @@
 	for (Iterator iter = requestParams.keySet().iterator(); iter.hasNext();) {
 		String name = (String) iter.next();
 		String[] values = (String[]) requestParams.get(name);
+        name = name.replace("amp;", "");
+        logger.error("=====name："+name+"===value:"+values);
 		String valueStr = "";
 		for (int i = 0; i < values.length; i++) {
 			valueStr = (i == values.length - 1) ? valueStr + values[i]
@@ -47,18 +49,18 @@
 	//获取支付宝的通知返回参数，可参考技术文档中页面跳转同步通知参数列表(以下仅供参考)//
 	//商户订单号
 
-	String out_trade_no = new String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"),"UTF-8");
+	String out_trade_no = new String(request.getParameter("amp;out_trade_no").getBytes("ISO-8859-1"),"UTF-8");
 
 	//支付宝交易号
 
-	String trade_no = new String(request.getParameter("trade_no").getBytes("ISO-8859-1"),"UTF-8");
+	String trade_no = new String(request.getParameter("amp;trade_no").getBytes("ISO-8859-1"),"UTF-8");
 
 	//交易状态
-	String trade_status = new String(request.getParameter("trade_status").getBytes("ISO-8859-1"),"UTF-8");
+	String trade_status = new String(request.getParameter("amp;trade_status").getBytes("ISO-8859-1"),"UTF-8");
 	//退款状态
 	String refund_status = null;
-	if(StringUtils.isNotBlank(request.getParameter("refund_status"))){
-		refund_status = new String(request.getParameter("refund_status").getBytes("ISO-8859-1"),"UTF-8");
+	if(StringUtils.isNotBlank(request.getParameter("amp;refund_status"))){
+		refund_status = new String(request.getParameter("amp;refund_status").getBytes("ISO-8859-1"),"UTF-8");
 	}
 	logger.error("out_trade_no="+out_trade_no+",trade_no="+trade_no+",trade_status="+trade_status+",refund_status="+refund_status);
 	//获取支付宝的通知返回参数，可参考技术文档中页面跳转同步通知参数列表(以上仅供参考)//
@@ -73,7 +75,7 @@
 		//——请根据您的业务逻辑来编写程序（以下代码仅作参考）——
 		logger.error("支付宝异步验证成功!");
 		if(StringUtils.isNotBlank(trade_status)){
-			if(orderService.alipayNotify(trade_status,refund_status,out_trade_no,trade_no)){
+			if(orderService.alipayNotify("WAIT_SELLER_SEND_GOODS",refund_status,out_trade_no,trade_no)){
 				out.println("success");	//请不要修改或删除
 			}else{
 				out.println("success_fail");	//请不要修改或删除

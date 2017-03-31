@@ -32,7 +32,7 @@ public class AlipayConfig {
 	
 
 	// 调试用，创建TXT日志文件夹路径
-	public static String log_path = "/";
+	public static String log_path = "/alipay";
 
 	// 字符编码格式 目前支持 gbk 或 utf-8
 	public static String input_charset = "utf-8";

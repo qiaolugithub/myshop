@@ -39,11 +39,11 @@
 		String payment_type = "1";
 		//必填，不能修改
 		//服务器异步通知页面路径
-		String notify_url = SystemManager.getInstance().getSystemSetting().getWww()+"/paygate/alipay/alipayapi_notify_url.jsp";
+		String notify_url ="127.0.0.1:8080/jshop/paygate/alipay/alipayapi_notify_url.jsp";
 		//需http://格式的完整路径，不能加?id=123这类自定义参数
 
 		//页面跳转同步通知页面路径
-		String return_url = SystemManager.getInstance().getSystemSetting().getWww()+"/paygate/alipay/alipayapi_return_url.jsp";
+		String return_url =  "127.0.0.1:8080/jshop/paygate/alipay/alipayapi_return_url.jsp";
 		//需http://格式的完整路径，不能加?id=123这类自定义参数，不能写成http://localhost/
 
 		//卖家支付宝帐户

@@ -39,7 +39,7 @@
 					  <div class="form-group">
 					    <label for="name" class="col-lg-2 control-label">地址区域</label>
 					    <div class="col-lg-3">
-                            <select name="province" id="province" class="form-control" onchange="changeProvince()">
+                            <select name="province" id="province" class="form-control" onchange="changeProvince()"  data-rule="省份:required;">
                                 <option value="">--选择省份--</option>
 								<#list provinces as item>
                                     <option value="${item.code}" ${(address.province??&&address.province==item.code)?string("selected", "")}>${item.name}</option>
@@ -47,16 +47,16 @@
                             </select>
 					    </div>
 					    <div class="col-lg-3">
-                            <select class="form-control" id="citySelect" name="city" onchange="changeCity()">
+                            <select class="form-control" id="citySelect" name="city" onchange="changeCity()" data-rule="城市:required;">
                                 <option value="">--选择城市--</option>
 								<#list cities as item>
                                     <option value="${item.code}" ${(address.city??&&address.city==item.code)?string("selected", "")}>${item.name}</option>
 								</#list>
                             </select>
 					    </div>
-					    
+
 					    <div class="col-lg-3">
-                            <select class="form-control" id="areaSelect" name="area">
+                            <select class="form-control" id="areaSelect" name="area" data-rule="区县:required;">
                                 <option value="">--选择区县--</option>
 								<#list areas as item>
 									<option value="${item.code}" ${(address.area??&&address.area==item.code)?string("selected", "")}>${item.name}</option>
