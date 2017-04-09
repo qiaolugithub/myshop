@@ -127,9 +127,9 @@ a:focus, input, button, select, textarea{outline:0 none}
 .product_wrap .rf_product li{ float: left; width: 214px; height: 214px; border: solid 1px #999; position: relative; margin-left: 8px; margin-top: 8px;}
 .product_wrap .rf_product .pro_pircture{width: 214px;height:164px; overflow: hidden; }
 .product_wrap .rf_product p{padding: 0 5px; height: 20px; line-height: 20px; overflow: hidden;}
-.product_wrap .rf_product .price_big{ color: #ff6600; font-size: 22px;font-weight: 600; padding-top: 4px}
+.product_wrap .rf_product .price_big{ color: #ff6600; font-size: 22px;font-weight: 600; }
 .product_wrap .rf_product .price_big span{font-size: 16px; font-weight: 100}
-.car_buy{ position: absolute;right: 10px; bottom: 4px; width: 30px; height: 30px; border-radius: 50%; background-color: #99cc33; background-position:-496px -95px;}
+.car_buy{ position: absolute;right: 10px; bottom: 2px; width: 30px; height: 30px; border-radius: 50%; background-color: #99cc33; background-position:-496px -95px;}
 .big_advangeter{width: 1130px; height: 120px; overflow: hidden;margin: 0 auto; margin-top: 32px;}
 .product_wrap .lf_big_prodct{width:458px;}
 .product_wrap .big_pro_img{width: 670px; margin-top: 0}

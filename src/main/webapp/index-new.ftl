@@ -76,7 +76,7 @@
         <div class="bottom_nav_wrap">
 
             <ul class="clearfix">
-                <li><a href="${basepath}/index">首页</a></li>
+                <li><a href="${basepath}/">首页</a></li>
                <#list systemManager().catalogs as item>
                     <li> <a href="${basepath}/catalog/${item.code}.html">${item.name}</a></li>
                 </#list>

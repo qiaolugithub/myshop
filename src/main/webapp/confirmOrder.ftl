@@ -73,7 +73,7 @@
 						<#else>
 							<#if currentAccount()??>
 								<div class="bs-callout bs-callout-danger author" style="text-align: left;font-size: 14px;margin: 2px 0px;">
-									暂时还没有收货地址！<a style="text-decoration: underline;" href="${basepath}/account/address">点此设置</a>
+									暂时还没有收货地址！<a style="text-decoration: underline;" href="${basepath}/account/address?cart=1">点此设置</a>
 								</div>
 							</#if>
 						</#if>
