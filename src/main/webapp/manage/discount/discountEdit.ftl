@@ -110,16 +110,16 @@
             <td style="text-align: left;">
 
                <p><input type="radio" value="0" id="converttype_0" name="converttype"  class="input-small"  data-rule="checked"  <#if e.converttype?? && e.converttype==0>checked</#if>/>免费兑换</p>
-                <p><input type="radio" value="1" id="converttype_1" name="converttype"  class="input-small"  data-rule="checked" <#if e.converttype?? && e.converttype==1>checked</#if>/>人民币兑换
+              <#--  <p><input type="radio" value="1" id="converttype_1" name="converttype"  class="input-small"  data-rule="checked" <#if e.converttype?? && e.converttype==1>checked</#if>/>人民币兑换-->
                 <#--    <input type="text" value="${e.convertnum!""}" id="convertnum_1" name="convertnum" id="convertnum" />元-->
-                </p>
+               <#-- </p>-->
                 <p><input type="radio" value="2" id="converttype_2" name="converttype"  class="input-small"   data-rule="checked" <#if e.converttype?? && e.converttype==2>checked</#if>/>燊活币兑换
                    <#-- <input type="text" value="${e.convertnum!""}" id="convertnum_2" name="convertnum" id="convertnum" />币-->
                 </p>
-                <p><input type="radio" value="3" id="converttype_3" name="converttype"  class="input-small"  data-rule="checked"  <#if e.converttype?? && e.converttype==3>checked</#if>/>积分兑换
-                 <#--   <input type="text" value="${e.convertnum!""}" id="convertnum_3" name="convertnum" id="convertnum" />分-->
-                </p>
-                <input type="text" value="${e.convertnum!""}" id="convertnum_1" name="convertnum" id="convertnum" placeholder="输入需要替换的金额"/>元/币/分
+              <#--  <p><input type="radio" value="3" id="converttype_3" name="converttype"  class="input-small"  data-rule="checked"  <#if e.converttype?? && e.converttype==3>checked</#if>/>积分兑换
+                 &lt;#&ndash;   <input type="text" value="${e.convertnum!""}" id="convertnum_3" name="convertnum" id="convertnum" />分&ndash;&gt;
+                </p>-->
+                <input type="text" value="${e.convertnum!""}" id="convertnum_1" name="convertnum" id="convertnum" placeholder="输入需要替换的金额"/>
             </td>
         </tr>
 		<tr>

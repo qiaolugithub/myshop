@@ -97,7 +97,7 @@
                                     btnOKClass: 'btn-danger',
                                     callback: function (result) {
                                         if (result) {
-                                            window.location = "${basepath}/jshop/account/discount";
+                                            window.location = "${basepath}/account/discount";
                                         }
                                     }
                                 });

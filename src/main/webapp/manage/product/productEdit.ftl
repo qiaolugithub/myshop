@@ -294,9 +294,9 @@
 				<table class="table">
 					<tr>
 						<th style="display: none;">id</th>
-						<th>尺寸</th>
-						<th>颜色</th>
-						<th>规格库存数</th>
+						<th>规格</th>
+						<th>类别</th>
+						<th>库存数</th>
 						<th>价格</th>
 						<th>是否显示</th>
 					</tr>

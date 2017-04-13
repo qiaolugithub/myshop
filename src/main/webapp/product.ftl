@@ -315,7 +315,7 @@ function defaultProductImg(){
 									<input type="hidden" name="specJsonString" id="specJsonString" value='${e.specJsonString}'/>
 									<div style="border:0px solid red;" class="spec" id="specDiv">
 										<dl>
-											<dt style="float: left;">尺寸：</dt>
+											<dt style="float: left;">规格：</dt>
 											<dd>
 												<ul style="list-style: none;" id="specSize">
 													<#list e.specSize as item>
@@ -326,7 +326,7 @@ function defaultProductImg(){
 										</dl>
 										<br>
 										<dl>
-											<dt style="float: left;">颜色：</dt>
+											<dt style="float: left;">类别：</dt>
 											<dd>
 												<ul style="list-style: none;" id="specColor">
 													<#list e.specColor as item>
@@ -339,7 +339,7 @@ function defaultProductImg(){
 								</#if>
 								
 								<form action="${basepath}/product/buyNow.html" namespace="/" method="post" theme="simple">
-									<div class="row" style="margin-bottom: 10px;">
+									<div class="row" style="margin-top: 40px;margin-bottom: 10px;">
 										<div class="col-xs-12">
 											
 											<br>购买数量：
