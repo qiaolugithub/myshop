@@ -29,7 +29,7 @@
 				<div class="row">
 					<form role="form" id="form" class="form-horizontal" method="post" action="saveAddress" theme="simple">
 					  <input type="hidden" id="id" name="id" value="${address.id!""}"/>
-                      <input type="hidden" id="cart" name="cart" value="${cart}"/>
+                      <input type="hidden" id="cart" name="cart" value="${cart!""}"/>
 					  <div class="form-group">
 					    <label for="name" class="col-lg-2 control-label">收货人姓名</label>
 					    <div class="col-lg-6">
@@ -80,20 +80,20 @@
 						    class="form-control" id="zip" data-rule="邮编:required;length[6];zip;" placeholder="请输入收货人邮编" size="6" maxlength="6"/>
 					    </div>
 					  </div>-->
-					  <div class="form-group">
+					<#--  <div class="form-group">
 					    <label for="mobile" class="col-lg-2 control-label">手机</label>
 					    <div class="col-lg-6">
 					    	<input type="text"  value="${address.mobile!""}" name="mobile"  type="text"
 						    class="form-control" id="mobile" data-rule="手机:required;length[10~15];mobile;" placeholder="请输入收货人手机" maxlength="15"/>
 					    </div>
-					  </div>
-					  <#--<div class="form-group">
+					  </div>-->
+					 <div class="form-group">
 					    <label for="phone" class="col-lg-2 control-label">电话号码</label>
 					    <div class="col-lg-6">
 					    	<input type="text"  value="${address.phone!""}" name="phone"  type="text"
-						    class="form-control" id="phone" data-rule="电话号码:required;length[0~15];phone;" placeholder="请输入收货人座机号码" maxlength="15"/>
+						    class="form-control" id="phone" data-rule="电话号码:required;length[0~11];phone;" placeholder="请输入收货人号码" maxlength="11"/>
 					    </div>
-					  </div>-->
+					  </div>
 					  <div class="form-group">
 					    <div class="col-lg-offset-2 col-lg-6">
 					      <button type="submit" class="btn btn-success btn-sm" value="保存">
@@ -110,9 +110,9 @@
 								<th nowrap="nowrap" style="text-align: center;">收货人</th>
 								<th style="text-align: left;">所在区域</th>
 								<th style="text-align: left;">街道地址</th>
-								<th style="text-align: center;">邮编</th>
+								<#--<th style="text-align: center;">邮编</th>-->
 								<th style="text-align: center;">电话号码</th>
-								<th style="text-align: center;">手机号</th>
+								<#--<th style="text-align: center;">手机号</th>-->
 								<th nowrap="nowrap" style="text-align: center;">设为默认</th>
 								<th style="text-align: center;">操作</th>
 							</tr>
@@ -122,9 +122,10 @@
 									<td style="text-align: center;">${item.name!""}</td>
 									<td style="text-align: left;">${item.pcadetail!""}</td>
 									<td style="text-align: left;">${item.address!""}</td>
-									<td style="text-align: center;">${item.zip!""}</td>
-									<td style="text-align: center;">${item.phone!""}</td>
-									<td style="text-align: center;">${item.mobile!""}</td>
+								<#--	<td style="text-align: center;">${item.zip!""}</td>
+									-->
+                                    <td style="text-align: center;">${item.phone!""}</td>
+							<#--		<td style="text-align: center;">${item.mobile!""}</td>-->
 									<td nowrap="nowrap" style="text-align: center;">
 										<#if item.isdefault?? && item.isdefault=="y">
 											<input type="radio" current="1" name="setDefaultRadio" value="${item.id!""}" checked="checked"/>

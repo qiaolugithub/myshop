@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by Qiao on 2016/9/13.
@@ -27,4 +28,11 @@ public class DiscountServiceImpl extends ServersManager<Discount, DiscountDao> i
     public PagerModel selectPageList3(Discount e) {
         return dao.selectPageList3(e);
     }
+
+    @Override
+    public List<Discount> getUserDiscountList(Discount e) {
+        return dao.getUserDiscountList(e);
+    }
+
+
 }

@@ -6,6 +6,7 @@
 	color: red;font-weight: bold;font-size:22px;
 }
 </style>
+<script type="text/javascript" src="${basepath}/resource/validator-0.7.0/jquery.validator.js"></script>
 <div id="wrap">
 	<@menu.menu selectMenu=""/>
 	<form action="${basepath}/order/pay.html" method="post" theme="simple" onsubmit="return submitOrder();">
@@ -79,33 +80,33 @@
 						</#if>
 					</#if>
 					</li>
-					<li class="list-group-item">
-						<a href="#" data-toggle="tooltip" title="请选择配送方式！" id="expressTips">
-							<span class="glyphicon glyphicon-send"></span>&nbsp;请选择配送方式
-						</a>
-					</li>
-					<li class="list-group-item">
-						<div class="row">
-							<div class="col-xs-12">
-								<!-- 
-								<div class="alert alert-danger fade in">
-							        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-							        <strong>提示：</strong>请选择配送方式!
-							      </div>
-								 -->
-								<table class="table table-bordered table-hover" id="expressTable">
-									<#list expressList as item>
-										<tr style="cursor: pointer;">
-											<td width="400px">
-											<input type="radio" name="expressCode" value="${item.code!""}" fee="${item.fee!""}"/>
-											${item.name!""}</td>
-											<td>${item.fee!""}</td>
-										</tr>
-									</#list>
-								</table>
-							</div>
-						</div>
-					</li>
+                <li class="list-group-item">
+                <a href="#" data-toggle="tooltip" title="请选择配送方式！" id="expressTips">
+                    <span class="glyphicon glyphicon-send"></span>&nbsp;请选择配送方式
+                </a>
+            </li>
+        <li class="list-group-item">
+                <div class="row">
+                    <div class="col-xs-12">
+
+                      <#--  <div class="alert alert-danger fade in">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                            <strong>提示：</strong>请选择配送方式!
+                          </div>
+                         &ndash;&gt;-->
+                        <table class="table table-bordered table-hover" id="expressTable">
+                            <#list expressList as item>
+                                <tr style="cursor: pointer;">
+                                    <td width="400px">
+                                    <input type="radio" name="expressCode" value="${item.code!""}" fee="${item.fee!""}"/>
+                                    ${item.name!""}</td>
+                                    <td>${item.fee!""}</td>
+                                </tr>
+                            </#list>
+                        </table>
+                    </div>
+                </div>
+            </li>
 					<li class="list-group-item"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;购买到的商品</li>
 					<li class="list-group-item">
 						<div class="row">
@@ -150,12 +151,46 @@
 						</div>
 					</li>
 				</ul>
-				
+    <#if discountList??>
+                <li class="list-group-item"><span class="glyphicon glyphicon-tags"></span>&nbsp;可用的优惠券</li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <table class="table table-bordered table-hover" id="discountTable">
+                                <tr>
+                                    <th width="400px">优惠券名称</th>
+                                    <th >优惠金额</th>
+                                    <!-- 							<th >优惠方式(元)</th> -->
+                                </tr>
+                                <#list discountList as item>
+                                    <tr>
+                                        <td>
+                                        <div discount="discount" >
+                                            <input type="radio" name="discountId" facevale="${item.disFaceVale}" value="${item.id!""}"/> ${item.disName}
+                                        </div>
+
+                                        </td>
+                                        <td>
+                                            ${item.disFaceVale}
+                                        </td>
+
+                                    </tr>
+                                </#list>
+                            </table>
+                        </div>
+                    </div>
+                </li>
+                </ul>
+    <#else>
+    </#if>
 				<div class="panel-footer primary" align="right">
 					<div class="row">
 						<div class="col-xs-12">
+
+
 							<input id="productTotalMonery" type="hidden" value="${myCart.amount!""}"/>
 							合计：<span class="totalPayMonery" id="totalPayMonery">${myCart.amount!""}</span>
+                            <span  id="orderTips" style="display:none;" class="totalPayMonery">&nbsp;订单金额必须大于0！</span>
 						</div>
 					</div>
 					<div class="row">
@@ -192,19 +227,58 @@ $(function() {
 		$(this).addClass("alert-info");
 		$(this).find("input[type=radio]").attr("checked",true);
 	});
+
+
+
+    $("input:radio[name='discountId']").attr("checked",false);
+
+    $("input:radio[name='expressCode']").attr("checked",false);
+
+    $("#expressTable tr").each(function(){
+        var _radio = $(this).find("input[type=radio]");
+        _radio.click(function(){
+            console.log("选中的快递费用为="+_radio.attr("fee"));
+            _radio.attr("checked","checked");
+
+            var _radio2 =  $("div[discount=discount]").find("input[type='radio']:checked") ;
+            if(_radio2.length>0) {
+                var _totalPayMonery = parseFloat($("#productTotalMonery").val())+parseFloat(_radio.attr("fee"))-parseFloat(_radio2.attr("facevale"));
+            }else{
+                var _totalPayMonery = parseFloat($("#productTotalMonery").val())+parseFloat(_radio.attr("fee"));
+            }
+
+             $("#totalPayMonery").text(_totalPayMonery.toFixed(2));
+
+            $('#expressTips').tooltip('hide');
+        });
+    });
+
+    $("div[discount=discount]").find("input[type=radio]").click(function(){
+        var _radio = $(this);
+        _radio.attr("checked","checked");
+
+      var _radio2 =  $("table[id=expressTable]").find("input[type='radio']:checked");
+
+      if(_radio2.length>0) {
+            var _totalPayMonery = parseFloat($("#productTotalMonery").val())-parseFloat(_radio.attr("facevale"))+parseFloat(_radio2.attr("fee"));
+        }else{
+            var _totalPayMonery = parseFloat($("#productTotalMonery").val())-parseFloat(_radio.attr("facevale"));
+
+         }
+        $("#totalPayMonery").text(_totalPayMonery.toFixed(2));
+    });
+
 	
-	$("#expressTable tr").each(function(){
+	/*$("#discountTable tr").each(function(){
 		var _tr = $(this);
 		_tr.click(function(){
 			var _radio = _tr.find("input[type=radio]");
-			console.log("选中的快递费用为="+_radio.attr("fee"));
+			console.log("选中的id为="+_radio.attr("value"));
 			_radio.attr("checked",true);
-			var _totalPayMonery = parseFloat($("#productTotalMonery").val())+parseFloat(_radio.attr("fee"));
+			var _totalPayMonery = parseFloat($("#productTotalMonery").val())-parseFloat(_radio.attr("value"));
 			$("#totalPayMonery").text(_totalPayMonery.toFixed(2));
-			
-			$('#expressTips').tooltip('hide');
 		});
-	});
+	});*/
 	
 	$("#confirmOrderBtn").removeAttr("disabled");
 });
@@ -226,8 +300,12 @@ function submitOrder(){
 	}else{
 		$('#expressTips').tooltip('hide');
 	}
-	
-
+    if( $("#totalPayMonery").text()<=0){
+        $('#orderTips').show();
+        submitFlg =false;
+    }else{
+        $('#orderTips').hide();
+    }
 	console.log("提交订单...submitFlg= " + submitFlg);
 	if(!submitFlg){
 		return false; 

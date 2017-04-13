@@ -128,8 +128,8 @@
                     <table class="table table-bordered table-hover" style="margin-bottom: 10px;">
                         <tr style="background-color: #dff0d8">
                             <th style="text-align: center;">优惠券名称</th>
-                         <#--   <th style="text-align: center;">使用条件</th>
-                            <th style="text-align: center;">面值</th>-->
+                            <th style="text-align: center;">使用条件</th>
+                            <th style="text-align: center;">面值</th>
                             <th style="text-align: center;">有效期</th>
                             <th style="text-align: center;">限购分类或商品</th>
                             <th style="text-align: center;">兑换金额</th>
@@ -141,7 +141,7 @@
                                 <td style="display: none;">${item.id!""}</td>
                                 <td style="text-align: center;">${item.name!""}
                                      </td>
-                              <#--  <td style="text-align: center;">
+                                 <td style="text-align: center;">
                                     <#if item.cutType?? && item.cutType=="0">
                                         不限制
                                     <#else>
@@ -150,7 +150,7 @@
                                         </#if>
                                     </#if>
                                 </td>
-                                <td style="text-align: center;">${item.facevale!""}</td>-->
+                                <td style="text-align: center;">${item.facevale!""}</td>
                                 <td style="text-align: center;">${item.begintime!""}到${item.endtime!""}</td>
                                 <td style="text-align: center;">  ${item.pname!""}
                                   <#--  <#if item.protype?? && item.protype=="0" && item.proid?? && item.proid=="0">
@@ -194,11 +194,13 @@
                                 <td nowrap="nowrap" style="text-align: center;">
                                      <#if item.overTime==1>
                                          已过期
+                                         <#elseif item.converttype?? && item.levcount <=0>
+                                         已领完
                                      <#elseif item.converttype?? && item.converttype ==0 && item.isGet ==0>
                                         <a class="getDiscount" val="${item.id!""}">领用</a>
-                                    <#elseif item.converttype?? && item.converttype !=0 && item.isGet ==0>
+                                    <#elseif item.converttype?? && item.converttype !=0 && item.isGet ==0 >
                                         <a href="${basepath}/discount/toChange?id=${item.id!""}" >兑换</a>
-                                     <#elseif item.isGet?? && item.isGet ==1 >
+                                     <#elseif item.isGet?? && item.isGet ==1>
                                          已领取(<a class="getDiscount" val="${item.id!""}">再次领用</a>)
                                      <#else>
                                          异常数据
@@ -274,7 +276,22 @@
                             }
                         }
                     });
-                } else if(data=="success"){
+                }else if(data=="lev0"){
+                    BootstrapDialog.confirm({
+                        title: '抱歉优惠券已经领完了',
+                        message: "抱歉优惠券已经领完了",
+                        type: BootstrapDialog.TYPE_DANGER,
+                        closable: true,
+                        btnCancelLabel: '取消',
+                        btnOKLabel: '确认',
+                        btnOKClass: 'btn-danger',
+                        callback: function (result) {
+                            if (result) {
+                            }
+                        }
+                    });
+                }
+                else if(data=="success"){
                      BootstrapDialog.confirm({
                         title: '免费抢卷',
                         message: " 领取成功！感谢您的参与，祝您购物愉快~本活动为概率性事件，不能保证所有客户成功领取优惠",

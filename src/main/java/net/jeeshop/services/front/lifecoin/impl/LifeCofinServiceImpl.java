@@ -133,6 +133,8 @@ public class LifeCofinServiceImpl extends ServersManager<LifeCoin, LifeCoinDao> 
         if (coinNum == 0 || coinNum < lifeCoinLog.getNeedNum()) {
             lifeCoinPay.setPayStatus(false);
             lifeCoinPay.setMsg("您的虚拟钱包账户余额不足，支付失败！");
+            search.setCoincount(coinNum);
+            dao.update(search);
             logger.error("余额不足，支付失败");
             return lifeCoinPay;
         }else {

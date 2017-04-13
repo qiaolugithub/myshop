@@ -190,6 +190,13 @@
         and accountId =#{account}
     </select>
 
+    <select id="front.discountDetail.selectById" parameterType="String" resultType="net.jeeshop.services.front.discountDetail.bean.DiscountDetail" >
+        select
+        *
+        from t_discount_detail
+        where id = #{id}
+    </select>
+
     <update id="front.discountDetail.update" parameterType="net.jeeshop.services.front.discountDetail.bean.DiscountDetail" >
         update t_discount_detail
         set id=#{id}

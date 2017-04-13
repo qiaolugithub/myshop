@@ -16,6 +16,17 @@ public class Discount extends net.jeeshop.services.common.Discount implements
     private Integer isGet;//是否领取过
     private Integer overTime;//是否超时  0 未超时 1超时
 
+    private String disName;
+    private String disBeginTime;
+    private String disEndTime;
+    private String disCutType;
+    private String disCutNum;
+    private String disConvertType;
+    private String disConvertNum;
+    private String disFaceVale;
+    private String disProType;
+    private String disProId;
+
 
 
 
@@ -32,6 +43,17 @@ public class Discount extends net.jeeshop.services.common.Discount implements
         }
         account = null;
         isGet = null;
+
+       disName = null;
+       disBeginTime = null;
+       disEndTime = null;
+       disCutType = null;
+       disCutNum = null;
+       disConvertType = null;
+       disConvertNum = null;
+       disFaceVale = null;
+       disProType = null;
+       disProId = null;
     }
 
     public List<Discount> getDiscountList() {
@@ -89,5 +111,85 @@ public class Discount extends net.jeeshop.services.common.Discount implements
 
     public void setOverTime(Integer overTime) {
         this.overTime = overTime;
+    }
+
+    public String getDisName() {
+        return disName;
+    }
+
+    public void setDisName(String disName) {
+        this.disName = disName;
+    }
+
+    public String getDisBeginTime() {
+        return disBeginTime;
+    }
+
+    public void setDisBeginTime(String disBeginTime) {
+        this.disBeginTime = disBeginTime;
+    }
+
+    public String getDisEndTime() {
+        return disEndTime;
+    }
+
+    public void setDisEndTime(String disEndTime) {
+        this.disEndTime = disEndTime;
+    }
+
+    public String getDisCutType() {
+        return disCutType;
+    }
+
+    public void setDisCutType(String disCutType) {
+        this.disCutType = disCutType;
+    }
+
+    public String getDisCutNum() {
+        return disCutNum;
+    }
+
+    public void setDisCutNum(String disCutNum) {
+        this.disCutNum = disCutNum;
+    }
+
+    public String getDisConvertType() {
+        return disConvertType;
+    }
+
+    public void setDisConvertType(String disConvertType) {
+        this.disConvertType = disConvertType;
+    }
+
+    public String getDisConvertNum() {
+        return disConvertNum;
+    }
+
+    public void setDisConvertNum(String disConvertNum) {
+        this.disConvertNum = disConvertNum;
+    }
+
+    public String getDisFaceVale() {
+        return disFaceVale;
+    }
+
+    public void setDisFaceVale(String disFaceVale) {
+        this.disFaceVale = disFaceVale;
+    }
+
+    public String getDisProType() {
+        return disProType;
+    }
+
+    public void setDisProType(String disProType) {
+        this.disProType = disProType;
+    }
+
+    public String getDisProId() {
+        return disProId;
+    }
+
+    public void setDisProId(String disProId) {
+        this.disProId = disProId;
     }
 }

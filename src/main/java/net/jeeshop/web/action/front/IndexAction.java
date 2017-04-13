@@ -27,7 +27,7 @@ public class IndexAction {
     private ProductService productService;
 
 
-    @RequestMapping({"/","/index-new"})
+  /*  @RequestMapping({"/","/index-new"})
     public String index(Model model) {
         IndexPage SearchBean = new IndexPage();
         List<IndexPage> list = indexPageService.selectList(SearchBean);
@@ -60,9 +60,9 @@ public class IndexAction {
         model.addAttribute("productList4", productList4);
         return "index-new";
     }
+*/
 
-
-    @RequestMapping({"/home","/index"})
+    @RequestMapping({"/","/index"})
     public String indexOld() {
         return "index";
     }

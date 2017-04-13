@@ -91,6 +91,9 @@ public class DiscountAction extends BaseController<Discount> {
             return "error";
         }
         Discount discount = discountService.selectById(id);
+        if (discount.getLevcount() <= 0) {
+            return "lev0";
+        }
 
         Map map = new HashMap();
         map.put("disId", id);
@@ -99,10 +102,21 @@ public class DiscountAction extends BaseController<Discount> {
 
         if (count >= discount.getLimget() && discount.getLimget()!=0) {
             return "count";
-        }else {
-
+        }else    {
+                //领取成功就把优惠券减少
+                discount.setLevcount(discount.getLevcount()-1);
+                discountService.update(discount);
+                //新增详细绑在用户上的
+                DiscountDetail discountDetail = new DiscountDetail();
+                discountDetail.setDisid(Integer.parseInt(discount.getId()));
+                discountDetail.setGtime(DateTimeUtil.getCurrDate(DateTimeUtil.FORMAT_ONE));
+                discountDetail.setStatus(1);//标记可用
+                discountDetail.setConverttype(discount.getConverttype());
+                discountDetail.setConvertnum(discount.getConvertnum());
+                discountDetail.setAccountid(Integer.parseInt(acc.getId()));
+                discountDetailService.insert(discountDetail);
+                return "success";
         }
-        return "success";
     }
 
     //跳转兑换页面

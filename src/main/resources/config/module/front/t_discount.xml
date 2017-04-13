@@ -354,6 +354,7 @@
         d.facevale,
         d.protype,
         d.proid,
+        d.levCount,
         case when t.accountid =#{account}  then 1
         else 0 end as isget
         from
@@ -364,6 +365,40 @@
         limit #{offset},#{pageSize}
     </select>
 
+    <update id="front.discount.update" parameterType="net.jeeshop.services.front.discount.bean.Discount" >
+        update t_discount
+        set
+        <if test="name != null" >
+            name = #{name},
+        </if>
+        <if test="facevale != null" >
+            faceVale = #{facevale},
+        </if>
+        <if test="begintime != null" >beginTime = #{begintime},</if>
+        <if test="endtime != null" >endTime = #{endtime},</if>
+        <if test="protype != null" > proType = #{protype},</if>
+        <if test="proid != null" > proId = #{proid},</if>
+        <if test="allcount != null" >allCount = #{allcount},</if>
+        <if test="levcount != null" >levCount = #{levcount},</if>
+        <if test="converttype != null" >convertType = #{converttype},</if>
+        <if test="convertnum != null" >convertNum = #{convertnum},</if>
+        <if test="cuttype != null" > cutType = #{cuttype},</if>
+        <if test="cutnum != null" >cutNum = #{cutnum},</if>
+        <if test="trank != null" >   trank = #{trank},</if>
+        <if test="limget != null" >
+            limGet = #{limget},
+        </if>
+        <if test="remark != null" >
+            #{remark},
+        </if>
+        <if test="createtime != null" >
+            createTime = #{createtime},
+        </if>
+        <if test="status != null" >
+            status = #{status}
+        </if>
+        where id = #{id}
+    </update>
 
     <select id="front.discount.selectPageCount3" parameterType="net.jeeshop.services.front.discount.bean.Discount" resultType="java.lang.Integer">
         select count(1) from ( select
@@ -385,5 +420,32 @@
         left join t_discount_detail  t on t.disid = d.id
         where
          d.status=1) a
+    </select>
+
+
+    <!--获取自己能用的优惠券-->
+    <select id="front.discount.getUserDiscountList" parameterType="net.jeeshop.services.front.discount.bean.Discount" resultType="net.jeeshop.services.front.discount.bean.Discount">
+        select
+        d.name as disName,
+        d.begintime as disBeginTime,
+        d.endtime as disEndTime,
+        d.cuttype as disCutType,
+        d.cutnum as disCutNum,
+        d.converttype as disConvertType,
+        d.convertnum as disConvertNum,
+        d.facevale as disFaceVale,
+        d.protype as disProType,
+        d.proid as disProId,
+        t.*
+        from
+        t_discount d
+        left join t_discount_detail  t on t.disid = d.id
+        where
+        1=1
+        and d.beginTime &lt;= curdate()
+        AND curdate() &lt;= d.endTime
+        AND d.status=1
+        and t.status =1
+        and t.accountid =#{account}
     </select>
 </mapper>
