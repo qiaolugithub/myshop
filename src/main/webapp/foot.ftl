@@ -6,7 +6,11 @@
 <style>
 	
 	/* IndexBottom */
-.IndexBottom{padding-top:20px;padding-bottom:10px;border-top: 2px solid #f40;}
+.IndexBottom{
+    padding-top: 20px;
+    padding-bottom: 10px;
+     border-top: 2px solid #231815 !important;
+}
 .IndexBottom dl{float: left;display: inline;width: 110px;margin-top: 22px;margin-left: 43px;}
 .IndexBottom dt{margin-left: 5px;font-family: "Microsoft YaHei",\5fae\8f6f\96c5\9ed1,\5b8b\4f53;font-size: 16px;}
 .IndexBottom dd{margin-top: 4px;}
@@ -24,10 +28,10 @@
 			<div class="row IndexBottom">
 				<#list systemManager().newsCatalogs as item>
 					<div class="col-xs-2" style="text-align: center;">
-						<div class="row" style="margin-bottom: 10px;"><strong>${item.name!""}</strong></div>
+						<div class="row fist${item_index+1}"><strong>${item.name!""}</strong></div>
 						<#if item.news??>
 						    <#list item.news as item>
-                                <div class="row" style="line-height: 20px;">
+                                <div class="row newcolor" style="line-height: 20px;">
                                     <a href="${basepath}/help/${item.code}.html" target="_blank">
                                     ${item.title!""}
                                     </a>
@@ -37,9 +41,11 @@
 					</div>
 				</#list>
 			</div>
-			<hr style="margin: 0px;">
+
+            <div class="footer-logo"><img src="${basepath}/resource/images/footer_logo.png"></div>
+			<#--<hr style="margin: 0px;">-->
 			<!-- 友情链接 -->
-			<div class="row" >
+			<#--<div class="row" >
 				<div class="col-xs-12" style="text-align: center;">
 					<div style="text-align: center;margin: auto;">
 						<#if systemManager().navigations??>
@@ -51,9 +57,9 @@
 						</#if>
 					</div>
 				</div>
-			</div>
-			<hr style="margin: 0px;">
-			<div class="row" style="margin-top: 5px;display: inline;">
+			</div>-->
+			<#--<hr style="margin: 0px;">-->
+		<#--	<div class="row" style="margin-top: 5px;display: inline;">
 				<div class="col-xs-3">
 				</div>
 				<div class="col-xs-5">
@@ -61,13 +67,13 @@
 						<a target="_blank" href="http://www.aliyun.com/"><img src="http://gtms01.alicdn.com/tps/i1/T1W6.aFbFbXXcZj_6s-96-18.png" alt="运行在阿里云" /></a>
 					</p>
 				</div>
-				<div class="col-xs-1">
-					<!-- cnzz站点统计 -->
+				&lt;#&ndash;<div class="col-xs-1">
+					<!-- cnzz站点统计 &ndash;&gt;
 					${systemSetting().statisticsCode!""}
-				</div>
+				</div>&ndash;&gt;
 				<div class="col-xs-3">
 				</div>
-			</div>
+			</div>-->
 		</div>
 	</div>
 

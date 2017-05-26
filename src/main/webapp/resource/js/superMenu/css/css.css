@@ -1,38 +1,76 @@
 *{margin:0;padding:0;}
-#sidebar{background: #FAFAFA;height:auto;width:100%;border:2px solid #e33a3d;padding:0px;margin-top:0px;margin-left:0px;border-top: 0px;}
-#sidebar h3{text-align:left;margin-top: 0px;margin-bottom: 0px;padding-left: 40px;}
-#sidebar .sidelist{position:relative;z-index:1;height:32px;width:100%;background: url(../../../images/222.png) 0px 0px  no-repeat;
-/* border-top: 1px solid #eee; */
-/* border-bottom: 1px solid #eee; */
+#sidebar{background: #FAFAFA;height:auto;width:100%;border:2px solid #154a45;padding:0px;margin-top:0px;margin-left:0px;border-top: 0px;border-bottom-left-radius:5px;border-bottom-right-radius:5px;}
+#sidebar h3{text-align:left;margin-top: 0px;margin-bottom: 0px;padding-left:63px;}
+#sidebar .sidelist{position:relative;z-index:1;height:50px; line-height:50px;width:100%;background: url(../../../images/righico_03.png)186px 19px  no-repeat;
+    /* border-top: 1px solid #eee; */
+    /* border-bottom: 1px solid #eee; */
 }
-#sidebar .sidelist span h3{;position:relative;z-index:20;height:32px;line-height:32px;font-size:14px;font-weight:normal;
-vertical-align: middle;
-/* background: url(http://www.lingshi.com/templates/default/images/menu.png) 63px -2px no-repeat;margin: 10px; */
-/* background: url(../../../images/222.png) 0px 0px  no-repeat; */
+#sidebar .sidelist span h3{;position:relative;z-index:20;height:50px;line-height:50px;font-size:14px;font-weight:normal;
+    vertical-align: middle;
+    /* background: url(http://www.lingshi.com/templates/default/images/menu.png) 63px -2px no-repeat;margin: 10px; */
+    /* background: url(../../../images/222.png) 0px 0px  no-repeat; */
 
 }
-#sidebar .sidelist span h3 a{font-size:14px;text-decoration:none;display:block;width:auto;height:auto;color:#000;
+#sidebar .sidelist span h3 a{font-size:18px;text-decoration:none;display:block;width:auto;height:auto;color:#000;
 }
-#sidebar .sidelist span h3 a:hover{color:red;font-weight:bold;}
+#sidebar .sidelist span h3 a:hover{color:red;}
 #sidebar .i-list{display:none;position:absolute;z-index:1;left:259px;top:0px;text-align:left;
-/*width:180px;height:150px;*/
-/* width:100%; */
-width:250px;
-padding:15px;background: #FAFAFA;border:1px solid #c30;
-/*border-left:0px;*/
+    /*width:180px;height:150px;*/
+    /* width:100%; */
+    width:250px;
+    padding:15px;background: #FAFAFA;border:1px solid #c30;
+    /*border-left:0px;*/
 }
 #sidebar .i-list ul li{width:60px;float:left;list-style:none;line-height:32px;heignt:32px;}
 #sidebar .i-list ul li a{color:#000;text-decoration:none;font-size:12px;}
 #sidebar .i-list ul li a:hover{text-decoration:underline;color:red;}
 
-#sidebar .hover{border-top:1px solid #e33a3d;border-bottom:1px solid #e33a3d;border-right:0px;background: #FAFAFA;width:260px;}
+#sidebar .hover{border-top:1px solid #154a45;border-bottom:1px solid #154a45;border-right:0px;background: #FAFAFA;width:260px;}
 
 #sidebar .hotText{
-	display: block;
-/* 	margin:30px;padding:0 15px; */
-/* 	width: 50px; */
-	overflow: hidden; /*注意不要写在最后了*/
-	white-space: nowrap;
-	-o-text-overflow: ellipsis;
-	text-overflow: ellipsis;
+    display: block;
+    /* 	margin:30px;padding:0 15px; */
+    /* 	width: 50px; */
+    overflow: hidden; /*娉ㄦ剰涓嶈鍐欏湪鏈�鍚庝簡*/
+    white-space: nowrap;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis; line-height:24px !important
 }
+
+.footer-logo{ margin-bottom:30px;}
+.footer-logo img{ width:107px;}
+.newcolor a{ color:#86b725; display:block;}
+
+
+.addfont strong{ font-size:14px; }
+#loginOrRegSpan a{ color:#000000!important; display:inline-block;  margin-left:6px;}
+.matop{ margin-top:3px; float:right; text-align:center; font-size:12px; }
+.matop p{margin-top:4px;}
+
+.firco_ico1{ width:26px; height:25px; position:absolute; left:24px; top:12px;}
+.firco_ico2{width:20px; height:34px; position:absolute; left:28px; top:8px;}
+.firco_ico3{width:26px; height:25px; position:absolute; left:24px; top:12px;}
+.firco_ico4{width:32px; height:32px; position:absolute; left:24px; top:8px;}
+.firco_ico5{width:33px; height:25px; position:absolute; left:24px; top:13px;}
+.firco_ico6{width:24px; height:30px; position:absolute; left:28px; top:9px;}
+.firco_ico7{width:27px; height:22px; position:absolute; left:24px; top:13px;}
+
+
+.fist1{line-height:33px; padding-bottom:6px; background:url(../../../images/new_ico.png) no-repeat 41px 6px;}
+.fist2{line-height:33px;padding-bottom:6px; background:url(../../../images/shop_ico.png) no-repeat 36px 6px;}
+.fist3{line-height:33px; padding-bottom:6px; background:url(../../../images/buy_ico.png) no-repeat 36px;}
+.fist4{line-height:33px; padding-bottom:6px; background:url(../../../images/go_ico.png) no-repeat 28px;}
+
+.fist5{line-height:33px; padding-bottom:6px;  background:url(../../../images/preson_ico.png) no-repeat 26px 5px;}
+.fist6{line-height:33px; padding-bottom:6px; background:url(../../../images/hand_ico.png) no-repeat 35px 4px;}
+
+
+
+
+
+
+
+
+
+
+

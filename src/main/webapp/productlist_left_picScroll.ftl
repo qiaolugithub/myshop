@@ -37,7 +37,7 @@
 									<img border="0" style="margin: auto;" src="${systemSetting().imageRootPath}/${item.picture!""}" /></a>
 								</div>
 								<div class="left_title" style="text-align: center;">
-									<a href="http://www.SuperSlide2.com" target="_blank" style="margin: auto;text-align: center;" title="${item.name!""}">
+									<a href="${basepath}/product/${item.id}" target="_blank" style="margin: auto;text-align: center;" title="${item.name!""}">
 									${item.name!""}
 									</a>
 								</div>

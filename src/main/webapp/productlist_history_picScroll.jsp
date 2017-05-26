@@ -61,11 +61,11 @@
 					%>
 					<s:iterator value="#application.suijiProducts" status="i" var="row">
 						<li>
-							<div class="pic"><a href="http://www.SuperSlide2.com" target="_blank">
+							<div class="pic"><a href="#" target="_blank">
 								<img border="0" src="<%=SystemManager.getInstance().getSystemSetting().getImageRootPath()%><s:property escape="false" value="picture" />" /></a>
 							</div>
 							<div class="title">
-								<a href="http://www.SuperSlide2.com" target="_blank">
+								<a href="#" target="_blank">
 									<s:property escape="false" value="name"/>
 								</a>
 							</div>

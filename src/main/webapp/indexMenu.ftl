@@ -35,16 +35,16 @@ body{
 	<div class="container" style="min-height: 10px;margin-top:5px;margin-bottom:5px;border: 0px solid red;">
 		<div class="row">
 			<div class="col-xs-3">
-				<a href="${systemSetting().www}/index"><img style="max-height: 50px;" alt="myshop-logo" src="${systemSetting().log}"/></a>
+				<a href="${systemSetting().www}/index"><img style=" width:235px; height:118px;" alt="myshop-logo" src="${systemSetting().log}"/></a>
 			</div>
-			<div class="col-xs-6" style="border: 0px solid blue;padding-left:5px;">
+			<div class="col-xs-6" style="border: 0px solid blue;padding-left:5px; margin-top:53px;">
 				<!-- search查询输入框 -->
 <!-- 				style="padding: 0px;margin-left: 0px;" -->
 				<form class="form-inline" role="form" name="searchForm" id="searchForm" method="post"
 					action="${basepath}/search.html">
 					<div class="form-group btn-group">
 						<div class="input-group">
-							<input type="text" name="key" id="key" class="form-control input-sm" style="border: 2px solid red;border-right: 0px;" 
+							<input type="text" name="key" id="key" class="form-control input-sm" style="border: 2px solid #0b4c45;border-right: 0px;"
 			      		placeholder="请输入商品关键字" size="40" value="${key!""}" maxlength="20"/>
 							<span class="input-group-btn">
 								<button value="搜索" class="btn btn-primary btn-sm" onclick="search();">
@@ -60,7 +60,7 @@ body{
 						</div>
 					</div>
 				</form>
-				<div style="text-align: left;margin-top: 5px;">热门搜索：
+				<div style="text-align: left;margin-top: 9px;">热门搜索：
 					<#list systemManager().hotqueryList as item>
                         <a class="hotSearch" href="${item.url}" target="_blank">
 							${item.key1!""}
@@ -68,7 +68,7 @@ body{
 					</#list>
 				</div>
 			</div>
-			<div class="col-xs-3" style="height: 100%;">
+            <div class="col-xs-1" style="height: 100%;  margin-top:53px;">
 		    	<div class="row" style="height: 100%;">
 					<#if currentAccount()??>
                         <span id="myshopMenuPPP" style="display: inline-block;z-index: 9999;position: relative;;">
@@ -102,15 +102,18 @@ body{
 		          		</span>
 					<#else >
                         <span class="col-xs-12" id="loginOrRegSpan" style="font-size: 14px;">
-		          			<a href="${basepath}/account/login">登陆</a>|<a href="${basepath}/account/register">注册</a>
+		          			<a href="${basepath}/account/login">登陆</a><a href="${basepath}/account/register">注册</a>
 		          		</span>
 					</#if>
 
 		          	<div style="vertical-align: middle;margin-top: 10px;font-size: 18px;z-index: 0;">
-		          		<span class="glyphicon glyphicon-earphone"></span>&nbsp;<#--客服热线:-->${systemSetting().tel}
+                        <img src="${basepath}/resource/images/tell_ico.png">&nbsp;<#--客服热线:-->${systemSetting().tel}
 		          	</div>
 		    	</div>
 			</div>
+
+
+            <div class="matop"><img src="${basepath}/resource/images/ma_ico_03.png"><p>燊活馆微信公众号</p></div>
 		</div>
 		
 	</div>
