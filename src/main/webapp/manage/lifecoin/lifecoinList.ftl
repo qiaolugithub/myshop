@@ -4,8 +4,7 @@
     <table class="table table-bordered">
         <tr>
             <td style="text-align: right;">账号</td>
-            <td style="text-align: left;" ><input type="text"  value="${e.account!""}" name="account"  class="input-medium search-query"
-                                                  id="account" /></td>
+            <td style="text-align: left;" ><input type="text"  value="${e.account!""}" name="account"  class="input-medium search-query" id="account" /></td>
             <td style="text-align: right;">电话</td>
             <td style="text-align: left;" ><input type="text"  value="${e.tel!""}" name="tel"  class="input-medium search-query"
                                                   id="tel" /></td>
@@ -15,6 +14,8 @@
                 <button method="selectList" class="btn btn-primary" onclick="selectList(this)">
                     <i class="icon-search icon-white"></i> 查询
                 </button>
+
+                    <a class="btn btn-primary" href="${basepath}/manage/lifecoin/export">导出</a>
             </td>
             </tr>
         <tr>
@@ -59,4 +60,19 @@
         </tr>
     </table>
 </form>
+<script>
+
+     $('#export-btn').on('click', function(){
+     /*   var url = ${basepath}+"/manage/lifecoin/export";
+        console.log(url);
+        window.location.href = url;*/
+
+        /* $.ajax({
+             type: "GET",
+             url: ${basepath}+"/manage/lifecoin/export",
+             success: function (data) {
+             }
+         });*/
+    });
+</script>
 </@page.pageBase>

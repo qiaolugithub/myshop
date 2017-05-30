@@ -5,6 +5,8 @@ import net.jeeshop.core.DaoManager;
 import net.jeeshop.core.dao.page.PagerModel;
 import net.jeeshop.services.manage.lifecoin.bean.LifeCoin;
 
+import java.util.List;
+
 /**
  * Created by Qiao on 2016/12/10.
  */
@@ -17,4 +19,6 @@ public interface LifeCoinDao extends DaoManager<LifeCoin> {
      */
 
     LifeCoin getSumAndCount();
+
+    List<LifeCoin> exportAllUserLifeCoinList();
 }

@@ -5,6 +5,7 @@ import com.azazar.bitcoin.jsonrpcclient.BitcoinException;
 import com.azazar.bitcoin.jsonrpcclient.BitcoinJSONRPCClient;
 import net.jeeshop.core.Services;
 import net.jeeshop.core.dao.page.PagerModel;
+import net.jeeshop.core.util.DownLoadUtil;
 import net.jeeshop.services.common.LifeCoinHisObj;
 import net.jeeshop.services.manage.account.bean.Account;
 import net.jeeshop.services.manage.account.AccountService;
@@ -17,10 +18,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -153,6 +156,14 @@ public class LifeCoinAction extends BaseController<LifeCoin> {
         }
         lifeCoinService.update(lifeCoin);
         return "redirect:/manage/lifecoin/toShow?id="+lifeCoin.getId()+"&accountid="+accountid;
+    }
+
+    @RequestMapping(value = "export",method = RequestMethod.GET)
+    public void exportExpresses(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        String filePath = this.getClass().getResource("/").getPath();
+        String filename = lifeCoinService.exportAllUserLifeCoinList();
+        DownLoadUtil.downloadFile(request, response, filePath, filename);
+
     }
 
 }

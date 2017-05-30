@@ -72,5 +72,10 @@ public class LifeCoinDaoImpl implements LifeCoinDao {
     public LifeCoin getSumAndCount(){
         return (LifeCoin) dao.selectOne("manage.lifeCoin.getSumAndCount");
     }
+
+    @Override
+    public List<LifeCoin> exportAllUserLifeCoinList() {
+        return dao.selectList("manage.lifeCoin.exportAllUserLifeCoinList", null);
+    }
 }
 
