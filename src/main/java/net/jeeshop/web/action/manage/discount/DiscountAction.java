@@ -2,16 +2,24 @@ package net.jeeshop.web.action.manage.discount;
 
 import net.jeeshop.core.Services;
 import net.jeeshop.core.dao.page.PagerModel;
+import net.jeeshop.core.util.DateTimeUtil;
 import net.jeeshop.services.front.catalog.CatalogService;
+import net.jeeshop.services.manage.account.AccountService;
+import net.jeeshop.services.manage.account.bean.Account;
 import net.jeeshop.services.manage.discount.DiscountService;
 import net.jeeshop.services.manage.discount.bean.Discount;
 import net.jeeshop.services.front.product.ProductService;
+import net.jeeshop.services.manage.discountDetail.DiscountDetailService;
+import net.jeeshop.services.manage.discountDetail.bean.DiscountDetail;
 import net.jeeshop.web.action.BaseController;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -45,8 +53,15 @@ public class DiscountAction extends BaseController<Discount> {
     @Autowired
     private CatalogService catalogService;
 
+
+    @Autowired
+    private AccountService accountService;
+
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private DiscountDetailService discountDetailService;
 
     private static final String page_toList = "/manage/discount/discountList";
     private static final String page_toAdd = "/manage/discount/discountEdit";
@@ -125,5 +140,55 @@ public class DiscountAction extends BaseController<Discount> {
         }
         discount.setCreatetime(sdf.format(new Date()));
         return super.insert(request, discount, flushAttrs);
+    }
+
+
+    //跳转兑换页面
+    @RequestMapping(value = "bindDiscount",method = RequestMethod.POST)
+    @ResponseBody
+    public String payDiscount(String user,String disId,HttpServletRequest request) {
+        Account search = new Account();
+        search.setAccount(user);
+        Account acc = accountService.selectOne(search);
+
+
+        if (acc == null || StringUtils.isBlank(acc.getAccount())) {
+            return "用户不存在！";
+        }
+        if (disId == null || disId == "") {
+            return "请重新选择优惠券！";
+        }
+        Discount searchben = new Discount();
+        searchben.setId(disId);
+        Discount discount = discountService.selectOne(searchben);
+        if (discount == null) {
+            return "无效的优惠券！";
+        }
+        if (discount.getLevcount() <= 0) {
+            return "优惠券已抢完抱歉！";
+        }
+        String ymd = sdf.format(new Date());
+        if (discount.getBegintime().compareTo(ymd) <= 0 && discount.getEndtime().compareTo(ymd) >= 0) {
+
+        } else {
+            return "优惠券超出使用时间限制！";
+        }
+        if (discount.getStatus() == 0) {
+            return "优惠券不可用！";
+        }
+
+        //领取成功就把优惠券减少
+      /*  discount.setLevcount(discount.getLevcount() - 1);
+        discountService.update(discount);*/
+        //新增详细绑在用户上的
+        DiscountDetail discountDetail = new DiscountDetail();
+        discountDetail.setDisid(Integer.parseInt(discount.getId()));
+        discountDetail.setGtime(DateTimeUtil.getCurrDate(DateTimeUtil.FORMAT_ONE));
+        discountDetail.setStatus(1);//标记可用
+        discountDetail.setConverttype(discount.getConverttype());
+        discountDetail.setConvertnum(discount.getConvertnum());
+        discountDetail.setAccountid(Integer.parseInt(acc.getId()));
+        discountDetailService.insert(discountDetail);
+        return "已发送";
     }
 }

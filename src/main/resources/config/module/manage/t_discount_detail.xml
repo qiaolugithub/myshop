@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="manage.DiscountDetail" >
+ <!-- <resultMap id="BaseResultMap" type="net.jeeshop.model.DiscountDetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="disId" property="disid" jdbcType="INTEGER" />
+    <result column="gTime" property="gtime" jdbcType="TIMESTAMP" />
+    <result column="useTime" property="usetime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="convertType" property="converttype" jdbcType="INTEGER" />
+    <result column="convertNum" property="convertnum" jdbcType="DECIMAL" />
+    <result column="accountId" property="accountid" jdbcType="INTEGER" />
+    <result column="orderId" property="orderid" jdbcType="INTEGER" />
+  </resultMap>-->
+ <!-- <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, disId, gTime, useTime, status, convertType, convertNum, accountId, orderId
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="net.jeeshop.model.DiscountDetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_discount_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_discount_detail
+    where id = #{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_discount_detail
+    where id = #{id}
+  </delete>
+
+  <insert id="insertSelective" parameterType="net.jeeshop.model.DiscountDetail" >
+    insert into t_discount_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="disid != null" >
+        disId,
+      </if>
+      <if test="gtime != null" >
+        gTime,
+      </if>
+      <if test="usetime != null" >
+        useTime,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="converttype != null" >
+        convertType,
+      </if>
+      <if test="convertnum != null" >
+        convertNum,
+      </if>
+      <if test="accountid != null" >
+        accountId,
+      </if>
+      <if test="orderid != null" >
+        orderId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id},
+      </if>
+      <if test="disid != null" >
+        #{disid},
+      </if>
+      <if test="gtime != null" >
+        #{gtime},
+      </if>
+      <if test="usetime != null" >
+        #{usetime},
+      </if>
+      <if test="status != null" >
+        #{status},
+      </if>
+      <if test="converttype != null" >
+        #{converttype},
+      </if>
+      <if test="convertnum != null" >
+        #{convertnum},
+      </if>
+      <if test="accountid != null" >
+        #{accountid},
+      </if>
+      <if test="orderid != null" >
+        #{orderid},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="net.jeeshop.model.DiscountDetailExample" resultType="java.lang.Integer" >
+    select count(*) from t_discount_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKey" parameterType="net.jeeshop.model.DiscountDetail" >
+    update t_discount_detail
+    set disId = #{disid},
+      gTime = #{gtime},
+      useTime = #{usetime},
+      status = #{status},
+      convertType = #{converttype},
+      convertNum = #{convertnum},
+      accountId = #{accountid},
+      orderId = #{orderid}
+    where id = #{id}
+  </update>-->
+
+<!--查询数量-->
+    <select id="manage.discountDetail.getHasCount" parameterType="Map" resultType="java.lang.Integer">
+        SELECT
+        count(1)
+        FROM
+        t_discount_detail
+        WHERE
+        disId = #{disId}
+        AND status != 0
+        and accountId =#{account}
+    </select>
+
+    <select id="manage.discountDetail.selectById" parameterType="String" resultType="net.jeeshop.services.manage.discountDetail.bean.DiscountDetail" >
+        select
+        *
+        from t_discount_detail
+        where id = #{id}
+    </select>
+
+    <update id="manage.discountDetail.update" parameterType="net.jeeshop.services.manage.discountDetail.bean.DiscountDetail" >
+        update t_discount_detail
+        set id=#{id}
+        <if test="disid != null" >
+            , disId = #{disid}
+        </if>
+        <if test="gtime != null" >
+            ,gTime = #{gtime}
+        </if>
+        <if test="usetime != null" >
+            ,useTime = #{usetime}
+        </if>
+        <if test="status != null" >
+            , status = #{status}
+        </if>
+        <if test="converttype != null" >
+            ,convertType = #{converttype}
+        </if>
+        <if test="convertnum != null" >
+            , convertNum = #{convertnum}
+        </if>
+        <if test="accountid != null" >
+             ,accountId = #{accountid}
+        </if>
+        <if test="orderid != null" >
+             ,orderId = #{orderid}
+        </if>
+        where id = #{id}
+    </update>
+
+    <insert id="manage.discountDetail.insert" parameterType="net.jeeshop.services.manage.discountDetail.bean.DiscountDetail" useGeneratedKeys="true" keyProperty="id">
+        insert into t_discount_detail
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="disid != null" >
+                disId,
+            </if>
+            <if test="gtime != null" >
+                gTime,
+            </if>
+            <if test="usetime != null" >
+                useTime,
+            </if>
+            <if test="status != null" >
+                status,
+            </if>
+            <if test="converttype != null" >
+                convertType,
+            </if>
+            <if test="convertnum != null" >
+                convertNum,
+            </if>
+            <if test="accountid != null" >
+                accountId,
+            </if>
+            <if test="orderid != null" >
+                orderId,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id},
+            </if>
+            <if test="disid != null" >
+                #{disid},
+            </if>
+            <if test="gtime != null" >
+                #{gtime},
+            </if>
+            <if test="usetime != null" >
+                #{usetime},
+            </if>
+            <if test="status != null" >
+                #{status},
+            </if>
+            <if test="converttype != null" >
+                #{converttype},
+            </if>
+            <if test="convertnum != null" >
+                #{convertnum},
+            </if>
+            <if test="accountid != null" >
+                #{accountid},
+            </if>
+            <if test="orderid != null" >
+                #{orderid},
+            </if>
+        </trim>
+    </insert>
+</mapper>

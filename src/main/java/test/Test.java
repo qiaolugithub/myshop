@@ -3,6 +3,7 @@ package test;
 import com.azazar.bitcoin.jsonrpcclient.Bitcoin;
 import com.azazar.bitcoin.jsonrpcclient.BitcoinException;
 import com.azazar.bitcoin.jsonrpcclient.BitcoinJSONRPCClient;
+import net.jeeshop.services.common.LifeCoinPay;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,7 +19,9 @@ public class Test {
     //获取余额  ok  返回余额  如果没有指定账户<account>，返回钱包的总余额。如果指定账户<account>，返回账户余额
     public void getBalance(){
         try {
+            long time = System.currentTimeMillis();
             System.out.println(client.getBalance());
+            System.out.println(System.currentTimeMillis()-time);
         } catch (BitcoinException e) {
             e.printStackTrace();
         }
@@ -85,6 +88,8 @@ public class Test {
         }
         return "-1";
     }
+
+
     public static void main(String args[]) {
         Test test = new Test();
         //test.getBalance();
@@ -93,15 +98,26 @@ public class Test {
         //   test.listAccounts();
         //test.getAddressesByAccount("18768897556");
        // test.getBlock("SP8eoAh3TuECHkzKPvEeo6TLmvMUsewG6f");
-        long nw = System.currentTimeMillis();
+     /*   long nw = System.currentTimeMillis();
         System.out.println(test.getAccountAddress("2"));
-        System.out.println(nw-System.currentTimeMillis());
+        System.out.println(nw-System.currentTimeMillis());*/
 
         /*
          mvn install:install-file -Dfile=F:/111111/corelib/bitcoin-json-rpc-client-1.0.jar -DgroupId=bitcoin -DartifactId=bitcoin-json-rpc-client-1.0.jar -Dversion=1.0 -Dpackaging=jar
-
-
         * */
+
+      /*  String s = test.getAccountAddress("userid_29");
+        System.out.println(s);*/
+       /* BitcoinJSONRPCClient client = new BitcoinJSONRPCClient();
+        try {
+            String result = client.sendFrom("SS9JAn1ssp1NgQnCqvgTApntVa1nxk5JF8", "SN6dKom28rouRkg3ARgXA8nxeftouGoFJj", 0.2D);
+            System.out.println(result);
+        } catch (BitcoinException e) {
+            e.printStackTrace();
+        }*/
+
+        LifeCoinPay lifeCoinPay = new LifeCoinPay();
+        String a =  lifeCoinPay.officeAddress;
     }
 
 }

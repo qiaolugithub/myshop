@@ -87,6 +87,7 @@
                     </td>
                     <td nowrap="nowrap" style="text-align: center;">
                         <a href="toEdit?id=${item.id}">编辑</a>
+                        <a href="javascript:void(0)" data-target="#sendgeren" value="${item.id}"  data-toggle="modal" class="btn btn-link btn-sm sendGR">发送给个人</a>
                     </td>
                 </tr>
         </#list>
@@ -96,22 +97,70 @@
         </tr>
     </table>
 </form>
+
+
+<#-- <#include "bindTel.ftl">-->
+<div class="modal fade" id="sendgeren" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">发送个人</h4>
+            </div>
+            <div class="modal-body">
+                    <input name="discountId" type="hidden" class="form-control" id="discountId" value="" />
+                    <div class="form-group" style="height:30px">
+                        <label class="col-lg-6 control-label">用户名（账号，不要输入昵称）：</label>
+                        <div class="col-lg-6">
+                            <input name="user" type="text" class="form-control" id="user" value=""  placeholder="请输入用户"/>
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="cancelBtn" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button id="editSubimt" type="button" class="btn btn-primary" type="button">保存</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <script type="text/javascript">
-    $(function() {
-        function c1(f) {
-            $(":checkbox").each(function() {
-                $(this).attr("checked", f);
-            });
-        }
-        $("#firstCheckbox").click(function() {
-            if ($(this).attr("checked")) {
-                c1(true);
-            } else {
-                c1(false);
+    $(".sendGR").on("click",function () {
+        $("#discountId").val( $(this).attr("value"));
+    });
+
+
+    $("#editSubimt").on("click", function () {
+       var user = $("#user").val();
+        var disId = $("#discountId").val();
+
+        var _url = "bindDiscount";
+        $.ajax({
+            type: 'POST',
+            url: _url,
+            data: {user:user,disId:disId},
+            dataType: "text",
+            success: function (data) {
+                alert(data);
+            },
+            error: function (err) {
+                alert("失败");
             }
         });
-
     });
+
+    function c1(f) {
+        $(":checkbox").each(function() {
+            $(this).attr("checked", f);
+        });
+    }
+    $("#firstCheckbox").click(function() {
+        if ($(this).attr("checked")) {
+            c1(true);
+        } else {
+            c1(false);
+        }
+    });
+
     function deleteSelect() {
         if ($("input:checked").size() == 0) {
             return false;
