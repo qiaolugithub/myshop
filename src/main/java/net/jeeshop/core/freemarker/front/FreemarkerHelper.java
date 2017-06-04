@@ -113,6 +113,20 @@ public class FreemarkerHelper {
 //					+ targetHtmlPath;
 		System.out.println(targetHtmlPath);
 		File htmlFile = new File(targetHtmlPath);
+
+        File parent = htmlFile.getParentFile();
+        if(parent!=null&&!parent.exists()){
+            parent.mkdirs();
+        }
+
+        if(!htmlFile.exists()){
+            try {
+                htmlFile.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println(htmlFile.exists());
 		Writer out = new BufferedWriter(new OutputStreamWriter(
 				new FileOutputStream(htmlFile), "UTF-8"));
 		// 处理模版
@@ -157,7 +171,7 @@ public class FreemarkerHelper {
 			
 			data.clear();
 			data.put("e", news);
-			String templateHtml = RequestHolder.getSession().getServletContext().getRealPath("/")+"/jsp/helps/"+news.getId()+".jsp";
+			String templateHtml = RequestHolder.getSession().getServletContext().getRealPath("/")+File.separator+"jsp"+File.separator+"helps"+File.separator+news.getId()+".jsp";
 			crateHTML(RequestHolder.getSession().getServletContext(), data, template_newsInfo,templateHtml);
 			logger.error("生成html页面成功！id="+news.getId());
 		}
@@ -186,7 +200,7 @@ public class FreemarkerHelper {
 			
 			data.clear();
 			data.put("e", news);
-			String templateHtml = RequestHolder.getSession().getServletContext().getRealPath("/")+"/jsp/notices/"+news.getId()+".jsp";
+			String templateHtml = RequestHolder.getSession().getServletContext().getRealPath("/")+File.separator+"jsp"+File.separator+"notices"+File.separator+news.getId()+".jsp";
 			crateHTML(RequestHolder.getSession().getServletContext(), data, template_newsInfo,templateHtml);
 			logger.error("生成html页面成功！id="+news.getId());
 		}
@@ -214,7 +228,7 @@ public class FreemarkerHelper {
 			
 			data.clear();
 			data.put("e", p);
-			String templateHtml = RequestHolder.getSession().getServletContext().getRealPath("/")+"/jsp/product/"+p.getId()+".jsp";
+			String templateHtml = RequestHolder.getSession().getServletContext().getRealPath("/")+File.separator+"jsp"+File.separator+"product"+File.separator+p.getId()+".jsp";
 			try {
 				crateHTML(RequestHolder.getSession().getServletContext(), data, template_product,templateHtml);
 			} catch (Exception e) {
@@ -249,7 +263,7 @@ public class FreemarkerHelper {
 		HashMap<String, Object> data = new HashMap<String, Object>();
 		data.clear();
 		data.put("e", p);
-		String templateHtml = RequestHolder.getSession().getServletContext().getRealPath("/")+"/jsp/product/"+p.getId()+".jsp";
+		String templateHtml = RequestHolder.getSession().getServletContext().getRealPath("/")+File.separator+"jsp"+File.separator+"product"+File.separator+p.getId()+".jsp";
 		crateHTML(RequestHolder.getSession().getServletContext(), data, template_product,templateHtml);
 		logger.error("生成html页面成功！id="+p.getId());
 		
@@ -279,13 +293,14 @@ public class FreemarkerHelper {
 		String templateHtml = null;
 		
 		if(news.getType().equals(News.news_type_help)){
-			templateHtml = RequestHolder.getSession().getServletContext().getRealPath("/")+"/jsp/helps/"+news.getId()+".jsp";
+			templateHtml = RequestHolder.getSession().getServletContext().getRealPath("/")+File.separator+"jsp"+File.separator+"helps"+File.separator+news.getId()+".jsp";
 		}else if(news.getType().equals(News.news_type_notice)){
-			templateHtml = RequestHolder.getSession().getServletContext().getRealPath("/")+"/jsp/notices/"+news.getId()+".jsp";
+			templateHtml = RequestHolder.getSession().getServletContext().getRealPath("/")+File.separator+"jsp"+File.separator+"notices"+File.separator+news.getId()+".jsp";
 		}
 		crateHTML(RequestHolder.getSession().getServletContext(), data, template_newsInfo,templateHtml);
 		logger.error("生成html页面成功！id="+news.getId());
 		
 		return "success";
 	}
+
 }

@@ -82,7 +82,7 @@ $(function(){
 				</tr>
 				<tr>
 					<td style="text-align: right;">文章code</td>
-					<td style="text-align: left;"><input type="text"  value="${e.code!""}" name="code"  data-rule="文章编码:required;code;length[1~25];remote[unique]"
+					<td style="text-align: left;"><input type="text"  value="${e.code!""}" name="code"  data-rule="文章编码:required;code;length[1~25];remote[unique, id]"
 							id="code" /><br>
 						(例如：[新手帮助]的编码为xsbz，或者输入别的字符，但是必须唯一，最好不要使用中文。)		
 					</td>

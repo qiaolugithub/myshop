@@ -109,7 +109,7 @@
 	</update>
 	
 	<select id="front.news.selectSimpleOne" parameterType="net.jeeshop.services.front.news.bean.News" resultType="net.jeeshop.services.front.news.bean.News">
-		select id,title,DATE_FORMAT(createtime,'%Y-%m-%d')  createtime from t_news where 1=1 
+		select id,title,content,DATE_FORMAT(createtime,'%Y-%m-%d')  createtime from t_news where 1=1
 		<if test="id!=null and id!=''"> and id=#{id} </if>
 		<if test="code!=null and code!=''"> and code=#{code} </if>
 	</select>
