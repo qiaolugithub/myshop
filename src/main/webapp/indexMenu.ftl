@@ -106,14 +106,14 @@ body{
 		          		</span>
 					</#if>
 
-		          	<div style="vertical-align: middle;margin-top: 10px;font-size: 18px;z-index: 0;">
-                        <img src="${basepath}/resource/images/tell_ico.png">&nbsp;<#--客服热线:-->${systemSetting().tel}
-		          	</div>
+		          <#--	<div style="vertical-align: middle;margin-top: 10px;font-size: 18px;z-index: 0;">
+                       &lt;#&ndash; <img src="${basepath}/resource/images/tell_ico.png">&nbsp;&lt;#&ndash;客服热线:&ndash;&gt;${systemSetting().tel}&ndash;&gt;
+		          	</div>-->
 		    	</div>
 			</div>
 
 
-            <div class="matop"><img src="${basepath}/resource/images/ma_ico_03.png"><p>燊活馆微信公众号</p></div>
+            <div class=" col-xs-2   matop"><img src="${basepath}/resource/images/ma_ico_03.png"><p>燊活馆微信公众号</p></div>
 		</div>
 		
 	</div>
