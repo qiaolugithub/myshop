@@ -45,10 +45,6 @@ public class LifeCoinAction extends BaseController<LifeCoin> {
     private AccountService accountService;
 
 
-    public void setLifeCoinService(LifeCoinService lifeCoinService) {
-        this.lifeCoinService = lifeCoinService;
-    }
-
     @Override
     public Services<LifeCoin> getService() {
         return lifeCoinService;
@@ -71,13 +67,15 @@ public class LifeCoinAction extends BaseController<LifeCoin> {
         super.page_toAdd = page_toAdd;
         super.page_toEdit = page_toEdit;
     }
+    @Override
+    protected void selectListAfter(PagerModel pager) {
+        pager.setPagerUrl("selectList");
+    }
 
     @Override
     public String selectList(HttpServletRequest request,@ModelAttribute("e") LifeCoin e) throws Exception {
         try {
             super.selectList(request, e);
-            PagerModel pager = (PagerModel)request.getAttribute("pager");
-            request.setAttribute("pager", pager);
             LifeCoin coin = lifeCoinService.getSumAndCount();
             request.setAttribute("sum",  coin.getSumNum());
             request.setAttribute("count",  coin.getCountNum());

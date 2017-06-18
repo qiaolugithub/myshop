@@ -2,9 +2,9 @@ package net.jeeshop.services.common;
 
 import java.io.Serializable;
 
-import net.jeeshop.core.dao.page.PagerModel;
+import net.jeeshop.core.dao.QueryModel;
 
-public class LifeCoin extends PagerModel implements Serializable {
+public class LifeCoin extends QueryModel implements Serializable {
     private String id;
 
     /** t_lifecoin.accountId */

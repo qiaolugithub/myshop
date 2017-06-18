@@ -1,6 +1,6 @@
 <#import "/manage/tpl/pageBase.ftl" as page>
 <@page.pageBase currentMenu="燊活币管理">
-<form action="${basepath}/manage/lifecoin"  namespace="/manage"  method="post" theme="simple">
+<form action="${basepath}/manage/lifecoin"   id="form" name="form" method="post" theme="simple">
     <table class="table table-bordered">
         <tr>
             <td style="text-align: right;">账号</td>

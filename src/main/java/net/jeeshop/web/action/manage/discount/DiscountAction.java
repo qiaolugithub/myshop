@@ -178,8 +178,8 @@ public class DiscountAction extends BaseController<Discount> {
         }
 
         //领取成功就把优惠券减少
-      /*  discount.setLevcount(discount.getLevcount() - 1);
-        discountService.update(discount);*/
+       discount.setLevcount(discount.getLevcount() - 1);
+        discountService.update(discount);
         //新增详细绑在用户上的
         DiscountDetail discountDetail = new DiscountDetail();
         discountDetail.setDisid(Integer.parseInt(discount.getId()));
