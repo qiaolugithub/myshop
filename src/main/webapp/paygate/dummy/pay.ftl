@@ -1,10 +1,10 @@
 <#import "/resource/common_html_front.ftl" as html>
 <#import "/indexMenu.ftl" as menu>
 
-<@html.htmlBase title="模拟网关支付">
+<@html.htmlBase title="优惠券减免支付">
     <@menu.menu selectMenu=""/>
-<h1> 模拟支付动作</h1>
-<h3>待支付信息</h3>
+<h1>优惠券已减免支付，直接确认即可！</h1>
+<h3>订单信息</h3>
 <table class="table">
     <tr>
         <td>订单号:</td>
@@ -23,7 +23,7 @@
         <td>${payInfo.logistics_fee!""}</td>
     </tr>
 </table>
-<div> <input id="btnPay" type="button" class="btn btn-primary" value="确认支付"/></div>
+<div> <input id="btnPay" type="button" class="btn btn-primary" style="margin-left: 250px" value="确认支付"/></div>
 
 <script>
     $(function(){

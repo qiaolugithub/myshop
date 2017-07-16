@@ -9,7 +9,7 @@
 <script type="text/javascript" src="${basepath}/resource/validator-0.7.0/jquery.validator.js"></script>
 <div id="wrap">
 	<@menu.menu selectMenu=""/>
-	<form action="${basepath}/order/pay.html" method="post" theme="simple" onsubmit="return submitOrder();">
+	<form id="confirmAction" action="${basepath}/order/pay.html" method="post" theme="simple" onsubmit="return submitOrder();">
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12" style="font-size: 14px;font-weight: normal;">
@@ -301,8 +301,9 @@ function submitOrder(){
 		$('#expressTips').tooltip('hide');
 	}
     if( $("#totalPayMonery").text()<=0){
-        $('#orderTips').show();
-        submitFlg =false;
+        var submitFlg = true;
+        //$('#orderTips').show();
+        //submitFlg =false;
     }else{
         $('#orderTips').hide();
     }

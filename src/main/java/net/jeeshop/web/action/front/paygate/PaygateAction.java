@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +38,7 @@ public class PaygateAction {
     @Autowired
     private OrderpayService orderpayService;
     @RequestMapping("pay")
-    public String pay(String orderId, String orderPayId,  ModelMap modelMap) {
+    public String pay(@RequestParam(value="payOk" ,required =false ) String payOk,  String orderId, String orderPayId,  ModelMap modelMap) {
         Order order = orderService.selectById(orderId);
 
         if(order == null) {
@@ -59,7 +60,7 @@ public class PaygateAction {
 
         ///使用的网关
         String paygateType = systemManager.getProperty("paygate.type");
-        if("dummy".equalsIgnoreCase(paygateType)) {
+        if("dummy".equalsIgnoreCase(paygateType)||(payOk!=null&& payOk.equals("1"))) {
             return "paygate/dummy/pay";
         }
         return "paygate/alipay/alipayapi";
