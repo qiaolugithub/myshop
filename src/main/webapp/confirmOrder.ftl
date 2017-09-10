@@ -160,20 +160,23 @@
                                 <tr>
                                     <th width="400px">优惠券名称</th>
                                     <th >优惠金额</th>
+                                    <th style="text-align: center;">限购商品</th>
                                     <!-- 							<th >优惠方式(元)</th> -->
                                 </tr>
                                 <#list discountList as item>
                                     <tr>
                                         <td>
                                         <div discount="discount" >
-                                            <input type="radio" name="discountId" facevale="${item.disFaceVale}" value="${item.id!""}"/> ${item.disName}
+                                            <input type="radio" name="discountId" facevale="${item.disFaceVale}" value="${item.id!""}" <#if !item.ok>disabled="disabled" </#if>/> ${item.disName}
                                         </div>
 
                                         </td>
                                         <td>
                                             ${item.disFaceVale}
                                         </td>
-
+                                        <td style="text-align: center;">
+                                         ${item.pname!""}
+                                        </td>
                                     </tr>
                                 </#list>
                             </table>

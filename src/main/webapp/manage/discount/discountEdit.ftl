@@ -94,15 +94,15 @@
         <tr>
             <td style="text-align: right;">可用商品</td>
             <td style="text-align: left;">
-                <p> <input type="radio" name="protype" id="protype_0" value="0" data-rule="checked"  <#if e.protype?? && e.protype==0>checked</#if>/>全部商品全部分类</p>
-                <p> <input type="radio" name="protype" id="protype_1" value="1" data-rule="checked"  <#if e.protype?? && e.protype==1>checked</#if>/>指定分类(如果选择父分类则包含下属子分类)
-             <#--   <input type="text" name="proid" id="proid_1" value="${e.proid!""}"  placeholder="商品分类按照逗号分隔">商品分类按照逗号分隔0默认所有-->
+                <p> <input type="radio" name="protype" id="protype_0" value="0" data-rule="checked"  <#if e.protype?? && e.protype==0>checked</#if>/>全部商品<#--全部分类--></p>
+               <#-- <p> <input type="radio" name="protype" id="protype_1" value="1" data-rule="checked"  <#if e.protype?? && e.protype==1>checked</#if>/>指定分类(如果选择父分类则包含下属子分类)
+             &lt;#&ndash;   <input type="text" name="proid" id="proid_1" value="${e.proid!""}"  placeholder="商品分类按照逗号分隔">商品分类按照逗号分隔0默认所有&ndash;&gt;-->
                 </p>
                 <p> <input type="radio" name="protype" id="protype_2" value="2" data-rule="checked"  <#if e.protype?? && e.protype==2>checked</#if>/ >指定商品
 
                 </p>
 
-                <input type="text" name="proid" id="proid_2" value="${e.proid!""}" placeholder="商品或者商品分类按照逗号分隔">商品或者商品分类按照逗号分隔0默认所有
+                <input type="text" name="proid" id="proid_2" value="${e.proid!""}" placeholder="商品按照英文逗号分隔">商品按照英文逗号分隔0默认所有
             </td>
         </tr>
         <tr>

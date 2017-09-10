@@ -1,6 +1,9 @@
 package net.jeeshop.services.front.discount.bean;
 
 
+
+import net.jeeshop.services.front.product.bean.Product;
+
 import java.io.Serializable;
 import java.util.List;
 public class Discount extends net.jeeshop.services.common.Discount implements
@@ -8,6 +11,8 @@ public class Discount extends net.jeeshop.services.common.Discount implements
     private static final long serialVersionUID = 1L;
 
     private List<Discount> discountList;//
+    private List<Product> productList;
+    private boolean isOk;
 
     private  String account;//绑定人id
     private String queryDate;//做查询条件用的时间
@@ -27,10 +32,13 @@ public class Discount extends net.jeeshop.services.common.Discount implements
     private String disProType;
     private String disProId;
 
+    public boolean isOk() {
+        return isOk;
+    }
 
-
-
-
+    public void setOk(boolean isOk) {
+        this.isOk = isOk;
+    }
 
     public void clear() {
         super.clear();
@@ -40,6 +48,13 @@ public class Discount extends net.jeeshop.services.common.Discount implements
 			}
             discountList.clear();
             discountList = null;
+        }
+        if(productList!=null){
+            for(int i=0;i<productList.size();i++){
+                productList.get(i).clear();
+            }
+            productList.clear();
+            productList = null;
         }
         account = null;
         isGet = null;
@@ -54,6 +69,14 @@ public class Discount extends net.jeeshop.services.common.Discount implements
        disFaceVale = null;
        disProType = null;
        disProId = null;
+    }
+
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
     }
 
     public List<Discount> getDiscountList() {

@@ -35,7 +35,7 @@
                             <th style="text-align: center;">使用条件</th>
                             <th style="text-align: center;">面值</th>
                             <th style="text-align: center;">有效期</th>
-                            <th style="text-align: center;">限购分类或商品</th>
+                            <th style="text-align: center;">限购商品</th>
                             <th style="text-align: center;">状态</th>
                             <th style="text-align: center;">操作</th>
                         </tr>
@@ -137,6 +137,7 @@
                             <th style="text-align: center;">操作</th>
                         </tr>
                         <#list discountList2 as item>
+                            <#if  item.converttype?? && !(item.levcount <=0)>
                             <tr>
                                 <td style="display: none;">${item.id!""}</td>
                                 <td style="text-align: center;">${item.name!""}
@@ -207,6 +208,7 @@
                                      </#if>
                                 </td>
                             </tr>
+                            </#if>
                         </#list>
                     </table>
                 <#else>
